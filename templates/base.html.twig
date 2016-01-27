@@ -17,54 +17,22 @@
 </head>
 <body>
 
-<div class="wrapper">
+
     <header class="header">
         <div class="header-box">
-            <h1>Kevins Vegeburger Kitchen</h1>
+            <h1>Light CMS-A content management system for beginners</h1>
         </div>
-
-        {# Code for the log-in/log-out buttons #}
-        {% block admin %}
-            {# if there is a user defined, the button changes to a log-out button with a logged-in-as message #}
-            {# the user variable will be passed from a controller #}
-            {% if user is defined %}
-                <div class="logout-box">
-                    <form name="logout" action="/logout" method="get">
-                        <div class="user-box">
-                            Logged in as: <strong>{{ user.username|default }}</strong>
-                        </div>
-                        <input style="width: 6rem; height: 3.2rem;" class="input" type="submit" value="logout"/>
-                    </form>
-                </div>
-                {# if theres no user defined, the buttons change to a log-in form #}
-            {% else %}
-                <div class="login-box">
-                    <form name="login-form" action="/login" method="post">
-                        <input type="text" name="user" placeholder="username" class="input"/>
-                        <input type="password" name="pass" placeholder="password" class="input"/>
-                        <input style="width: 6rem; height: 3.2rem;" type="submit" value="login"/>
-                    </form>
-                </div>
-            {% endif %}
-        {% endblock %}
     </header>
-    <hr>
 
-    {# Main navbar on public pages #}
+
+
     <div class="navbar">
-   
-       
-    </div>
-    <hr>
+  </div>
 
-    {# a subheading div which can contain the search box, a page subheading and a calorie sort box,
-     depending on the page the user is on #}
+
+    {# a subheading div #}
     <div class="page-subheading">
         {% block subheading %}{% endblock %}
-    </div>
-    <div class="search-sort">
-        {% block searchbox %}{% endblock %}
-        {% block calorieSort %}{% endblock %}
     </div>
 
 
@@ -72,7 +40,7 @@
     <div class="content">
         {% block content %}{% endblock %}
     </div>
-</div>
+
 
 {# a space for a link to go backwards in the navigation tree #}
 <div class="back-link">
@@ -81,11 +49,11 @@
 
 {# the footer #}
 <footer class="footer">
-    &copy; Kevins VegeBurger Kitchens.<br>
+    &copy; Light CMS<br>
     {# the twig now function gives the current time with a filter for the current date (taken from the twig docs) #}
     {{ "now"|date(timezone="Europe/Dublin") }}</footer>
 
-{# javascript functions for livesearch and image rotate #}
+{# javascript functions #}
 {# the javscript functions will not be available on every page #}
 {# so when they're needed, include them in a block in a template #}
 {% block javascript %}
