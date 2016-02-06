@@ -13,7 +13,7 @@ class MainController
      * @param Request $request
      * @param Application $app
      * @return mixed
-     * renders a template for the route /home
+     * renders a template for the route '/'
      */
     public function indexAction(Request $request, Application $app)
     {
@@ -21,4 +21,16 @@ class MainController
         $templateName = 'home';
         return $app['twig']->render($templateName . '.html.twig', $args_array);
     }
+
+    public function cssAction(Request $request, Application $app)
+   {
+         $db = new dbmodel();
+         $name = request->get('name');
+        $css = $db->getCss($name);
+        $args_array = array(
+           'css' => $css
+        );
+        $templateName = 'home';
+       return $app['twig']->render($templateName . '.html.twig', $args_array);
+     }
 }

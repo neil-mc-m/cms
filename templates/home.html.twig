@@ -7,4 +7,8 @@ Home
 
 {% block content %}
 <p>Welcome to Light CMS, a content management system for the creation of simple websites</p>
+<form action="/homepage" method="get">
+      <input type="text" name="name" placeholder="name">
+      <input type="submit" value="submit">
+    </form>
 {% endblock %}

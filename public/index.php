@@ -23,4 +23,5 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 # ________________________________________________________________
 #
 $app->get('/', 'LightCMS\\MainController::indexAction');
+$app->get('/homepage', 'LightCMS\\MainController::cssAction');
 $app->run();
