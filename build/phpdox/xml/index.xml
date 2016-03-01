@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index xmlns="http://xml.phpdox.net/src" basedir="/home/neil/Desktop/light-cms/src">
+  <namespace name="LightCMS">
+    
+    
+  <class name="MainController" src="MainController.php" description="The Main Controller used for the 'main' routes out of index.php." xml="classes/LightCMS_MainController.xml"/><class name="dbmodel" src="dbmodel.php" description="all database functionality resides here." xml="classes/LightCMS_dbmodel.xml"/></namespace>
+</index>

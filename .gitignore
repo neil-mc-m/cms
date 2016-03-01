@@ -1,2 +1,4 @@
 # ignore these files/folders and everything in them
 /vendor/
+
+tests/_output/*

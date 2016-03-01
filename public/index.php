@@ -16,12 +16,13 @@ $app['debug'] = true;
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 $app->register(new Silex\Provider\SessionServiceProvider());
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
-	'twig.path' => $myTemplatesPath));
+    'twig.path' => $myTemplatesPath, ));
 
 # ________________________________________________________________
 #                      ROUTES
 # ________________________________________________________________
 #
 $app->get('/', 'LightCMS\\MainController::indexAction');
-$app->get('/homepage', 'LightCMS\\MainController::cssAction');
+$app->get('/articles', 'LightCMS\\MainController::articlesAction');
+$app->get('articles/{id}', 'LightCMS\\MainController::oneArticleAction');
 $app->run();

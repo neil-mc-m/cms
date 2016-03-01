@@ -1,7 +1,64 @@
 /* ************************************** */
-/* Main style sheet*/
+/* Default style sheet*/
 
-html, body {
-    height: 100%;
-    font-family: 'Raleway', sans-serif;
+/* general element styles */
+html,body {
+  font-family: 'Raleway', sans-serif;
+}
+
+img {
+  width: 100%;
+  padding-bottom: 4%;
+}
+
+header {
+    border: thin solid grey;
+  text-align: center;
+  padding: 5%;
+}
+
+footer {
+  padding: 4%;
+  border: thin solid black;
+  background-color: #1A7D7B;
+}
+
+/* style the navbar */
+ul {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 5%;
+}
+
+li {
+
+  display: inline;
+  text-decoration: none;
+  /*border: thin solid black;*/
+}
+
+a {
+  font-size: 2rem;
+  color: grey;
+  text-decoration: none;
+  /*border: thin solid black;*/
+}
+
+a:hover {
+  color: green;
+}
+
+/* style the content container */
+.container {
+    border: thin solid grey;
+  display: flex;
+  justify-content: space-around;
+  padding: 5%;
+}
+
+.section {
+    border: thin solid black;
+  text-align: justify;
+  max-width: 40%;
+  flex: 1;
 }
