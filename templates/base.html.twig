@@ -20,19 +20,17 @@
 
     <header class="header">
         <div class="header-box">
-            <h1>CMS-A content management system for everyone</h1>
+            {% block header %}
+            {% endblock %}
         </div>
     </header>
-
 
 
     <div class="navbar">
         <nav>
             <ul>
-              <li><a href="#">Home&nbsp/</a></li>
-              <li><a href="#">&nbsp/&nbspArticles&nbsp/</a></li>
-              <li><a href="#">&nbsp/&nbspPhotos&nbsp/</a></li>
-              <li><a href="#">&nbsp/&nbspContact</a></li>
+                {% block navbar %}
+                {% endblock %}
             </ul>
         </nav>
   </div>
@@ -46,7 +44,9 @@
 
     {# main content area #}
     <div class="content">
-        {% block content %}{% endblock %}
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>    
     </div>
 
 

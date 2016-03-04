@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% set active_page = 'about'%}
+{% block title %}
+Home
+{% endblock %}
+
+{% block style %}
+@import '{{ app.request.basepath }}/css/default_theme.css';
+{% endblock %}
+
+{% block navbar %}
+    <ul>
+        {% include 'navbar.html' %}
+    </ul>
+{% endblock %}
+
+{% block content %}
+    {% for con in content %}
+        <article class="section">
+            <h2>{{ con.contentItemTitle }}</h2>
+            <p>{{ con.contentItem }}</p>
+        </article>
+    {% endfor %}
+{% endblock %}

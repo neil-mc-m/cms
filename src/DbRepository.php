@@ -1,6 +1,7 @@
 <?php
 namespace LightCMS;
 
+use LightCMS\Page;
 use LightCMS\DbManager;
 use PDO;
 /**
@@ -25,7 +26,7 @@ class DbRepository
      */
     public function __construct($className, $tableName)
     {
-        $this->className = $className;
+        $this->className = __NAMESPACE__ .'\\'.$className;
         $this->tableName = $tableName;
     }
 
@@ -33,15 +34,15 @@ class DbRepository
     * @return an array of objects fetched into their classes.
     *
     */
-    public function showAllArticles()
+    public function showAll()
     {
         try {
             $pdo = new DbManager();
             $conn = $pdo->getPdoInstance();
             $stmt = $conn->prepare('SELECT * FROM '.$this->tableName);
-            $stmt->setFetchMode(PDO::FETCH_CLASS, $this->className);
+
             $stmt->execute();
-            $result = $stmt->fetchAll();
+            $result = $stmt->fetchAll(PDO::FETCH_CLASS, $this->className);
 
             return $result;
         } catch (PDOException $e) {
@@ -53,7 +54,7 @@ class DbRepository
     * @param an article id
     * @return a bool for success/failure
     */
-    public function showOneArticle($id)
+    public function showOne($id)
     {
         try {
             $pdo = new DbManager();
@@ -70,6 +71,40 @@ class DbRepository
 
         } catch (PDOException $e) {
             echo $e->getMessage;
+        }
+    }
+
+    public function getRoute($page)
+    {
+        try {
+            $pdo = new DbManager();
+            $conn = $pdo->getPdoInstance();
+            $stmt = $conn->prepare('SELECT * FROM '.$this->tableName.' WHERE pagePath =:slug');
+            $stmt->bindParam(':slug', $slug, PDO::PARAM_STR, 5);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_CLASS, $this->className);
+
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function getContent($page)
+    {
+        try {
+            $pdo = new DbManager();
+            $conn = $pdo->getPdoInstance();
+            $ucpage = ucfirst($page);
+            var_dump($ucpage);
+            $stmt = $conn->prepare('SELECT * FROM content WHERE pageName =:page');
+            $stmt->bindParam(':page', $ucpage, PDO::PARAM_STR, 5);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
         }
     }
 }

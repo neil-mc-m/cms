@@ -7,12 +7,12 @@ use PDO;
 /**
  * database connection manager.
  *
- * @Class dbmodel
+ * @Class DbManager
  */
 class DbManager
 {
     /**
-    * @var an instance of th pdo connection
+    * @var an instance of the pdo connection
     */
     private $pdo;
 

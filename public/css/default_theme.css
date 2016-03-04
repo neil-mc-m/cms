@@ -1,64 +1,57 @@
 /* ************************************** */
-/* Default style sheet*/
+
+/* Default style sheet */
 
 /* general element styles */
-html,body {
-  font-family: 'Raleway', sans-serif;
+
+body,
+html {
+  font-family : 'Raleway',
+                sans-serif;
+  font-size   : 1rem;
 }
 
 img {
-  width: 100%;
-  padding-bottom: 4%;
+  width          : 100%;
+  padding-bottom : 4%;
 }
 
 header {
-    border: thin solid grey;
-  text-align: center;
-  padding: 5%;
+  padding    : 5%;
+  border     : thin solid grey;
+  text-align : center;
 }
 
 footer {
-  padding: 4%;
-  border: thin solid black;
-  background-color: #1A7D7B;
+  padding          : 4%;
+  border           : thin solid black;
+  background-color : #1A7D7B;
 }
 
 /* style the navbar */
+
 ul {
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 5%;
+  display         : flex;
+  padding-right   : 5%;
+  justify-content : flex-end;
 }
 
 li {
-
-  display: inline;
-  text-decoration: none;
-  /*border: thin solid black;*/
+  display         : inline;
+  text-decoration : none;
+    /* border: thin solid black; */
 }
 
 a {
-  font-size: 2rem;
-  color: grey;
-  text-decoration: none;
-  /*border: thin solid black;*/
+  color           : grey;
+  text-decoration : none;
+  font-size       : 1.5em;
+    /* border: thin solid black; */
 }
 
-a:hover {
-  color: green;
-}
+a : hover {  color: green; }
 
-/* style the content container */
-.container {
-    border: thin solid grey;
-  display: flex;
-  justify-content: space-around;
-  padding: 5%;
-}
-
-.section {
+li.active {
     border: thin solid black;
-  text-align: justify;
-  max-width: 40%;
-  flex: 1;
+    background-color: green;
 }
