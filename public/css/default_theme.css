@@ -6,9 +6,10 @@
 
 body,
 html {
-  font-family : 'Raleway',
-                sans-serif;
-  font-size   : 1rem;
+  font-family      : 'Raleway',
+                     sans-serif;
+  font-size        : 1rem;
+  background-color : rgba(255, 255, 255, 0.45);
 }
 
 img {
@@ -49,9 +50,4 @@ a {
     /* border: thin solid black; */
 }
 
-a : hover {  color: green; }
-
-li.active {
-    border: thin solid black;
-    background-color: green;
-}
+a : hover {  color: green;

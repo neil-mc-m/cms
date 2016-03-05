@@ -18,6 +18,7 @@ return array(
     'Symfony\\Component\\Debug\\' => array($vendorDir . '/symfony/debug'),
     'Symfony\\Bridge\\Twig\\' => array($vendorDir . '/symfony/twig-bridge'),
     'Silex\\' => array($vendorDir . '/silex/silex/src/Silex'),
+    'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'LightCMStests\\' => array($baseDir . '/tests'),
     'LightCMS\\' => array($baseDir . '/src'),
 );

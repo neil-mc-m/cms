@@ -3,6 +3,7 @@ namespace LightCMS;
 
 use LightCMS\Page;
 use LightCMS\DbManager;
+
 use PDO;
 /**
  * A data access class.
@@ -39,6 +40,7 @@ class DbRepository
         try {
             $pdo = new DbManager();
             $conn = $pdo->getPdoInstance();
+            
             $stmt = $conn->prepare('SELECT * FROM '.$this->tableName);
 
             $stmt->execute();

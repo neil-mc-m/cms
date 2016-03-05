@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% set active_page = 'home' %}
+
+{% block title %}
+Log-in
+{% endblock %}
+
+{% block style %}
+@import '{{ app.request.basepath }}/css/default_theme.css';
+{% endblock %}
+
+{% block navbar %}
+    <ul>
+        {% include 'navbar.html' %}
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <form action="{{ path('admin_login_check') }}" method="post">
+        <label for="username">Username:</label>
+        <input type="text" name="_username" placeholder="username"/>
+        <label for="password">Password:</label>
+        <input type="password" name="_password" placeholder="password"/>
+        <input type="submit" />
+    </form>
+{% endblock %}
