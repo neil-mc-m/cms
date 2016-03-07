@@ -11,17 +11,16 @@ Log-in
 {% endblock %}
 
 {% block navbar %}
-    <ul>
-        {% include 'navbar.html' %}
-    </ul>
+
 {% endblock %}
 
 {% block content %}
+{{ error }}
     <form action="{{ path('admin_login_check') }}" method="post">
         <label for="username">Username:</label>
-        <input type="text" name="_username" placeholder="username"/>
+        <input type="text" name="username" value="{{ last_username }}"/>
         <label for="password">Password:</label>
-        <input type="password" name="_password" placeholder="password"/>
+        <input type="password" name="password" value="password"/>
         <input type="submit" />
     </form>
 {% endblock %}

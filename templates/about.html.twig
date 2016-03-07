@@ -2,12 +2,10 @@
 
 {% set active_page = 'about'%}
 {% block title %}
-Home
+{{ active_page }}
 {% endblock %}
 
-{% block style %}
-@import '{{ app.request.basepath }}/css/default_theme.css';
-{% endblock %}
+
 
 {% block navbar %}
     <ul>
@@ -15,10 +13,12 @@ Home
     </ul>
 {% endblock %}
 
+{% block subheading %}<h2>Your  blog posts...</h2>{% endblock %}
+
 {% block content %}
     {% for con in content %}
         <article class="section">
-            <h2>{{ con.contentItemTitle }}</h2>
+            <h3>{{ con.contentItemTitle }}</h3>
             <p>{{ con.contentItem }}</p>
         </article>
     {% endfor %}

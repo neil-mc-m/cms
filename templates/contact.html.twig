@@ -4,21 +4,17 @@
 {% set active_page = 'contact' %}
 
 {% block title %}
-Home
-{% endblock %}
-{% block style %}
-@import url(https://fonts.googleapis.com/css?family=Raleway);
-@import '{{ app.request.basepath }}/css/default_theme.css';
+{{ active_page }}
 {% endblock %}
 
-{% block header %}
-    <h1>CMS-A content management system for everyone</h1>
-{% endblock %}
+
 
 
 {% block navbar %}
     {% include 'navbar.html' %}
 {% endblock %}
+
+{% block subheading %}<h2>Contact Form..</h2>{% endblock %}
 
 {% block content %}
 <p>

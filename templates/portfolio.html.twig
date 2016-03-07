@@ -4,15 +4,7 @@
 {% set active_page = "portfolio" %}
 
 {% block title %}
-Home
-{% endblock %}
-{% block style %}
-@import url(https://fonts.googleapis.com/css?family=Raleway);
-@import '{{ app.request.basepath }}/css/default_theme.css';
-{% endblock %}
-
-{% block header %}
-    <h1>CMS-A content management system for everyone</h1>
+{{ active_page }}
 {% endblock %}
 
 
@@ -21,6 +13,8 @@ Home
         <li {% if active_page == page.pagePath %}class="active"{% endif %}><a href="{{ page.pagePath }}">{{ page.pageName }}&nbsp/&nbsp/</a></li>
     {% endfor %}
 {% endblock %}
+
+{% block subheading %}<h2>This is your portfolio page...</h2>{% endblock %}
 
 {% block content %}
 <p>

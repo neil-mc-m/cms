@@ -6,7 +6,8 @@
     "symfony/twig-bridge":"~3.0",
     "twig/twig":"~1.22",
     "symfony/security": "^3.0",
-    "monolog/monolog": "^1.18"
+    "monolog/monolog": "^1.18",
+    "doctrine/dbal": "~2.2"
   },
   "autoload":{
     "psr-4":{

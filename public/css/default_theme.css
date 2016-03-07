@@ -13,20 +13,25 @@ html {
 }
 
 img {
-  width          : 100%;
-  padding-bottom : 4%;
+  width          : 200px;
+  height: auto;
+  /*padding-bottom : 4%;*/
 }
 
 header {
-  padding    : 5%;
+  /*padding    : 5%;*/
   border     : thin solid grey;
+  /*background-image: url("images/cms_logo.jpg");*/
   text-align : center;
+  color: white;
+  background-color : #000033;
 }
 
 footer {
   padding          : 4%;
   border           : thin solid black;
-  background-color : #1A7D7B;
+  background-color : #000033;
+  color            : #FFFFCC;
 }
 
 /* style the navbar */
@@ -51,3 +56,12 @@ a {
 }
 
 a : hover {  color: green;
+}
+
+.page-subheading {
+    border: thin solid black;
+}
+.header-box{
+    border: thin solid black;
+    /*padding: 2%;*/
+}

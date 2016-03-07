@@ -3,27 +3,28 @@
 
 {% set active_page = 'home' %}
 {% block title %}
-Home
-{% endblock %}
-{% block style %}
-@import url(https://fonts.googleapis.com/css?family=Raleway);
-@import '{{ app.request.basepath }}/css/default_theme.css';
+{{ active_page }}
 {% endblock %}
 
-{% block header %}
-    <h1>CMS-A content management system for everyone</h1>
-{% endblock %}
+
+{# {% block header %}
+
+{% endblock %} #}
 
 
 {% block navbar %}
     {% include 'navbar.html' %}
 {% endblock %}
 
+
+{% block subheading %}<h2>Your home blog posts...</h2>{% endblock %}
+
+
 {% block content %}
     {% if content is defined %}
         {% for con in content %}
             <article class="section">
-                <h2>{{ con.contentItemTitle }}</h2>
+                <h3>{{ con.contentItemTitle }}</h3>
                 <p>{{ con.contentItem }}</p>
             </article>
         {% endfor %}
