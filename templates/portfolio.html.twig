@@ -1,0 +1,23 @@
+{# the home page template #}
+{% extends 'base.html.twig' %}
+
+{% set active_page = "portfolio" %}
+
+{% block title %}
+{{ active_page }}
+{% endblock %}
+
+
+{% block navbar %}
+    {% for page in pages %}
+        <li {% if active_page == page.pagePath %}class="active"{% endif %}><a href="{{ page.pagePath }}">{{ page.pageName }}&nbsp/&nbsp/</a></li>
+    {% endfor %}
+{% endblock %}
+
+{% block subheading %}<h2>This is your portfolio page...</h2>{% endblock %}
+
+{% block content %}
+<p>
+    Welcome to our portfolio!
+</p>
+{% endblock %}

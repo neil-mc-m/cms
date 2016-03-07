@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% set active_page = 'about'%}
+{% block title %}
+{{ active_page }}
+{% endblock %}
+
+
+
+{% block navbar %}
+    <ul>
+        {% include 'navbar.html' %}
+    </ul>
+{% endblock %}
+
+{% block subheading %}<h2>Your  blog posts...</h2>{% endblock %}
+
+{% block content %}
+    {% for con in content %}
+        <article class="section">
+            <h3>{{ con.contentItemTitle }}</h3>
+            <p>{{ con.contentItem }}</p>
+        </article>
+    {% endfor %}
+{% endblock %}

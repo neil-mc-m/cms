@@ -1,10 +1,32 @@
 {# the home page template #}
 {% extends 'base.html.twig' %}
 
+{% set active_page = 'home' %}
 {% block title %}
-Home
+{{ active_page }}
 {% endblock %}
 
+
+{# {% block header %}
+
+{% endblock %} #}
+
+
+{% block navbar %}
+    {% include 'navbar.html' %}
+{% endblock %}
+
+
+{% block subheading %}<h2>Your home blog posts...</h2>{% endblock %}
+
+
 {% block content %}
-<p>Welcome to Light CMS, a content management system for the creation of simple websites</p>
+    {% if content is defined %}
+        {% for con in content %}
+            <article class="section">
+                <h3>{{ con.contentItemTitle }}</h3>
+                <p>{{ con.contentItem }}</p>
+            </article>
+        {% endfor %}
+    {% endif %}
 {% endblock %}

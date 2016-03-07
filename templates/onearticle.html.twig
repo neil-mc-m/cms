@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Home
+{% endblock %}
+{% block style %}
+@import '{{ app.request.basepath }}/css/default_theme.css';
+{% endblock %}
+{% block content %}
+<h2>{{ article.title }}</h2>
+<p>{{ article.article }}</p>
+{{ article.created }}</br>
+<a href="/homepage">homepage</a><br/>
+<a href="/articles">Articles</a>
+
+{% endblock %}

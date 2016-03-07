@@ -1,0 +1,23 @@
+{# the home page template #}
+{% extends 'base.html.twig' %}
+
+{% set active_page = 'contact' %}
+
+{% block title %}
+{{ active_page }}
+{% endblock %}
+
+
+
+
+{% block navbar %}
+    {% include 'navbar.html' %}
+{% endblock %}
+
+{% block subheading %}<h2>Contact Form..</h2>{% endblock %}
+
+{% block content %}
+<p>
+    Contact us!
+</p>
+{% endblock %}

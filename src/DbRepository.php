@@ -1,0 +1,112 @@
+<?php
+namespace LightCMS;
+
+use LightCMS\Page;
+use LightCMS\DbManager;
+
+use PDO;
+/**
+ * A data access class.
+ *
+ * All data access for tables.
+ */
+class DbRepository
+{
+    /**
+     * @var classname
+     */
+    private $classname;
+
+    /**
+     * @var tablename
+     */
+    private $tablename;
+
+    /**
+     * @param classname and tablename sent to the constructor as parameters
+     */
+    public function __construct($className, $tableName)
+    {
+        $this->className = __NAMESPACE__ .'\\'.$className;
+        $this->tableName = $tableName;
+    }
+
+    /**
+    * @return an array of objects fetched into their classes.
+    *
+    */
+    public function showAll()
+    {
+        try {
+            $pdo = new DbManager();
+            $conn = $pdo->getPdoInstance();
+            
+            $stmt = $conn->prepare('SELECT * FROM '.$this->tableName);
+
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_CLASS, $this->className);
+
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    /**
+    * @param an article id
+    * @return a bool for success/failure
+    */
+    public function showOne($id)
+    {
+        try {
+            $pdo = new DbManager();
+            $conn = $pdo->getPdoInstance();
+            $stmt = $conn->prepare('SELECT * FROM '.$this->tableName.' WHERE id =:id');
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->setFetchMode(PDO::FETCH_CLASS, $this->className);
+            $stmt->execute();
+            if ($result = $stmt->fetch()) {
+                return $result;
+            } else {
+                return;
+            }
+
+        } catch (PDOException $e) {
+            echo $e->getMessage;
+        }
+    }
+
+    public function getRoute($page)
+    {
+        try {
+            $pdo = new DbManager();
+            $conn = $pdo->getPdoInstance();
+            $stmt = $conn->prepare('SELECT * FROM '.$this->tableName.' WHERE pagePath =:slug');
+            $stmt->bindParam(':slug', $slug, PDO::PARAM_STR, 5);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_CLASS, $this->className);
+
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    public function getContent($page)
+    {
+        try {
+            $pdo = new DbManager();
+            $conn = $pdo->getPdoInstance();
+            $ucpage = ucfirst($page);
+            var_dump($ucpage);
+            $stmt = $conn->prepare('SELECT * FROM content WHERE pageName =:page');
+            $stmt->bindParam(':page', $ucpage, PDO::PARAM_STR, 5);
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+}

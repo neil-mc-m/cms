@@ -10,7 +10,7 @@
     <style>
         {% block style %}
         @import url(https://fonts.googleapis.com/css?family=Raleway);
-        @import '{{ app.request.basepath }}/css/style.css';
+        @import '{{ app.request.basepath }}/css/default_theme.css';
         {% endblock %}
     </style>
 
@@ -20,13 +20,21 @@
 
     <header class="header">
         <div class="header-box">
-            <h1>Light CMS-A content management system for beginners</h1>
+            {% block header %}
+                <img src="{{ app.request.basepath }}/images/cms_logo.jpg" alt="a possible logo" />
+                <h1>Your title here...</h1>
+            {% endblock %}
         </div>
     </header>
 
 
-
     <div class="navbar">
+        <nav>
+            <ul>
+                {% block navbar %}
+                {% endblock %}
+            </ul>
+        </nav>
   </div>
 
 
@@ -38,7 +46,9 @@
 
     {# main content area #}
     <div class="content">
-        {% block content %}{% endblock %}
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
     </div>
 
 
@@ -57,7 +67,9 @@
 {# the javscript functions will not be available on every page #}
 {# so when they're needed, include them in a block in a template #}
 {% block javascript %}
-
+    <script type='text/javascript' id="__bs_script__">//<![CDATA[
+        document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.2.11.1.js'><\/script>".replace("HOST", location.hostname));
+        //]]></script>
 {% endblock %}
 
 </body>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="LightCMS\MainController" namespace="LightCMS" name="MainController" abstract="false" final="false" start="16" end="76">
+  <file path="src" file="MainController.php" realpath="/home/neil/Desktop/light-cms/src/MainController.php" size="1816" time="2016-02-25T20:59:01+00:00" unixtime="1456433941" sha1="727634b9b914fe210990fb52fdbf3c9cd87e4020" relative="MainController.php"/>
+  <docblock>
+    <description compact="The Main Controller used for the 'main' routes out of index.php."/>
+    <class value="MainController."/>
+  </docblock>
+  <method name="indexAction" start="28" end="34" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="home page Controller.">Renders a template for the homepage.</description>
+      <param type="object" variable="$request">
+        <type full="Symfony\Component\HttpFoundation\Request" namespace="Symfony\Component\HttpFoundation" name="Request"/>
+      </param>
+      <param type="object" variable="$app">
+        <type full="Silex\Application" namespace="Silex" name="Application"/>
+      </param>
+      <return description="template" type="object">
+        <type full="LightCMS\homepage" namespace="LightCMS" name="homepage"/>
+      </return>
+    </docblock>
+    <parameter name="request" byreference="false" type="object">
+      <type full="Symfony\Component\HttpFoundation\Request" namespace="Symfony\Component\HttpFoundation" name="Request"/>
+    </parameter>
+    <parameter name="app" byreference="false" type="object">
+      <type full="Silex\Application" namespace="Silex" name="Application"/>
+    </parameter>
+  </method>
+  <method name="cssAction" start="41" end="52" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description/>
+      <param variable="$request"/>
+      <param variable="$app"/>
+      <return description="different theme" type="object">
+        <type full="LightCMS\a" namespace="LightCMS" name="a"/>
+      </return>
+    </docblock>
+    <parameter name="request" byreference="false" type="object">
+      <type full="Symfony\Component\HttpFoundation\Request" namespace="Symfony\Component\HttpFoundation" name="Request"/>
+    </parameter>
+    <parameter name="app" byreference="false" type="object">
+      <type full="Silex\Application" namespace="Silex" name="Application"/>
+    </parameter>
+  </method>
+  <method name="articlesAction" start="53" end="63" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="request" byreference="false" type="object">
+      <type full="Symfony\Component\HttpFoundation\Request" namespace="Symfony\Component\HttpFoundation" name="Request"/>
+    </parameter>
+    <parameter name="app" byreference="false" type="object">
+      <type full="Silex\Application" namespace="Silex" name="Application"/>
+    </parameter>
+  </method>
+  <method name="oneArticleAction" start="64" end="75" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="request" byreference="false" type="object">
+      <type full="Symfony\Component\HttpFoundation\Request" namespace="Symfony\Component\HttpFoundation" name="Request"/>
+    </parameter>
+    <parameter name="app" byreference="false" type="object">
+      <type full="Silex\Application" namespace="Silex" name="Application"/>
+    </parameter>
+  </method>
+</class>
