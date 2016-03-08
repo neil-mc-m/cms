@@ -13,13 +13,14 @@ use LightCMS\DbManager;
 class CustomUserProvider implements UserProviderInterface
 {
     private $conn;
+    private $app;
 
-    public function __construct(PDO $conn)
+    public function __construct($app)
     {
+        $this->app = $app;
+        $pdo = new DbManager();
+        $conn = $pdo->getPdoInstance();
         $this->conn = $conn;
-        // $pdo = new DbManager();
-        // $conn = $pdo->getPdoInstance();
-        // $this->conn = $conn;
 
     }
 
@@ -27,7 +28,7 @@ class CustomUserProvider implements UserProviderInterface
     {
         $stmt = $this->conn->prepare('SELECT * FROM user WHERE username =:username');
         $stmt->bindParam(':username', $username, PDO::PARAM_STR, 4);
-        #$stmt->setFetchMode(PDO::FETCH_CLASS, User);
+        $stmt->setFetchMode(PDO::FETCH_OBJ);
         $stmt->execute();
         // $stmt = $this->conn->executeQuery('SELECT * FROM user WHERE userName = ?', array(strtolower($username)));
         $user = $stmt->fetch();

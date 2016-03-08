@@ -58,4 +58,5 @@ class SecurityController
 
         return $app->redirect('/');
     }
+
 }

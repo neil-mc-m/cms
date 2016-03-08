@@ -18,9 +18,10 @@ Log-in
 {{ error }}
     <form action="{{ path('admin_login_check') }}" method="post">
         <label for="username">Username:</label>
-        <input type="text" name="username" value="{{ last_username }}"/>
+        <input type="text" name="_username" value="{{ last_username }}"/>
         <label for="password">Password:</label>
-        <input type="password" name="password" value="password"/>
+        <input type="password" name="_password" value="password"/>
+        <input type="hidden" name="_target_path" value="/admin/dashboard" />
         <input type="submit" />
     </form>
 {% endblock %}
