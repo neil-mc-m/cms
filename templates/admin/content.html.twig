@@ -1,0 +1,42 @@
+{% extends 'admin/admin_base.html.twig' %}
+
+
+{% block title %}
+Admin Pages
+{% endblock %}
+
+{% block style %}
+@import '{{ app.request.basepath }}/css/default_theme.css';
+{% endblock %}
+
+{% block navbar %}
+    <a href="{{ path('admin_logout') }}">Logout</a>
+{% endblock %}
+
+{% block content %}
+    <p>
+        Welcome home,{{ user }}
+        {{ id }}
+    </p>
+    <ul>
+        <li><a href="/admin/dashboard"></a>Dashboard</li>
+        <li><a href="/admin/view">View all posts</a></li>
+        <li><a href="/admin/delete-post">Delete a post</a></li>
+        <li><a href="/admin/update-post">Update a post</a></li>
+
+    </ul>
+
+    <h3>Current Pages</h3>
+    <p>
+        {% for page in pages %}
+        {{ page.pagename }}
+        {% endfor %}
+    </p>
+    <p>
+        {% if result is defined %}
+        {{ result }}
+        {% endif %}
+    </p>
+
+
+{% endblock %}

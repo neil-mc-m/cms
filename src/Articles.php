@@ -1,36 +1,39 @@
 <?php
+
 namespace LightCMS;
 
 class Articles
 {
     /**
-     * primary key
-     * @var integer
+     * primary key.
+     *
+     * @var int
      */
     private $id;
     /**
-     * article title
+     * article title.
+     *
      * @var string
      */
     private $title;
     /**
-     * an article
+     * an article.
+     *
      * @var string
      */
     private $article;
 
     /**
-     * date created
+     * date created.
+     *
      * @var date
      */
     private $created;
 
-
-
     /**
-     * Get the value of primary key
+     * Get the value of primary key.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -38,9 +41,9 @@ class Articles
     }
 
     /**
-     * Set the value of primary key
+     * Set the value of primary key.
      *
-     * @param integer id
+     * @param int id
      *
      * @return self
      */
@@ -52,7 +55,7 @@ class Articles
     }
 
     /**
-     * Get the value of article title
+     * Get the value of article title.
      *
      * @return string
      */
@@ -62,7 +65,7 @@ class Articles
     }
 
     /**
-     * Set the value of article title
+     * Set the value of article title.
      *
      * @param string title
      *
@@ -76,7 +79,7 @@ class Articles
     }
 
     /**
-     * Get the value of an article
+     * Get the value of an article.
      *
      * @return string
      */
@@ -86,7 +89,7 @@ class Articles
     }
 
     /**
-     * Set the value of an article
+     * Set the value of an article.
      *
      * @param string article
      *
@@ -100,7 +103,7 @@ class Articles
     }
 
     /**
-     * Get the value of date created
+     * Get the value of date created.
      *
      * @return date
      */
@@ -110,7 +113,7 @@ class Articles
     }
 
     /**
-     * Set the value of date created
+     * Set the value of date created.
      *
      * @param date created
      *
@@ -122,5 +125,4 @@ class Articles
 
         return $this;
     }
-
 }

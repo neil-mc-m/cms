@@ -54,6 +54,16 @@ $app->get('/articles/{id}', 'LightCMS\\controllers\\MainController::oneArticleAc
 
 #$app->post('/admin/login_check', 'LightCMS\\controllers\\SecurityController::loginCheckAction');
 $app->get('/admin/logout', 'LightCMS\\controllers\\SecurityController::logoutAction');
+
 $app->get('/admin/dashboard', 'LightCMS\\controllers\\AdminController::dashboardAction');
+
+$app->get('/admin/pages', 'LightCMS\\controllers\\PagesController::pagesAction');
+$app->get('/admin/view-pages', 'LightCMS\\controllers\\PagesController::viewPagesAction');
+$app->get('/admin/create-page', 'LightCMS\\controllers\\PagesController::createPageAction');
+$app->post('/admin/new-page', 'LightCMS\\controllers\\PagesController::newPageAction');
+$app->get('/admin/delete-page', 'LightCMS\\controllers\\PagesController::deletePageAction');
+$app->post('/admin/process-delete-page', 'LightCMS\\controllers\\PagesController::processDeletePageAction');
+
+$app->get('/admin/content', 'LightCMS\\controllers\\ContentController::contentAction');
 
 $app->run();

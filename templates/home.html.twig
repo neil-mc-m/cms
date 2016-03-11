@@ -24,8 +24,12 @@
     {% if content is defined %}
         {% for con in content %}
             <article class="section">
-                <h3>{{ con.contentItemTitle }}</h3>
-                <p>{{ con.contentItem }}</p>
+                <h3>{{ con.contentitemtitle }}</h3>
+                <p>{{ con.contentitem }}</p>
+                <p>
+                    {{ con.created }}
+                    <img class="cal-icon" src="{{ app.request.basepath }}images/calendar.svg" alt="calender pic"/>
+                </p>
             </article>
         {% endfor %}
     {% endif %}

@@ -1,0 +1,44 @@
+{% extends 'admin/admin_base.html.twig' %}
+
+
+{% block title %}
+Admin delete form
+{% endblock %}
+
+
+
+{% block navbar %}
+    <a href="{{ path('admin_logout') }}">Logout</a>
+    <p>
+        Welcome home,{{ user.username }}
+        {{ id }}
+    </p>
+{% endblock %}
+
+{% block content %}
+    <div class="menu-sidebar">
+        <ul class="admin-nav">
+            <li class="admin-nav"><a class="admin-button" href="/admin/dashboard"><span class="button">Dashboard</span></a></li>
+            <li class="admin-nav"><a class="admin-button" href="/admin/pages"><span class="button">Pages</span></a></li>
+            <li class="admin-nav"><a class="admin-button" href="/admin/content"><span class="button">Content</span></a></li>
+        </ul>
+    </div>
+    <div class="main-section">
+        <h3>Current Pages</h3>
+        <form class="deletePageForm" action="/admin/process-delete-page" method="post">
+            {% for page in pages %}
+            <input type="radio" name="pagename" value="{{ page.pagename }}" checked>{{ page.pagename }}<br>
+            {% endfor %}
+            <input type="submit" value="delete">
+        </form>
+
+
+        <p>
+            {% if result is defined %}
+            {{ result }}
+            {% endif %}
+        </p>
+    </div>
+
+
+{% endblock %}

@@ -30,15 +30,15 @@ class MainController
     {
         $db = new DbRepository('Page', 'page');
         $app['monolog']->addInfo('You just connected to the database');
+        # get all pages currently stored in the db.
+        # Used for building the navbar and setting page titles.
         $pages = $db->showAll();
-
-
-
+        # as this is the home page controller, get the home pages content
         $content = $db->getContent('home');
 
         $args_array = array(
             'pages' => $pages,
-            'content' => $content
+            'content' => $content,
         );
         $templateName = 'home';
 
@@ -92,6 +92,14 @@ class MainController
     //     return $app['twig']->render($templateName.'.html.twig', $args_array);
     // }
 
+    /**
+     * Main routing out of the home page.
+     *
+     * @param  Request     $request [description]
+     * @param  Application $app     [description]
+     * @param  string      $page    the route/link used from the home page
+     * @return twig template        the requested twig template.
+     */
     public function routeAction(Request $request, Application $app, $page)
     {
         # get the pages to build the navbar
@@ -102,12 +110,9 @@ class MainController
         #var_dump($content);
         $args_array = array(
             'pages' => $pages,
-            'content' => $content
+            'content' => $content,
         );
 
-
         return $app['twig']->render($page.'.html.twig', $args_array);
-
-
     }
 }

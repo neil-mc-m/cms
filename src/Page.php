@@ -1,4 +1,5 @@
 <?php
+
 namespace LightCMS;
 
 /**
@@ -14,26 +15,30 @@ class Page
 {
     /**
      * an id.
-     * @var integer
+     *
+     * @var int
      */
-    public $pageId;
+    public $pageid;
     /**
      * The name of the page eg home.
+     *
      * @var string
      */
-    public $pageName;
+    public $pagename;
 
     /**
      * the path to the page eg /home.
+     *
      * @var string
      */
-    public $pagePath;
+    public $pagepath;
 
     /**
      * the template to return eg home.html.twig.
+     *
      * @var string
      */
-    public $pageTemplate;
+    public $pagetemplate;
 
     /////////////Getters////////////////
     /**
@@ -43,7 +48,7 @@ class Page
      */
     public function getPageName()
     {
-        return $this->pageName;
+        return $this->pagename;
     }
 
     /**
@@ -53,7 +58,7 @@ class Page
      */
     public function getPagePath()
     {
-        return $this->pagePath;
+        return $this->pagepath;
     }
 
     /**
@@ -63,7 +68,7 @@ class Page
      */
     public function getPageTemplate()
     {
-        return $this->pageTemplate;
+        return $this->pagetemplate;
     }
 
     ////////////setters//////////////////
@@ -74,9 +79,9 @@ class Page
      *
      * @return self
      */
-    public function setPageName($pageName)
+    public function setPageName($pagename)
     {
-        $this->pageName = $pageName;
+        $this->pagename = $pagename;
 
         return $this;
     }
@@ -88,9 +93,9 @@ class Page
      *
      * @return self
      */
-    public function setPagePath($pagePath)
+    public function setPagePath($pagepath)
     {
-        $this->pagePath = $pagePath;
+        $this->pagepath = $pagepath;
 
         return $this;
     }
@@ -102,16 +107,14 @@ class Page
      *
      * @return self
      */
-    public function setPageTemplate($pageTemplate)
+    public function setPageTemplate($pagetemplate)
     {
-        $this->pageTemplate = $pageTemplate;
+        $this->pagetemplate = $pagetemplate;
 
         return $this;
     }
 
     public function getAllNames()
     {
-        
     }
-
 }

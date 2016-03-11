@@ -1,14 +1,13 @@
 <?php
+
 namespace LightCMS;
-use Symfony\Component\HttpFoundation\Request;
-use Silex\Application;
+
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\User;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use PDO;
-use LightCMS\DbManager;
 
 class CustomUserProvider implements UserProviderInterface
 {
@@ -21,7 +20,6 @@ class CustomUserProvider implements UserProviderInterface
         $pdo = new DbManager();
         $conn = $pdo->getPdoInstance();
         $this->conn = $conn;
-
     }
 
     public function loadUserByUsername($username)
