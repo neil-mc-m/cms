@@ -4290,3 +4290,8 @@
 [2016-03-07 01:23:08] myapp.INFO: > GET /favicon.ico [] []
 [2016-03-07 01:23:08] myapp.CRITICAL: Twig_Error_Loader: Template "favicon.ico.html.twig" is not defined. (uncaught exception) at /home/neil/Desktop/light-cms/vendor/twig/twig/lib/Twig/Loader/Chain.php line 115 {"exception":"[object] (Twig_Error_Loader(code: 0): Template \"favicon.ico.html.twig\" is not defined. at /home/neil/Desktop/light-cms/vendor/twig/twig/lib/Twig/Loader/Chain.php:115)"} []
 [2016-03-07 01:23:08] myapp.INFO: < 500 [] []
+[2016-03-14 23:14:24] myapp.INFO: Matched route "GET_". {"route_parameters":{"_controller":"LightCMS\\controllers\\MainController::indexAction","_route":"GET_"},"request_uri":"http://localhost/light-cms/public/"} []
+[2016-03-14 23:14:24] myapp.INFO: > GET /light-cms/public/ [] []
+[2016-03-14 23:14:24] myapp.INFO: You just connected to the database [] []
+[2016-03-14 23:14:24] myapp.CRITICAL: Twig_Error_Runtime: Key "contentItemTitle" for array with keys "contentid, pagename, contenttype, contentitemtitle, contentitem, created" does not exist in "home.html.twig" at line 27 (uncaught exception) at /var/www/html/light-cms/vendor/twig/twig/lib/Twig/Template.php line 503 {"exception":"[object] (Twig_Error_Runtime(code: 0): Key \"contentItemTitle\" for array with keys \"contentid, pagename, contenttype, contentitemtitle, contentitem, created\" does not exist in \"home.html.twig\" at line 27 at /var/www/html/light-cms/vendor/twig/twig/lib/Twig/Template.php:503)"} []
+[2016-03-14 23:14:24] myapp.INFO: < 500 [] []
