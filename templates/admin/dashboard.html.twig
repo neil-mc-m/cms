@@ -5,17 +5,31 @@
 Admin dashboard
 {% endblock %}
 
-{% block style %}
-@import '{{ app.request.basepath }}/css/default_theme.css';
-{% endblock %}
+
 
 {% block navbar %}
     <a href="{{ path('admin_logout') }}">Logout</a>
+    <p>
+        Welcome home,{{ user.username }}
+        {{ id }}
+    </p>
 {% endblock %}
 
 {% block content %}
-    <p>
-        Welcome home, admin
-    </p>
+
+    <div class="main-section">
+        <h3>Current Pages</h3>
+        <p>
+            {% for page in pages %}
+            {{ page.pagename }}
+            {% endfor %}
+        </p>
+        <p>
+            {% if result is defined %}
+            {{ result }}
+            {% endif %}
+        </p>
+    </div>
+
 
 {% endblock %}

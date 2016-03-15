@@ -14,11 +14,7 @@ $loader = new Twig_Loader_Filesystem($myTemplatesPath);
 $app = new Silex\Application();
 $app['debug'] = true;
 
-$app['connect'] = $app->share(function () {
-    return new DbManager();
-});
-$app['dbInstance'] = $app['connect']->getPdoInstance();
-var_dump($app['dbInstance']);
+
 # ______________________________________________________________
 #              ADD PROVIDERS HERE
 # ______________________________________________________________
@@ -33,19 +29,17 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
 
             'admin' => array(
                 'pattern' => '^/admin',
-                'form' => array('login_path' => '/login', 'check_path' => '/admin/login_check', 'username_parameter' => 'username', 'password_parameter' => 'password'),
+                'form' => array('login_path' => '/login', 'check_path' => '/admin/login_check', 'username_parameter' => '_username', 'password_parameter' => '_password'),
                 'logout' => array('logout_path' => '/admin/logout', 'invalidate_session' => true),
-                'users' => $app->share(function () use ($app) {
-                        return new LightCMS\CustomUserProvider($app['dbInstance']);
-                        }),
-    ),),));
-    var_dump($app['user']);
-$app['security.encoder.digest'] = $app->share(function ($app) {
-        // use the sha1 algorithm
-        // don't base64 encode the password
-        // use only 1 iteration
-        return new MessageDigestPasswordEncoder('md5');
-    });
+                'users' => array(
+                    'admin' => array('ROLE_ADMIN', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg==')
+        ),
+    ),
+),
+
+));
+
+
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
     'monolog.logfile' => $loggerPath .'/development.log'
 ));
@@ -55,7 +49,7 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array(
 # ________________________________________________________________
 #
 $app->get('/', 'LightCMS\\controllers\\MainController::indexAction');
-$app->get('/admin', 'LightCMS\\controllers\\SecurityController::logInAction');
+#$app->get('/admin', 'LightCMS\\controllers\\SecurityController::logInAction');
 $app->get('/login', 'LightCMS\\controllers\\SecurityController::logInAction');
 $app->get('/{page}', 'LightCMS\\controllers\\MainController::routeAction');
 $app->get('/articles', 'LightCMS\\controllers\\MainController::articlesAction');
@@ -63,5 +57,17 @@ $app->get('/articles/{id}', 'LightCMS\\controllers\\MainController::oneArticleAc
 
 #$app->post('/admin/login_check', 'LightCMS\\controllers\\SecurityController::loginCheckAction');
 $app->get('/admin/logout', 'LightCMS\\controllers\\SecurityController::logoutAction');
+
+$app->get('/admin/dashboard', 'LightCMS\\controllers\\AdminController::dashboardAction');
+$app->get('/admin/analytics', 'LightCMS\\controllers\\AdminController::analyticsAction');
+
+$app->get('/admin/pages', 'LightCMS\\controllers\\PagesController::pagesAction');
+$app->get('/admin/view-pages', 'LightCMS\\controllers\\PagesController::viewPagesAction');
+$app->get('/admin/create-page', 'LightCMS\\controllers\\PagesController::createPageAction');
+$app->post('/admin/new-page', 'LightCMS\\controllers\\PagesController::newPageAction');
+$app->get('/admin/delete-page', 'LightCMS\\controllers\\PagesController::deletePageAction');
+$app->post('/admin/process-delete-page', 'LightCMS\\controllers\\PagesController::processDeletePageAction');
+
+$app->get('/admin/content', 'LightCMS\\controllers\\ContentController::contentAction');
 
 $app->run();

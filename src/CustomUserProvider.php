@@ -1,33 +1,32 @@
 <?php
+
 namespace LightCMS;
-use Symfony\Component\HttpFoundation\Request;
-use Silex\Application;
+
 use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\User;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
 use PDO;
-use LightCMS\DbManager;
 
 class CustomUserProvider implements UserProviderInterface
 {
     private $conn;
+    private $app;
 
-    public function __construct(PDO $conn)
+    public function __construct($app)
     {
+        $this->app = $app;
+        $pdo = new DbManager();
+        $conn = $pdo->getPdoInstance();
         $this->conn = $conn;
-        // $pdo = new DbManager();
-        // $conn = $pdo->getPdoInstance();
-        // $this->conn = $conn;
-
     }
 
     public function loadUserByUsername($username)
     {
         $stmt = $this->conn->prepare('SELECT * FROM user WHERE username =:username');
         $stmt->bindParam(':username', $username, PDO::PARAM_STR, 4);
-        #$stmt->setFetchMode(PDO::FETCH_CLASS, User);
+        $stmt->setFetchMode(PDO::FETCH_OBJ);
         $stmt->execute();
         // $stmt = $this->conn->executeQuery('SELECT * FROM user WHERE userName = ?', array(strtolower($username)));
         $user = $stmt->fetch();

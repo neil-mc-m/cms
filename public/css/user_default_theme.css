@@ -1,0 +1,115 @@
+/* ************************************** */
+
+/* Default style sheet for the admin section */
+
+/* general element styles */
+
+body,
+html {
+  background-color : rgba(255, 255, 255, 0.45);
+  font-family      : 'Raleway',
+                     sans-serif;
+  font-size        : 1rem;
+}
+
+/*img {
+  width  : 100px;
+  height : auto;
+    /* padding-bottom : 4%; */
+
+
+.header-box {
+    /* padding : 5%; */
+  color            : white;
+  border           : thin solid grey;
+  border-radius: 0.5%;
+  background-color : #ffad33;
+  text-align       : center;
+
+  height: 50%;
+     background-image: url("/images/cliffs.jpg");
+     background-repeat: no-repeat;
+     background-position: center;
+     background-size: cover;
+}
+.header-pic {
+    max-width: 100%;
+    max-height: 20%;
+}
+.title {
+    margin-top: 20%;
+}
+
+footer {
+  padding          : 2%;
+  /*color            : #FFFFCC;*/
+  border           : thin solid black;
+  /*background-color : #000033;*/
+}
+/* style the navbar */
+
+
+  ul {
+  border: thin solid grey;
+  display : flex;
+  padding-right : 5%;
+  justify-content : center;
+  }
+
+
+li {
+  display         : inline;
+  text-decoration : none;
+    /* border: thin solid black; */
+}
+
+a {
+  color           : grey;
+  text-decoration : none;
+  font-size       : 1.5em;
+    /* border: thin solid black; */
+}
+a:hover{
+    color: blue;
+}
+.page-subheading {
+    background-color: #ccf2ff
+}
+.container {
+    border: thin solid black;
+
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+}
+.section {
+    justify-content: center;
+    text-align: center;
+    margin: 1%;
+    padding: 2%;
+    flex: 1;
+    border: thin solid grey;
+    background-color: #e6e6ff;
+}
+/*************************************/
+/* footer styles */
+.footer {
+    display: flex;
+}
+.footer-section {
+    flex: auto;
+}
+.footer-links {
+    text-align: right;
+    display: block;
+}
+.footer-nav {
+    font-size: 0.75rem;
+}
+.alt-links {
+    display: block;
+}
+.cal-icon {
+    width: 16px;
+    height: 16px;
+}

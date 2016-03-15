@@ -1,0 +1,118 @@
+/* ************************************** */
+
+/* Default style sheet for the admin section */
+
+/* general element styles */
+
+body,
+html {
+  background-color : rgba(255, 255, 255, 0.45);
+  font-family      : 'Raleway',
+                     sans-serif;
+  font-size        : 1rem;
+}
+
+img {
+  width  : 200px;
+  height : auto;
+    /* padding-bottom : 4%; */
+}
+
+header {
+    /* padding : 5%; */
+  color            : white;
+  border           : thin solid grey;
+  background-color : #000033;
+  text-align       : center;
+    /* background-image: url("images/cms_logo.jpg"); */
+}
+
+footer {
+  padding          : 4%;
+  color            : #FFFFCC;
+  border           : thin solid black;
+  background-color : #000033;
+}
+
+/* style the navbar */
+
+/*
+  ul {
+  border: thin solid grey;
+  display : flex;
+  padding-right : 5%;
+  justify-content : flex-end;
+  }
+*/
+
+li {
+  display         : inline;
+  text-decoration : none;
+    /* border: thin solid black; */
+}
+
+a {
+  color           : grey;
+  text-decoration : none;
+  font-size       : 1.5em;
+    /* border: thin solid black; */
+}
+
+/*
+  a:hover{
+  color: blue;
+  }
+*/
+
+/* ************************************** */
+
+/* the admin styles */
+
+/* style the container with flexbox */
+
+.admin-container {
+  display : flex;
+}
+
+.menu-sidebar {
+  width : 20%;
+  flex  : 1 0 0;
+}
+
+.main-section {
+  width : auto;
+  flex  : 2 0 0;
+}
+.page-preview-box {
+    border: thin solid black;
+}
+.page-subheading {
+  border : thin solid black;
+}
+
+
+.header-box {
+  border : thin solid black;
+    /* padding: 2%; */
+}
+
+li.admin-nav {
+  display : block;
+  padding : 1rem;
+}
+#active-page {
+    color: red;
+}
+
+.admin-nav a:hover {
+  color : blue;
+}
+
+.button {
+  padding : 0.5rem;
+  border  : thin solid black;
+}
+
+.admin-button {
+  flex-direction : column;
+}
