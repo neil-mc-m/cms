@@ -13,16 +13,18 @@ Admin dashboard | create-page
     </p>
 {% endblock %}
 
-{% block content %}
-
-<div class="menu-sidebar">
-    <ul class="admin-nav">
+{% block settings_nav %}
+<div class="sub-nav">
+    <ul class="sub-nav">
         <li class="admin-nav"><a class="admin-button" href="/admin/dashboard"><span class="button">Dashboard</span></a></li>
         <li class="admin-nav"><a class="admin-button" href="/admin/create-page"><span class="button">Create a new web-page</span></a></li>
         <li class="admin-nav"><a class="admin-button" href="/admin/view-pages"><span class="button">View current pages</span></a></li>
         <li class="admin-nav"><a class="admin-button" href="#"><span class="button">Remove a page</span></a></li>
     </ul>
 </div>
+{% endblock %}
+
+{% block content %}
 <div class="main-section">
     <h3>Current pages:</h3>
     <p>

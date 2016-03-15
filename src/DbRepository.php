@@ -95,7 +95,23 @@ class DbRepository
             echo $e->getMessage();
         }
     }
+    public function getAllContent()
+    {
+        try {
+            $pdo = new DbManager();
+            $conn = $pdo->getPdoInstance();
 
+
+            $stmt = $conn->prepare('SELECT page.pagename,content.contentitemtitle FROM page LEFT JOIN content ON page.pagename=content.pagename');
+
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
     /**
      * gets a pages content.
      *
@@ -135,7 +151,7 @@ class DbRepository
             $conn = $pdo->getPdoInstance();
             $page = ucfirst($pageName);
             $result = '';
-            $stmt = $conn->prepare('INSERT INTO page(pageid, pagename, pagepath, pagetemplate) VALUES (DEFAULT, :pagename, :pagepath, :pagetemplate)');
+            $stmt = $conn->prepare('INSERT IGNORE INTO page(pageid, pagename, pagepath, pagetemplate) VALUES (DEFAULT, :pagename, :pagepath, :pagetemplate)');
             $stmt->bindParam(':pagename', $pageName);
             $stmt->bindParam(':pagepath', $pagePath);
             $stmt->bindParam(':pagetemplate', $pageTemplate);
@@ -150,7 +166,7 @@ class DbRepository
 
     /**
      * Remove a page
-     * 
+     *
      * @param  string $pageName the page to remove
      * @return twig template
      */

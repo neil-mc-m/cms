@@ -15,26 +15,51 @@ Admin Pages
     </p>
 {% endblock %}
 
-{% block content %}
+{% block settings_nav %}
     <div class="menu-sidebar">
         <ul class="admin-nav">
             <li class="admin-nav"><a class="admin-button" href="/admin/dashboard"><span class="button">Dashboard</span></a></li>
             <li class="admin-nav"><a class="admin-button" href="/admin/create-page"><span class="button">Create a new web-page</span></a></li>
-            <li class="admin-nav"><a class="admin-button" href="/admin/view-pages"><span class="button">View current pages</span></a></li>
-            <li class="admin-nav"><a class="admin-button" href="#"><span class="button">Remove a page</span></a></li>
+            <li class="admin-nav" ><a id="active-page" class="admin-button" href="/admin/view-pages"><span class="button">View current pages</span></a></li>
+            <li class="admin-nav"><a class="admin-button" href="/admin/delete-page"><span class="button">Remove a page</span></a></li>
         </ul>
     </div>
-    <div class="main-section">
-        <h3>Current Pages</h3>
-        <p>
-            {% for page in pages %}
-            {{ page.pagename }}
-            {% endfor %}
-        </p>
+{% endblock %}
+
+{% block content %}
+<div class="main-section">
+    <h3>Current Pages</h3>
+        {% for page in pages %}
+        <div class="page-preview-box">
+            <h4>{{ page.pagename }}</h4>
+                {% for content in allcontent %}
+                    {% if page.pagename == content.pagename %}
+                        <p>{{ content.contentitemtitle }}</p>
+
+                    {% endif %}
+
+                {% endfor %}
+
+
+                <ul>
+                    <li><a class="admin-button" href="/{{ page.pagepath }}" target="_blank"><span class="button">Preview</span></a></li>
+                </ul>
+
+
+                </div>
+        {% endfor %}
         <p>
             {% if result is defined %}
             {{ result }}
             {% endif %}
         </p>
-    </div>
+
+{% endblock %}
+{% block iframe %}
+
+
+{% endblock %}
+{% block javascript %}
+
+
 {% endblock %}

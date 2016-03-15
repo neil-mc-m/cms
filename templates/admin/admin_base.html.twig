@@ -45,22 +45,38 @@
     {# main content area #}
     <div class="content">
         <div class="admin-container">
-            {% block content %}{% endblock %}
+            {% block settings_nav %}
+            <div class="menu-sidebar">
+                <ul class="admin-nav">
+                    <li class="admin-nav"><a class="admin-button" href="/admin/dashboard"><span class="button">Dashboard</span></a></li>
+                    <li class="admin-nav"><a class="admin-button" href="/admin/pages"><span class="button">Pages</span></a></li>
+                    <li class="admin-nav"><a class="admin-button" href="/admin/content"><span class="button">Content</span></a></li>
+                    <li class="admin-nav"><a class="admin-button" href="/admin/analytics"><span class="button">Analytics</span></a></li>
+                </ul>
+            </div>
+            {% endblock %}
+            {% block content %}
+
+            {% endblock %}
         </div>
     </div>
 
-
+<div class="iframe-preview">
+    {% block iframe %}{% endblock %}
+</div>
 {# a space for a link to go backwards in the navigation tree #}
 <div class="back-link">
     {% block back_link %}{% endblock %}
 </div>
 
 {# the footer #}
+{% block footer %}
 <footer class="footer">
     &copy; Light CMS<br>
     {# the twig now function gives the current time with a filter for the current date (taken from the twig docs) #}
-    {{ "now"|date(timezone="Europe/Dublin") }}</footer>
-
+    {{ "now"|date(timezone="Europe/Dublin") }}
+</footer>
+{% endblock %}
 {# javascript functions #}
 {# the javscript functions will not be available on every page #}
 {# so when they're needed, include them in a block in a template #}

@@ -1,3 +1,5 @@
-{% for page in pages %}
-    <li class="footer-nav"><a class="alt-links" href="{{ page.pagePath }}">{{ page.pageName }}&nbsp&nbsp</a></li>
-{% endfor %}
+{% if pages is defined %}
+    {% for page in pages %}
+        <li class="footer-nav"><a class="alt-links" href="{{ page.pagePath }}">{{ page.pageName }}&nbsp&nbsp</a></li>
+    {% endfor %}
+{% endif %}

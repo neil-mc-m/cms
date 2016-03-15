@@ -26,6 +26,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => $myTemplatesPath ));
 $app->register(new Silex\Provider\SecurityServiceProvider(), array(
         'security.firewalls' => array(
+
             'admin' => array(
                 'pattern' => '^/admin',
                 'form' => array('login_path' => '/login', 'check_path' => '/admin/login_check', 'username_parameter' => '_username', 'password_parameter' => '_password'),
@@ -34,7 +35,9 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
                     'admin' => array('ROLE_ADMIN', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg==')
         ),
     ),
-),));
+),
+
+));
 
 
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
@@ -56,6 +59,7 @@ $app->get('/articles/{id}', 'LightCMS\\controllers\\MainController::oneArticleAc
 $app->get('/admin/logout', 'LightCMS\\controllers\\SecurityController::logoutAction');
 
 $app->get('/admin/dashboard', 'LightCMS\\controllers\\AdminController::dashboardAction');
+$app->get('/admin/analytics', 'LightCMS\\controllers\\AdminController::analyticsAction');
 
 $app->get('/admin/pages', 'LightCMS\\controllers\\PagesController::pagesAction');
 $app->get('/admin/view-pages', 'LightCMS\\controllers\\PagesController::viewPagesAction');

@@ -57,11 +57,18 @@ a {
   font-size       : 1.5em;
     /* border: thin solid black; */
 }
-/*a:hover{
-    color: blue;
-}*/
 
+/*
+  a:hover{
+  color: blue;
+  }
+*/
 
+/* ************************************** */
+
+/* the admin styles */
+
+/* style the container with flexbox */
 
 .admin-container {
   display : flex;
@@ -76,10 +83,13 @@ a {
   width : auto;
   flex  : 2 0 0;
 }
-
+.page-preview-box {
+    border: thin solid black;
+}
 .page-subheading {
   border : thin solid black;
 }
+
 
 .header-box {
   border : thin solid black;
@@ -90,9 +100,14 @@ li.admin-nav {
   display : block;
   padding : 1rem;
 }
-.admin-nav a:hover {
-    color: blue;
+#active-page {
+    color: red;
 }
+
+.admin-nav a:hover {
+  color : blue;
+}
+
 .button {
   padding : 0.5rem;
   border  : thin solid black;

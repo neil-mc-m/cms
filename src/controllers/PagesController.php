@@ -30,12 +30,14 @@ class PagesController
     {
         $db = new DbRepository('Page', 'page');
         $pages = $db->showAll();
+        $allContent = $db->getAllContent();
         $user = $app['session']->get('user');
         #var_dump($pages);
         $args_array = array(
             'user' => $user,
             'id' => session_id(),
-            'pages' => $pages
+            'pages' => $pages,
+            'allcontent' => $allContent
         );
         $templateName = 'admin/viewPages';
 

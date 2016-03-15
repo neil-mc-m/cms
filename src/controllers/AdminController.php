@@ -39,4 +39,18 @@ class AdminController
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
 
+    public function analyticsAction(Request $request, Application $app)
+    {
+        $user = $app['session']->get('user');
+        $args_array = array(
+            'user' => $user,
+            'id' => session_id(),
+
+        );
+        $templateName = 'admin/analytics';
+
+        return $app['twig']->render($templateName.'.html.twig', $args_array);
+    }
+    
+
 }
