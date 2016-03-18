@@ -135,6 +135,20 @@ class DbRepository
             echo $e->getMessage();
         }
     }
+    public function getAllPagesContent()
+    {
+        try {
+            $pdo = new DbManager();
+            $conn = $pdo->getPdoInstance();
+            $stmt = $conn->prepare('SELECT * FROM content');
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+
+            return $result;
+        } catch (PDOException $e) {
+            print $e->getMessage();
+        }
+    }
 
     /**
      * Creates a new web page fro m the parameters given.

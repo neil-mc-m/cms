@@ -1,0 +1,7 @@
+<ul class="admin-nav">
+{# navbar taken from lecture notes. set the active page at the beginning of each template.#}
+{% for item in navigation_bar %}
+   <li class="admin-nav"><a id="admin-button" {% if item[0] == active_page %}class="active"{% endif %}href="/admin/{{ (item[0]) }}">
+       <span class="button">{{ item[1] }}</span></a></li>
+{% endfor %}
+</ul>

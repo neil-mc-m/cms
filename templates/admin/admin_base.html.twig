@@ -1,9 +1,13 @@
 {# admin base template from which all other templates will extend #}
 
+{% set navigation_bar = [['dashboard', 'Dashboard'], ['pages', 'Pages'], ['content', 'Content']] %}
+{# set the active page to be styled. Do this on every different page #}
+{% set active_page = active_page|default('dashboard') %}
 
 
 <!DOCTYPE html>
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>
         Light CMS |{% block title %}{% endblock %}
     </title>
@@ -13,6 +17,8 @@
         @import '{{ app.request.basepath }}/css/admin_default_theme.css';
         {% endblock %}
     </style>
+
+
 
 </head>
 <body>
@@ -27,9 +33,12 @@
 
 
     <div class="navbar">
+
         <nav>
+            
             <ul>
                 {% block navbar %}
+
                 {% endblock %}
             </ul>
         </nav>
@@ -47,12 +56,7 @@
         <div class="admin-container">
             {% block settings_nav %}
             <div class="menu-sidebar">
-                <ul class="admin-nav">
-                    <li class="admin-nav"><a class="admin-button" href="/admin/dashboard"><span class="button">Dashboard</span></a></li>
-                    <li class="admin-nav"><a class="admin-button" href="/admin/pages"><span class="button">Pages</span></a></li>
-                    <li class="admin-nav"><a class="admin-button" href="/admin/content"><span class="button">Content</span></a></li>
-                    <li class="admin-nav"><a class="admin-button" href="/admin/analytics"><span class="button">Analytics</span></a></li>
-                </ul>
+                {% include 'admin/admin_mainNav.html.twig' %}
             </div>
             {% endblock %}
             {% block content %}
@@ -66,7 +70,11 @@
 </div>
 {# a space for a link to go backwards in the navigation tree #}
 <div class="back-link">
-    {% block back_link %}{% endblock %}
+    {% block back_link %}
+
+
+</body>
+{% endblock %}
 </div>
 
 {# the footer #}

@@ -1,4 +1,8 @@
 {% extends 'admin/admin_base.html.twig' %}
+{% set pagesSubNav = [['dashboard', 'Dashboard'], ['create-page', 'Create a new web-page'], ['view-pages', 'View current pages'], ['delete-page', 'Remove a page']] %}
+{# set the active page to be styled. Do this on every different page #}
+{% set active_page = active_page|default('dashboard') %}
+
 
 
 {% block title %}
@@ -17,23 +21,36 @@ Admin Pages
 
 {% block settings_nav %}
 <div class="menu-sidebar">
-    <ul class="admin-nav">
-        <li class="admin-nav"><a class="admin-button" href="/admin/dashboard"><span class="button">Dashboard</span></a></li>
-        <li class="admin-nav"><a class="admin-button" href="/admin/create-page"><span class="button">Create a new web-page</span></a></li>
-        <li class="admin-nav"><a class="admin-button" href="/admin/view-pages"><span class="button">View current pages</span></a></li>
-        <li class="admin-nav"><a class="admin-button" href="/admin/delete-page"><span class="button">Remove a page</span></a></li>
-    </ul>
+    {% include 'admin/admin_pagesSubNav.html.twig' %}
 </div>
 {% endblock %}
 
 {% block content %}
 <div class="main-section">
     <h3>Current Pages</h3>
+    <p>Below is a list of your current pages</p>
     <p>
-        {% for page in pages %}
-        {{ page.pagename }}
-        {% endfor %}
+        Use the navbar to edit your pages.
     </p>
+    <table>
+    <tr>
+        <th>
+            PAGE
+        </th>
+        <th>
+            DATE CREATED
+        </th>
+    </tr>
+
+        {% for page in pages %}
+        <tr>
+        <td>{{ page.pagename }}</td>
+        <td>{{ page.created }}</td>
+        </tr>
+        {% endfor %}
+
+
+</table>
     <p>
         {% if result is defined %}
         {{ result }}

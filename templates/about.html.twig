@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% set active_page = 'about'%}
+{% set active_page = 'about' %}
 {% block title %}
 {{ active_page }}
 {% endblock %}
@@ -8,9 +8,7 @@
 
 
 {% block navbar %}
-    <ul>
-        {% include 'navbar.html' %}
-    </ul>
+    {% include 'navbar.html' %}
 {% endblock %}
 
 {% block subheading %}<h2>Your  blog posts...</h2>{% endblock %}

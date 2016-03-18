@@ -25,10 +25,17 @@ Admin Pages
 
     </ul>#}
 <div class="main-section">
-    <h3>Current Pages</h3>
+    <h3>Current Pages with Content</h3>
     <p>
         {% for page in pages %}
-        {{ page.pagename }}
+            <h4>{{ page.pagename }}</h4>
+                {% for content in content %}
+                    {% if page.pagename == content.pagename %}
+                        <p><strong>{{ content.contentitemtitle }}</strong></p>
+                        <p>{{content.contentitem }}</p>
+                        <p>{{ content.created }}</p>
+                    {% endif %}
+                {% endfor %}
         {% endfor %}
     </p>
     <p>
@@ -37,13 +44,12 @@ Admin Pages
         {% endif %}
     </p>
 
-        {% for con in content %}
-        {{ dump (contentitem) }}
-        <p>{{ contentitemtitle }}</p>
+
         <p>
-            {{ con.contentitem }}
+
+
         </p>
-        {% endfor %}
+
 
 
 </div>

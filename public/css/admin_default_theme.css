@@ -58,6 +58,11 @@ a {
     /* border: thin solid black; */
 }
 
+nav {
+  padding : 4%;
+  border  : thin solid black;
+}
+
 /*
   a:hover{
   color: blue;
@@ -83,13 +88,14 @@ a {
   width : auto;
   flex  : 2 0 0;
 }
+
 .page-preview-box {
-    border: thin solid black;
-}
-.page-subheading {
   border : thin solid black;
 }
 
+.page-subheading {
+  border : thin solid black;
+}
 
 .header-box {
   border : thin solid black;
@@ -100,8 +106,13 @@ li.admin-nav {
   display : block;
   padding : 1rem;
 }
-#active-page {
-    color: red;
+
+a.active {
+  color : #000033;
+}
+
+li.active {
+  background-color : #000033;
 }
 
 .admin-nav a:hover {
@@ -115,4 +126,62 @@ li.admin-nav {
 
 .admin-button {
   flex-direction : column;
+}
+
+.input-box[placeholder] {
+  margin-top  : 2rem;
+  padding     : 1rem;
+  font-family : 'Raleway',
+                sans-serif;
+}
+
+.input-box[value] {
+  margin-top  : 5%;
+  padding     : 1rem;
+  font-family : 'Raleway',
+                sans-serif;
+}
+
+.input-box {
+  padding-right : 1rem;
+}
+
+.laptop-icon {
+  width       : 25px;
+  height      : 25px;
+  padding-top : 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  body {
+    font-size : 1rem;
+  }
+  a {
+    font-size : 1rem;
+  }
+  nav {
+    padding          : 4%;
+    color            : #FFFFCC;
+    border           : thin solid black;
+    background-color : #000033;
+  }
+  .admin-container {
+    flex-direction : column;
+  }
+  .menu-sidebar {
+    width   : auto;
+    padding : 4%;
+    padding : 0;
+    color   : #000033;
+  }
+  ul.admin-nav {
+    display          : flex;
+    border           : thin solid grey;
+    background-color : #FFFFCC;
+    flex-wrap        : wrap;
+  }
+  li.admin-nav {
+    display   : flex;
+    flex-flow : wrap;
+  }
 }

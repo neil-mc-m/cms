@@ -1,4 +1,7 @@
 {% extends 'admin/admin_base.html.twig' %}
+{% set pagesSubNav = [['dashboard', 'Dashboard'], ['create-page', 'Create a new web-page'], ['view-pages', 'View current pages'], ['delete-page', 'Remove a page']] %}
+{# set the active page to be styled. Do this on every different page #}
+{% set active_page = "create-page" %}
 
 
 {% block title %}
@@ -14,13 +17,8 @@ Admin dashboard | create-page
 {% endblock %}
 
 {% block settings_nav %}
-<div class="sub-nav">
-    <ul class="sub-nav">
-        <li class="admin-nav"><a class="admin-button" href="/admin/dashboard"><span class="button">Dashboard</span></a></li>
-        <li class="admin-nav"><a class="admin-button" href="/admin/create-page"><span class="button">Create a new web-page</span></a></li>
-        <li class="admin-nav"><a class="admin-button" href="/admin/view-pages"><span class="button">View current pages</span></a></li>
-        <li class="admin-nav"><a class="admin-button" href="#"><span class="button">Remove a page</span></a></li>
-    </ul>
+<div class="menu-sidebar">
+    {% include 'admin/admin_pagesSubNav.html.twig' %}
 </div>
 {% endblock %}
 
@@ -32,10 +30,27 @@ Admin dashboard | create-page
         {{ page.pagename }}
         {% endfor %}
     </p>
+    <p>
+        Fill in the form to create your new page. The page name box will show up on your navigation bar <strong>exactly</strong> as you
+        type it in. The page route and page template boxes are for internal CMS functions. These can be the same as your pagename.
+    </p>
+    <p>
+        <strong>Note :</strong> All fields are required.
+    </p>
     <form name="create-page" action="/admin/new-page" method="post"/>
-        <input type="text" name="pagename" placeholder="Page Name"/>
-        <input type="text" name="pagepath" placeholder="Page Route"/>
-        <input type="text" name="pagetemplate" placeholder="Twig Template"/>
-        <input type="submit" value="Create Page"/>
+    
+        <p>
+            <input type="text" class="input-box" name="pagename" placeholder="Page Name" autofocus required/>
+        </p>
+        <p>
+            <input type="text" class="input-box" name="pagepath" placeholder="Page Route" required/>
+        </p>
+        <p>
+            <input type="text" class="input-box" name="pagetemplate" placeholder="Twig Template" required/>
+        </p>
+        <p>
+            <input style="width: 10rem; height: 3.2rem;" type="submit" value="Create a new Page"/>
+        </p>
+
     </div>
 {% endblock %}

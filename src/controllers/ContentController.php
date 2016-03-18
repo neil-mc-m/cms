@@ -16,16 +16,7 @@ class ContentController
         # get all pages currently stored in the db.
         # Used for building the navbar and setting page titles.
         $pages = $db->showAll();
-        var_dump($pages);
-        foreach ($pages as $page)
-        {
-            $item = $page->getPageName();
-            $content = $db->getContent($item);
-            var_dump($content);
-        }
-
-
-
+        $content = $db->getAllPagesContent();
 
         $args_array = array(
             'content' => $content,
