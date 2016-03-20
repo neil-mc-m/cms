@@ -218,8 +218,6 @@ class DbRepository
             $conn->beginTransaction();
             $stmtpage->bindParam(':pagename', $pageName);
             $stmtpage->execute();
-            # append the html.twig to the string
-            $pageTemplate = $pageName.'.html.twig';
             $stmttemplate->bindParam(':pagetemplate', $pageTemplate);
             $stmttemplate->execute();
 
@@ -230,6 +228,26 @@ class DbRepository
             return $result .= 'well done. page deleted.';
         } catch (PDOException $e) {
             echo $e->getMessage();
+        }
+    }
+
+    public function createContent($pagename, $contenttype, $contentitemtitle, $contentitem)
+    {
+        try {
+            $pdo = new DbManager();
+            $conn = $pdo->getPdoInstance();
+            $result = '';
+            $stmt = $conn->prepare('INSERT INTO '.$this->tableName.'(contentid, pagename, contenttype, contentitemtitle, contentitem, created) VALUES (DEFAULT, :pagename, :contenttype, :contentitemtitle, :contentitem, curdate())');
+            $stmt->bindParam(':pagename', $pagename);
+            $stmt->bindParam(':contenttype', $contenttype);
+            $stmt->bindParam(':contentitemtitle', $contentitemtitle);
+            $stmt->bindParam(':contentitem', $contentitem);
+            if (!$stmt->execute()) {
+                $result .= 'Heuston we have a problem!';
+            }
+            return $result .= 'Nice. Some new content created';
+        } catch (PDOException $e) {
+            print $e->getMessage();
         }
     }
 }

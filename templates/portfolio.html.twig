@@ -17,7 +17,10 @@
 {% block subheading %}<h2>This is your portfolio page...</h2>{% endblock %}
 
 {% block content %}
-<p>
-    Welcome to our portfolio!
-</p>
+{% for con in content %}
+    <article class="section">
+        <h3>{{ con.contentitemtitle }}</h3>
+        <p>{{ con.contentitem }}</p>
+    </article>
+{% endfor %}
 {% endblock %}

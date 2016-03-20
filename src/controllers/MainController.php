@@ -110,7 +110,7 @@ class MainController
         $pages = $db->showAll();
         $dbmanager = new DbManager();
         $dbh = $dbmanager->getPdoInstance();
-        $loader = new DatabaseTwigLoader($dbh);
+        # $loader = new DatabaseTwigLoader($dbh);
 
         $content = $db->getContent($page);
 

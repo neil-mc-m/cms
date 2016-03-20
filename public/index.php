@@ -80,5 +80,7 @@ $app->get('/admin/delete-page', 'LightCMS\\controllers\\PagesController::deleteP
 $app->post('/admin/process-delete-page', 'LightCMS\\controllers\\PagesController::processDeletePageAction');
 
 $app->get('/admin/content', 'LightCMS\\controllers\\ContentController::contentAction');
+$app->get('/admin/create-content', 'LightCMS\\controllers\\ContentController::createContentFormAction');
+$app->post('/admin/process-content', 'LightCMS\\controllers\\ContentController::processContentAction');
 
 $app->run();
