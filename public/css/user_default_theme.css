@@ -25,19 +25,21 @@ html {
   border-radius: 0.5%;
   background-color : #ffad33;
   text-align       : center;
-
+  margin: 0px;
+  padding: 0px;
   height: 50%;
-     background-image: url("/images/cliffs.jpg");
-     background-repeat: no-repeat;
-     background-position: center;
-     background-size: cover;
+  background-image: url("/images/backdrop.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 .header-pic {
     max-width: 100%;
     max-height: 20%;
 }
 .title {
-    margin-top: 20%;
+    color: #fdfdb4;
+    margin-top: 10%;
 }
 
 footer {
@@ -97,6 +99,7 @@ a:hover{
     display: flex;
 }
 .footer-section {
+    border: thin solid black;
     flex: auto;
 }
 .footer-links {
@@ -121,7 +124,35 @@ a:hover{
     ul {
         flex-wrap: wrap;
     }
+    li {
+        padding: 2%;
+    }
     a {
+        /*padding: 6%;*/
         font-size: 1.2rem;
+    }
+    .title {
+
+        text-align: center;
+        font-size: 1.4rem;
+    }
+    /*.footer {
+        display: flex;
+    }*/
+    /*.footer-section {
+        flex: auto;
+    }*/
+    /*.footer-links {
+        text-align: right;
+
+        display: block;
+    }*/
+    /*.footer-nav {
+        font-size: 0.7rem;
+    }*/
+    a.alt-links {
+        padding: 0;
+        font-size: 0.75rem;
+        display: block;
     }
 }

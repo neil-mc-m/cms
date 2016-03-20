@@ -22,7 +22,7 @@ class ContentController
             'content' => $content,
             'pages' => $pages,
             'user' => $user,
-            'id' => session_id()
+            'id' => session_id(),
 
         );
         $templateName = 'admin/content';

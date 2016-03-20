@@ -1,5 +1,5 @@
 {# base template from which all other templates will extend #}
-
+{% set active_page = active_page|default ('home') %}
 
 
 <!DOCTYPE html>
@@ -33,6 +33,7 @@
         <nav>
             <ul>
                 {% block navbar %}
+                {% include 'navbar.html.twig' %}
                 {% endblock %}
             </ul>
         </nav>

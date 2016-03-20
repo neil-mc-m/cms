@@ -3,6 +3,7 @@
 #                    SETUP
 # _______________________________________________________________
 use LightCMS\DbManager;
+use LightCMS\DatabaseTwigLoader;
 use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
 
 require_once __DIR__.'/../vendor/autoload.php';
@@ -10,8 +11,15 @@ $myTemplatesPath = __DIR__.'/../templates';
 $loggerPath = dirname(__DIR__).'/logs';
 
 
-$loader = new Twig_Loader_Filesystem($myTemplatesPath);
+
 $app = new Silex\Application();
+$dbmanager = new DbManager();
+$app['dbh'] = $dbmanager->getPdoInstance();
+$app['loader1']  = new DatabaseTwigLoader($app['dbh']);
+$app['loader2'] = new Twig_Loader_Filesystem($myTemplatesPath);
+# $app['loader'] = new Twig_Loader_Chain(array($loader1, $loader2));
+
+
 $app['debug'] = true;
 
 
@@ -23,7 +31,10 @@ $app['debug'] = true;
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 $app->register(new Silex\Provider\SessionServiceProvider());
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
-    'twig.path' => $myTemplatesPath ));
+    'twig.path' => $myTemplatesPath,
+    'twig.loader' => $app->share(function()use($app){
+        return new Twig_Loader_Chain(array($app['loader1'], $app['loader2']));
+        })));
 $app->register(new Silex\Provider\SecurityServiceProvider(), array(
         'security.firewalls' => array(
 

@@ -5,7 +5,6 @@ namespace LightCMS\controllers;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use LightCMS\DbRepository;
-use PDO;
 
 class PagesController
 {
@@ -18,13 +17,12 @@ class PagesController
         $args_array = array(
             'user' => $user,
             'id' => session_id(),
-            'pages' => $pages
+            'pages' => $pages,
         );
         $templateName = 'admin/pages';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
-
 
     public function viewPagesAction(Request $request, Application $app)
     {
@@ -37,7 +35,7 @@ class PagesController
             'user' => $user,
             'id' => session_id(),
             'pages' => $pages,
-            'allcontent' => $allContent
+            'allcontent' => $allContent,
         );
         $templateName = 'admin/viewPages';
 
@@ -46,8 +44,9 @@ class PagesController
     /**
      * Create a new web-page.
      *
-     * @param  Request     $request the request object
-     * @param  Application $app     the app object
+     * @param Request     $request the request object
+     * @param Application $app     the app object
+     *
      * @return twig template        a create-page template
      */
     public function createPageAction(Request $request, Application $app)
@@ -59,7 +58,7 @@ class PagesController
         $args_array = array(
             'user' => $user,
             'id' => session_id(),
-            'pages' => $pages
+            'pages' => $pages,
         );
         $templateName = 'admin/createPage';
 
@@ -69,8 +68,9 @@ class PagesController
     /**
      * Controller to create a new page.
      *
-     * @param  Request     $request
-     * @param  Application $app
+     * @param Request     $request
+     * @param Application $app
+     *
      * @return twig template
      */
     public function newPageAction(Request $request, Application $app)
@@ -82,12 +82,12 @@ class PagesController
         $result = $db->createPage($pageName, $pagePath, $pageTemplate);
         $user = $app['session']->get('user');
         $pages = $db->showAll();
-        var_dump($pages);
+
         $args_array = array(
             'user' => $user,
             'id' => session_id(),
             'pages' => $pages,
-            'result' => $result
+            'result' => $result,
         );
         $templateName = 'admin/dashboard';
 
@@ -124,11 +124,10 @@ class PagesController
             'user' => $user,
             'id' => session_id(),
             'pages' => $pages,
-            'result' => $result
+            'result' => $result,
         );
         $templateName = 'admin/deletePage';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
-
 }

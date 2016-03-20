@@ -77,7 +77,8 @@ class DbRepository
     /**
      * get a route corresponding to the page variable.
      *
-     * @param  string $page     a route
+     * @param string $page a route
+     *
      * @return twig template    a template for the route
      */
     public function getRoute($page)
@@ -101,7 +102,6 @@ class DbRepository
             $pdo = new DbManager();
             $conn = $pdo->getPdoInstance();
 
-
             $stmt = $conn->prepare('SELECT page.pagename,content.contentitemtitle FROM page LEFT JOIN content ON page.pagename=content.pagename');
 
             $stmt->execute();
@@ -115,7 +115,8 @@ class DbRepository
     /**
      * gets a pages content.
      *
-     * @param  string $page     a page
+     * @param string $page a page
+     *
      * @return twig template    template for the page.
      */
     public function getContent($page)
@@ -146,60 +147,89 @@ class DbRepository
 
             return $result;
         } catch (PDOException $e) {
-            print $e->getMessage();
+            echo $e->getMessage();
         }
     }
 
     /**
      * Creates a new web page fro m the parameters given.
      *
-     * @param  string $pageName     the pagename
-     * @param  string $pagePath     the page path/route
-     * @param  string $pageTemplate the page template
+     * @param string $pageName     the pagename
+     * @param string $pagePath     the page path/route
+     * @param string $pageTemplate the page template
+     *
      * @return twig template        the template for the page.
      */
     public function createPage($pageName, $pagePath, $pageTemplate)
     {
-        try{
+        try {
             $pdo = new DbManager();
             $conn = $pdo->getPdoInstance();
             $page = ucfirst($pageName);
             $result = '';
-            $stmt = $conn->prepare('INSERT IGNORE INTO page(pageid, pagename, pagepath, pagetemplate) VALUES (DEFAULT, :pagename, :pagepath, :pagetemplate)');
-            $stmt->bindParam(':pagename', $pageName);
-            $stmt->bindParam(':pagepath', $pagePath);
-            $stmt->bindParam(':pagetemplate', $pageTemplate);
-            if (!$stmt->execute()){
-                $result .= 'oopss!';
+
+            $stmtpage = $conn->prepare('INSERT IGNORE INTO page(pageid, pagename, pagepath, pagetemplate) VALUES (DEFAULT, :pagename, :pagepath, :pagetemplate)');
+            $stmttemplate = $conn->prepare('INSERT INTO templates(templateid, name, source, last_modified) VALUES (DEFAULT, :name, :source, curdate())');
+            # a pdo transaction to execute two queries at the same time.
+            # both have to execute without an error for each to work.
+            # i.e if theres an error in the second statement, the first statement
+            # wont execute either so its both or nothing.
+            $conn->beginTransaction();
+            $stmtpage->bindParam(':pagename', $pageName);
+            $stmtpage->bindParam(':pagepath', $pagePath);
+            $stmtpage->bindParam(':pagetemplate', $pageTemplate);
+            $stmtpage->execute();
+
+            $pageTemplate = $pageTemplate.'.html.twig';
+            $templatecontent = "{% extends 'base.html.twig' %}";
+            $stmttemplate->bindParam(':name', $pageTemplate);
+            $stmttemplate->bindParam(':source', $templatecontent);
+            $stmttemplate->execute();
+
+            if (!$conn->commit()) {
+                $result .= 'We have a problem!';
             }
-            return $result .= 'well done';
+
+            return $result .= 'Well done! New Page created!';
         } catch (PDOException $e) {
-            print $e->getMessage();
+            echo $e->getMessage();
         }
     }
 
     /**
-     * Remove a page
+     * Remove a page.
      *
-     * @param  string $pageName the page to remove
+     * Also removes a template from the database with the same page name.
+     *
+     * @param string $pageName the page to remove
+     *
      * @return twig template
      */
     public function deletePage($pageName)
     {
-        try{
+        try {
             $pdo = new DbManager();
             $conn = $pdo->getPdoInstance();
             $page = ucfirst($pageName);
             $result = '';
-            $stmt = $conn->prepare('DELETE FROM '.$this->tableName.' WHERE pagename =:pagename');
-            $stmt->bindParam(':pagename', $pageName);
+            $stmtpage = $conn->prepare('DELETE FROM '.$this->tableName.' WHERE pagename =:pagename');
+            $stmttemplate = $conn->prepare('DELETE FROM templates WHERE name =:pagetemplate');
+            # begins a transaction for a multiple query
+            $conn->beginTransaction();
+            $stmtpage->bindParam(':pagename', $pageName);
+            $stmtpage->execute();
+            # append the html.twig to the string
+            $pageTemplate = $pageName.'.html.twig';
+            $stmttemplate->bindParam(':pagetemplate', $pageTemplate);
+            $stmttemplate->execute();
 
-            if (!$stmt->execute()){
-                $result .= 'oopss!';
+            if (!$conn->commit()) {
+                $result .= 'Heuston we have a problem!';
             }
+
             return $result .= 'well done. page deleted.';
         } catch (PDOException $e) {
-            print $e->getMessage();
+            echo $e->getMessage();
         }
     }
 }

@@ -2,6 +2,7 @@
 /**
  * the admin controller.
  */
+
 namespace LightCMS\controllers;
 
 use Silex\Application;
@@ -18,9 +19,10 @@ class AdminController
     /**
      * Load the admins dashboard.
      *
-     * @param  Request     $request
-     * @param  Application $app
-     * @return [type]               twig template for admin/dashboard
+     * @param Request     $request
+     * @param Application $app
+     *
+     * @return [type] twig template for admin/dashboard
      */
     public function dashboardAction(Request $request, Application $app)
     {
@@ -32,25 +34,10 @@ class AdminController
         $args_array = array(
             'user' => $user,
             'id' => session_id(),
-            'pages' => $pages
+            'pages' => $pages,
         );
         $templateName = 'admin/dashboard';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
-
-    public function analyticsAction(Request $request, Application $app)
-    {
-        $user = $app['session']->get('user');
-        $args_array = array(
-            'user' => $user,
-            'id' => session_id(),
-
-        );
-        $templateName = 'admin/analytics';
-
-        return $app['twig']->render($templateName.'.html.twig', $args_array);
-    }
-    
-
 }

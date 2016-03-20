@@ -1,0 +1,6 @@
+{# the main frontend navbar #}
+{% if pages is defined %}
+{% for page in pages %}
+    <li {% if active_page == page.pageName %}class="active"{% endif %}><a href="{{ page.pageTemplate }}">{{ page.pageName }}</a></li>
+{% endfor %}
+{% endif %}

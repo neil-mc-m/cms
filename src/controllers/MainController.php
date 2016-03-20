@@ -5,6 +5,8 @@
 
 namespace LightCMS\controllers;
 
+use LightCMS\DbManager;
+use LightCMS\DatabaseTwigLoader;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use LightCMS\DbRepository;
@@ -95,9 +97,10 @@ class MainController
     /**
      * Main routing out of the home page.
      *
-     * @param  Request     $request [description]
-     * @param  Application $app     [description]
-     * @param  string      $page    the route/link used from the home page
+     * @param Request     $request [description]
+     * @param Application $app     [description]
+     * @param string      $page    the route/link used from the home page
+     *
      * @return twig template        the requested twig template.
      */
     public function routeAction(Request $request, Application $app, $page)
@@ -105,12 +108,16 @@ class MainController
         # get the pages to build the navbar
         $db = new DbRepository('Page', 'page');
         $pages = $db->showAll();
-        # $result = $db->getRoute($slug);
+        $dbmanager = new DbManager();
+        $dbh = $dbmanager->getPdoInstance();
+        $loader = new DatabaseTwigLoader($dbh);
+
         $content = $db->getContent($page);
-        #var_dump($content);
+
         $args_array = array(
             'pages' => $pages,
             'content' => $content,
+
         );
 
         return $app['twig']->render($page.'.html.twig', $args_array);
