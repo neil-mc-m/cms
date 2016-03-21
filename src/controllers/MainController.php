@@ -71,28 +71,7 @@ class MainController
     //     return $app['twig']->render($templateName.'.html.twig', $args_array);
     // }
 
-    /**
-     * display one articles.
-     *
-     * renders a template with one articles.
-     *
-     * @param Request
-     * @param Application
-     *
-     * @return an article template.
-     */
-    // public function oneArticleAction(Request $request, Application $app)
-    // {
-    //     $db = new DbRepository('Articles', 'articles');
-    //     $id = $request->get('id');
-    //     $result = $db->showOne($id);
-    //     $args_array = array(
-    //      'article' => $result,
-    //    );
-    //     $templateName = 'onearticle';
-    //
-    //     return $app['twig']->render($templateName.'.html.twig', $args_array);
-    // }
+
 
     /**
      * Main routing out of the home page.
@@ -108,18 +87,43 @@ class MainController
         # get the pages to build the navbar
         $db = new DbRepository('Page', 'page');
         $pages = $db->showAll();
-        $dbmanager = new DbManager();
-        $dbh = $dbmanager->getPdoInstance();
-        # $loader = new DatabaseTwigLoader($dbh);
+
 
         $content = $db->getContent($page);
 
         $args_array = array(
             'pages' => $pages,
             'content' => $content,
-
         );
 
         return $app['twig']->render($page.'.html.twig', $args_array);
+    }
+    /**
+     * display one articles.
+     *
+     * renders a template with one articles.
+     *
+     * @param Request
+     * @param Application
+     *
+     * @return an article template.
+     */
+    public function oneArticleAction(Request $request, Application $app, $page, $contentid)
+    {
+        $db = new DbRepository('Page', 'page');
+        $pages = $db->showall();
+        $db = new DbRepository('Content', 'content');
+
+        $result = $db->showOne($contentid);
+        $args_array = array(
+         'pages' => $pages,
+         'pagename' => $result->getPageName(),
+         'title' => $result->getContentitemtitle(),
+         'article' => $result->getContentitem(),
+         'created' => $result->getCreated()
+       );
+        $templateName = 'onearticle';
+
+        return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
 }

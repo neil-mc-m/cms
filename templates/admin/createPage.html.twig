@@ -27,7 +27,7 @@ Admin dashboard | create-page
     <h3>Current pages:</h3>
     <p>
         {% for page in pages %}
-        {{ page.pagename }}
+        {{ page.pagename|capitalize }}
         {% endfor %}
     </p>
     <p>
@@ -38,19 +38,25 @@ Admin dashboard | create-page
         <strong>Note :</strong> All fields are required.
     </p>
     <form name="create-page" action="/admin/new-page" method="post"/>
-    
+    <fieldset>
         <p>
+            <label>Page Name<br>
             <input type="text" class="input-box" name="pagename" placeholder="Page Name" autofocus required/>
+            </label>
         </p>
         <p>
+            <label>Page Route<br>
             <input type="text" class="input-box" name="pagepath" placeholder="Page Route" required/>
+            </label>
         </p>
         <p>
+            <label>Page Template<br>
             <input type="text" class="input-box" name="pagetemplate" placeholder="Twig Template" required/>
+            </label>
         </p>
         <p>
             <input style="width: 10rem; height: 3.2rem;" type="submit" value="Create a new Page"/>
         </p>
-
+    </fieldset>
     </div>
 {% endblock %}

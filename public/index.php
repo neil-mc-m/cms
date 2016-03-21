@@ -63,6 +63,8 @@ $app->get('/', 'LightCMS\\controllers\\MainController::indexAction');
 #$app->get('/admin', 'LightCMS\\controllers\\SecurityController::logInAction');
 $app->get('/login', 'LightCMS\\controllers\\SecurityController::logInAction');
 $app->get('/{page}', 'LightCMS\\controllers\\MainController::routeAction');
+$app->get('/{page}/{contentid}', 'LightCMS\\controllers\\MainController::oneArticleAction');
+
 $app->get('/articles', 'LightCMS\\controllers\\MainController::articlesAction');
 $app->get('/articles/{id}', 'LightCMS\\controllers\\MainController::oneArticleAction');
 

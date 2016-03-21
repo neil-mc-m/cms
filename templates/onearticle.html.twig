@@ -1,16 +1,21 @@
 {% extends 'base.html.twig' %}
 
+{% set active_page = 'home' %}
+
 {% block title %}
-Home
+{{ active_page }}
 {% endblock %}
-{% block style %}
-@import '{{ app.request.basepath }}/css/default_theme.css';
+
+{% block subheading %}
+    <h2>{{ title }}</h2>
 {% endblock %}
 {% block content %}
-<h2>{{ article.title }}</h2>
-<p>{{ article.article }}</p>
-{{ article.created }}</br>
-<a href="/homepage">homepage</a><br/>
-<a href="/articles">Articles</a>
-
+<article class="section">
+    <p>
+        {{ article }}
+    </p>
+    <p class="created">
+        This article was created on: {{ created }}
+    </p>
+</article>
 {% endblock %}

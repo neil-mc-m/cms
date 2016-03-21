@@ -1,4 +1,4 @@
-<<?php
+<?php
 namespace LightCMS;
 
 class Content

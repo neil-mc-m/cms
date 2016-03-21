@@ -29,7 +29,7 @@ Admin dashboard
         <h3>Current Pages</h3>
         <p>
             {% for page in pages %}
-            {{ page.pagename }}
+            {{ page.pagename|capitalize }}
             {% endfor %}
         </p>
 

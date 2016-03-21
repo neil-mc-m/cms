@@ -38,9 +38,7 @@ class DbRepository
         try {
             $pdo = new DbManager();
             $conn = $pdo->getPdoInstance();
-
             $stmt = $conn->prepare('SELECT * FROM '.$this->tableName);
-
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_CLASS, $this->className);
 
@@ -55,13 +53,13 @@ class DbRepository
      *
      * @return a bool for success/failure
      */
-    public function showOne($id)
+    public function showOne($contentid)
     {
         try {
             $pdo = new DbManager();
             $conn = $pdo->getPdoInstance();
-            $stmt = $conn->prepare('SELECT * FROM '.$this->tableName.' WHERE id =:id');
-            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt = $conn->prepare('SELECT * FROM '.$this->tableName.' WHERE contentid =:contentid');
+            $stmt->bindParam(':contentid', $contentid, PDO::PARAM_INT);
             $stmt->setFetchMode(PDO::FETCH_CLASS, $this->className);
             $stmt->execute();
             if ($result = $stmt->fetch()) {
@@ -124,10 +122,8 @@ class DbRepository
         try {
             $pdo = new DbManager();
             $conn = $pdo->getPdoInstance();
-            $ucpage = ucfirst($page);
-            var_dump($ucpage);
             $stmt = $conn->prepare('SELECT * FROM content WHERE pagename =:page');
-            $stmt->bindParam(':page', $ucpage, PDO::PARAM_STR, 5);
+            $stmt->bindParam(':page', $page, PDO::PARAM_STR, 5);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -165,7 +161,7 @@ class DbRepository
         try {
             $pdo = new DbManager();
             $conn = $pdo->getPdoInstance();
-            $page = ucfirst($pageName);
+
             $result = '';
 
             $stmtpage = $conn->prepare('INSERT IGNORE INTO page(pageid, pagename, pagepath, pagetemplate) VALUES (DEFAULT, :pagename, :pagepath, :pagetemplate)');
@@ -175,6 +171,7 @@ class DbRepository
             # i.e if theres an error in the second statement, the first statement
             # wont execute either so its both or nothing.
             $conn->beginTransaction();
+            $pageName = strtolower($pageName);
             $stmtpage->bindParam(':pagename', $pageName);
             $stmtpage->bindParam(':pagepath', $pagePath);
             $stmtpage->bindParam(':pagetemplate', $pageTemplate);

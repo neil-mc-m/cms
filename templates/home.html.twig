@@ -7,9 +7,7 @@
 {% endblock %}
 
 
-{# {% block header %}
 
-{% endblock %} #}
 
 
 
@@ -22,12 +20,19 @@
     {% if content is defined %}
         {% for con in content %}
             <article class="section">
-                <h3>{{ con.contentitemtitle }}</h3>
-                <p>{{ con.contentitem }}</p>
+                <a href="/{{ con.pagename }}/{{ con.contentid }}">{{ con.contentitemtitle }}</a>
+                <p>
+                    {{ con.contentitem|slice(0,100) }}...<a href="/{{ con.pagename }}/{{ con.contentid }}">read more</a>
+                </p>
                 <p>
                     {{ con.created }}
                     <img class="cal-icon" src="{{ app.request.basepath }}images/calendar.svg" alt="calender pic"/>
                 </p>
+                <div class="comment-box">
+                    <p>
+                        comments:
+                    </p>
+                </div>
             </article>
         {% endfor %}
     {% endif %}

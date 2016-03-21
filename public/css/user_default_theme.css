@@ -6,10 +6,13 @@
 
 body,
 html {
-  background-color : rgba(255, 255, 255, 0.45);
+  background-color : #ebebfa;
   font-family      : 'Raleway',
                      sans-serif;
   font-size        : 1rem;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 /*img {
@@ -21,25 +24,22 @@ html {
 .header-box {
     /* padding : 5%; */
   color            : white;
-  border           : thin solid grey;
+  /*border           : thin solid grey;*/
   border-radius: 0.5%;
   background-color : #ffad33;
   text-align       : center;
-  margin: 0px;
-  padding: 0px;
-  height: 50%;
+
+  height: 550px;
   background-image: url("/images/backdrop.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
 }
-.header-pic {
-    max-width: 100%;
-    max-height: 20%;
-}
+
 .title {
     color: #fdfdb4;
-    margin-top: 10%;
+    padding-top: 10%;
+    margin: 0;
 }
 
 footer {
@@ -52,10 +52,12 @@ footer {
 
 
   ul {
-  border: thin solid grey;
+  /*border: thin solid grey;*/
   display : flex;
   padding-right : 5%;
   justify-content : center;
+  background-color: #92b9b9;
+  margin: 0;
   }
 
 
@@ -66,7 +68,7 @@ li {
 }
 
 a {
-  color           : grey;
+  color           : black;
   text-decoration : none;
   font-size       : 1.5em;
     /* border: thin solid black; */
@@ -74,24 +76,38 @@ a {
 a:hover{
     color: blue;
 }
-.page-subheading {
-    background-color: #ccf2ff
+
+.page-subheading h2  {
+    padding: 2rem;
+    margin: 0;
+    background-color: rgba(255, 255, 255, 0.45);
 }
 .container {
-    border: thin solid black;
-
+    /*border: thin solid black;*/
+    background-color: #ffffff;
     display: flex;
     flex-direction: column;
     padding: 5%;
 }
 .section {
     justify-content: center;
-    text-align: center;
+    text-align: justify;
     margin: 1%;
     padding: 2%;
     flex: 1;
     border: thin solid grey;
-    background-color: #e6e6ff;
+
+    background-color: #ffffcc;
+}
+.created {
+    font-size: 0.75rem;
+    text-align: left;
+}
+.comment-box {
+    border: thin solid grey;
+    text-align: left;
+    height: 80px;
+    background-color: #eee6ff;
 }
 /*************************************/
 /* footer styles */
@@ -130,6 +146,9 @@ a:hover{
     a {
         /*padding: 6%;*/
         font-size: 1.2rem;
+    }
+    .header-box {
+        height: 300px;
     }
     .title {
 

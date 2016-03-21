@@ -129,7 +129,8 @@ li.active {
 }
 
 .input-box[placeholder] {
-  margin-top  : 2rem;
+  margin-top  : 0.5rem;
+  margin-bottom: 1.5rem;
   padding     : 1rem;
   font-family : 'Raleway',
                 sans-serif;
