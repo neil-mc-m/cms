@@ -10,8 +10,8 @@ class PagesController
 {
     public function pagesAction(Request $request, Application $app)
     {
-        $db = new DbRepository('Page', 'page');
-        $pages = $db->showAll();
+        $db = new DbRepository($app['dbh'], 'Page', 'page');
+        $pages = $db->getAll();
         $user = $app['session']->get('user');
         #var_dump($pages);
         $args_array = array(
@@ -26,8 +26,8 @@ class PagesController
 
     public function viewPagesAction(Request $request, Application $app)
     {
-        $db = new DbRepository('Page', 'page');
-        $pages = $db->showAll();
+        $db = new DbRepository($app['dbh'], 'Page', 'page');
+        $pages = $db->getAll();
         $allContent = $db->getAllContent();
         $user = $app['session']->get('user');
         #var_dump($pages);
@@ -51,8 +51,8 @@ class PagesController
      */
     public function createPageAction(Request $request, Application $app)
     {
-        $db = new DbRepository('Page', 'page');
-        $pages = $db->showAll();
+        $db = new DbRepository($app['dbh'], 'Page', 'page');
+        $pages = $db->getAll();
         $user = $app['session']->get('user');
         #var_dump($pages);
         $args_array = array(
@@ -78,10 +78,10 @@ class PagesController
         $pageName = $app['request']->get('pagename');
         $pagePath = $app['request']->get('pagepath');
         $pageTemplate = $app['request']->get('pagetemplate');
-        $db = new DbRepository('Page', 'page');
+        $db = new DbRepository($app['dbh'], 'Page', 'page');
         $result = $db->createPage($pageName, $pagePath, $pageTemplate);
         $user = $app['session']->get('user');
-        $pages = $db->showAll();
+        $pages = $db->getAll();
 
         $args_array = array(
             'user' => $user,
@@ -96,10 +96,10 @@ class PagesController
 
     public function deletePageAction(Request $request, Application $app)
     {
-        $db = new DbRepository('Page', 'page');
+        $db = new DbRepository($app['dbh'], 'Page', 'page');
 
         $user = $app['session']->get('user');
-        $pages = $db->showAll();
+        $pages = $db->getAll();
         var_dump($pages);
         $args_array = array(
             'user' => $user,
@@ -114,11 +114,11 @@ class PagesController
 
     public function processDeletePageAction(Request $request, Application $app)
     {
-        $db = new DbRepository('Page', 'page');
+        $db = new DbRepository($app['dbh'], 'Page', 'page');
         $pageName = $app['request']->get('pagename');
         $result = $db->deletePage($pageName);
         $user = $app['session']->get('user');
-        $pages = $db->showAll();
+        $pages = $db->getAll();
         var_dump($pages);
         $args_array = array(
             'user' => $user,

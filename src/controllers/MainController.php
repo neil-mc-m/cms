@@ -30,11 +30,12 @@ class MainController
      */
     public function indexAction(Request $request, Application $app)
     {
-        $db = new DbRepository('Page', 'page');
+        $db = new DbRepository($app['dbh'], 'Page', 'page');
         $app['monolog']->addInfo('You just connected to the database');
         # get all pages currently stored in the db.
         # Used for building the navbar and setting page titles.
-        $pages = $db->showAll();
+        $pages = $db->getAll();
+
         # as this is the home page controller, get the home pages content
         $content = $db->getContent('home');
 
@@ -85,9 +86,8 @@ class MainController
     public function routeAction(Request $request, Application $app, $page)
     {
         # get the pages to build the navbar
-        $db = new DbRepository('Page', 'page');
-        $pages = $db->showAll();
-
+        $db = new DbRepository($app['dbh'], 'Page', 'page');
+        $pages = $db->getAll();
 
         $content = $db->getContent($page);
 
@@ -110,11 +110,12 @@ class MainController
      */
     public function oneArticleAction(Request $request, Application $app, $page, $contentid)
     {
-        $db = new DbRepository('Page', 'page');
-        $pages = $db->showall();
-        $db = new DbRepository('Content', 'content');
+        $db = new DbRepository($app['dbh'], 'Page', 'page');
+        $pages = $db->getAll();
+
 
         $result = $db->showOne($contentid);
+        var_dump($result);
         $args_array = array(
          'pages' => $pages,
          'pagename' => $result->getPageName(),

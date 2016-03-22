@@ -22,10 +22,16 @@ class DbRepository
     private $tablename;
 
     /**
+     * PDO database connection object.
+     * @var [type]
+     */
+    private $conn;
+    /**
      * @param classname and tablename sent to the constructor as parameters
      */
-    public function __construct($className, $tableName)
+    public function __construct(PDO $conn, $className, $tableName)
     {
+        $this->conn = $conn;
         $this->className = __NAMESPACE__.'\\'.$className;
         $this->tableName = $tableName;
     }
@@ -33,12 +39,11 @@ class DbRepository
     /**
      * @return an array of objects fetched into their classes.
      */
-    public function showAll()
+    public function getAll()
     {
         try {
-            $pdo = new DbManager();
-            $conn = $pdo->getPdoInstance();
-            $stmt = $conn->prepare('SELECT * FROM '.$this->tableName);
+
+            $stmt = $this->conn->prepare('SELECT * FROM '.$this->tableName);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_CLASS, $this->className);
 
@@ -56,11 +61,10 @@ class DbRepository
     public function showOne($contentid)
     {
         try {
-            $pdo = new DbManager();
-            $conn = $pdo->getPdoInstance();
-            $stmt = $conn->prepare('SELECT * FROM '.$this->tableName.' WHERE contentid =:contentid');
+
+            $stmt = $this->conn->prepare('SELECT * FROM content WHERE contentid =:contentid');
             $stmt->bindParam(':contentid', $contentid, PDO::PARAM_INT);
-            $stmt->setFetchMode(PDO::FETCH_CLASS, $this->className);
+            $stmt->setFetchMode(PDO::FETCH_CLASS, __NAMESPACE__.'\\Content');
             $stmt->execute();
             if ($result = $stmt->fetch()) {
                 return $result;
@@ -82,9 +86,8 @@ class DbRepository
     public function getRoute($page)
     {
         try {
-            $pdo = new DbManager();
-            $conn = $pdo->getPdoInstance();
-            $stmt = $conn->prepare('SELECT * FROM '.$this->tableName.' WHERE pagepath =:slug');
+
+            $stmt = $this->conn->prepare('SELECT * FROM '.$this->tableName.' WHERE pagepath =:slug');
             $stmt->bindParam(':slug', $slug, PDO::PARAM_STR, 5);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_CLASS, $this->className);

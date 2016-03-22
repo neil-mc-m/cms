@@ -63,7 +63,7 @@ $app->get('/', 'LightCMS\\controllers\\MainController::indexAction');
 #$app->get('/admin', 'LightCMS\\controllers\\SecurityController::logInAction');
 $app->get('/login', 'LightCMS\\controllers\\SecurityController::logInAction');
 $app->get('/{page}', 'LightCMS\\controllers\\MainController::routeAction');
-$app->get('/{page}/{contentid}', 'LightCMS\\controllers\\MainController::oneArticleAction');
+
 
 $app->get('/articles', 'LightCMS\\controllers\\MainController::articlesAction');
 $app->get('/articles/{id}', 'LightCMS\\controllers\\MainController::oneArticleAction');
@@ -84,5 +84,7 @@ $app->post('/admin/process-delete-page', 'LightCMS\\controllers\\PagesController
 $app->get('/admin/content', 'LightCMS\\controllers\\ContentController::contentAction');
 $app->get('/admin/create-content', 'LightCMS\\controllers\\ContentController::createContentFormAction');
 $app->post('/admin/process-content', 'LightCMS\\controllers\\ContentController::processContentAction');
+
+$app->get('/{page}/{contentid}', 'LightCMS\\controllers\\MainController::oneArticleAction');
 
 $app->run();

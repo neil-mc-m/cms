@@ -11,11 +11,11 @@ class ContentController
     public function contentAction(Request $request, Application $app)
     {
         $user = $app['session']->get('user');
-        $db = new DbRepository('Page', 'page');
+        $db = new DbRepository($app['dbh'], 'Page', 'page');
         $app['monolog']->addInfo('You just connected to the database');
         # get all pages currently stored in the db.
         # Used for building the navbar and setting page titles.
-        $pages = $db->showAll();
+        $pages = $db->getAll();
         $content = $db->getAllPagesContent();
 
         $args_array = array(
@@ -48,7 +48,7 @@ class ContentController
         $contenttype = $app['request']->get('contenttype');
         $contentitemtitle = $app['request']->get('contentitemtitle');
         $contentitem = $app['request']->get('contentitem');
-        $db = new DbRepository('Content', 'content');
+        $db = new DbRepository($app['dbh'], 'Content', 'content');
         $app['monolog']->addInfo('You just connected to the database');
         # get all pages currently stored in the db.
         # Used for building the navbar and setting page titles.
