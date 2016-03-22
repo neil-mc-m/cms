@@ -1,6 +1,6 @@
 {# admin base template from which all other templates will extend #}
 
-{% set navigation_bar = [['dashboard', 'Dashboard'], ['pages', 'Pages'], ['content', 'Content']] %}
+{% set navigation_bar = [['dashboard', 'Dashboard'], ['pages', 'Pages'], ['content', 'Content'], ['themes', 'Themes'], ['search', 'Search']] %}
 {# set the active page to be styled. Do this on every different page #}
 {% set active_page = active_page|default('dashboard') %}
 
@@ -35,7 +35,7 @@
     <div class="navbar">
 
         <nav>
-            
+
             <ul>
                 {% block navbar %}
 

@@ -3,7 +3,7 @@
 * The main controller.
 */
 
-namespace CMS\controllers;
+namespace CMS\Controllers;
 
 use CMS\DbManager;
 use CMS\DatabaseTwigLoader;
@@ -120,7 +120,7 @@ class MainController
         var_dump($result);
         $args_array = array(
          'pages' => $pages,
-         'pagename' => $result->getPageName(),
+         'name' => $result->getPageName(),
          'title' => $result->getContentitemtitle(),
          'article' => $result->getContentitem(),
          'created' => $result->getCreated()

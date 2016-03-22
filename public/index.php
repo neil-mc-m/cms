@@ -59,33 +59,33 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array(
 #                      ROUTES
 # ________________________________________________________________
 #
-$app->get('/', 'CMS\\controllers\\MainController::indexAction');
-#$app->get('/admin', 'CMS\\controllers\\SecurityController::logInAction');
-$app->get('/login', 'CMS\\controllers\\SecurityController::logInAction');
-$app->get('/{page}', 'CMS\\controllers\\MainController::routeAction');
+$app->get('/', 'CMS\\Controllers\\MainController::indexAction');
+#$app->get('/admin', 'CMS\\Controllers\\SecurityController::logInAction');
+$app->get('/login', 'CMS\\Controllers\\SecurityController::logInAction');
+$app->get('/{page}', 'CMS\\Controllers\\MainController::routeAction');
 
 
-$app->get('/articles', 'CMS\\controllers\\MainController::articlesAction');
-$app->get('/articles/{id}', 'CMS\\controllers\\MainController::oneArticleAction');
+$app->get('/articles', 'CMS\\Controllers\\MainController::articlesAction');
+$app->get('/articles/{id}', 'CMS\\Controllers\\MainController::oneArticleAction');
 
-#$app->post('/admin/login_check', 'CMS\\controllers\\SecurityController::loginCheckAction');
-$app->get('/admin/logout', 'CMS\\controllers\\SecurityController::logoutAction');
+#$app->post('/admin/login_check', 'CMS\\Controllers\\SecurityController::loginCheckAction');
+$app->get('/admin/logout', 'CMS\\Controllers\\SecurityController::logoutAction');
 
-$app->get('/admin/dashboard', 'CMS\\controllers\\AdminController::dashboardAction');
-$app->get('/admin/analytics', 'CMS\\controllers\\AdminController::analyticsAction');
+$app->get('/admin/dashboard', 'CMS\\Controllers\\AdminController::dashboardAction');
+$app->get('/admin/analytics', 'CMS\\Controllers\\AdminController::analyticsAction');
 
-$app->get('/admin/pages', 'CMS\\controllers\\PagesController::pagesAction');
-$app->get('/admin/view-pages', 'CMS\\controllers\\PagesController::viewPagesAction');
-$app->get('/admin/create-page', 'CMS\\controllers\\PagesController::createPageAction');
-$app->post('/admin/new-page', 'CMS\\controllers\\PagesController::newPageAction');
-$app->get('/admin/delete-page', 'CMS\\controllers\\PagesController::deletePageAction');
-$app->post('/admin/process-delete-page', 'CMS\\controllers\\PagesController::processDeletePageAction');
+$app->get('/admin/pages', 'CMS\\Controllers\\PagesController::pagesAction');
+$app->get('/admin/view-pages', 'CMS\\Controllers\\PagesController::viewPagesAction');
+$app->get('/admin/create-page', 'CMS\\Controllers\\PagesController::createPageAction');
+$app->post('/admin/new-page', 'CMS\\Controllers\\PagesController::newPageAction');
+$app->get('/admin/delete-page', 'CMS\\Controllers\\PagesController::deletePageAction');
+$app->post('/admin/process-delete-page', 'CMS\\Controllers\\PagesController::processDeletePageAction');
 
-$app->get('/admin/content', 'CMS\\controllers\\ContentController::contentAction');
-$app->get('/admin/create-content', 'CMS\\controllers\\ContentController::createContentFormAction');
-$app->post('/admin/process-content', 'CMS\\controllers\\ContentController::processContentAction');
-$app->get('/admin/delete-content', 'CMS\\controllers\\ContentController::deleteContentFormAction');
-$app->get('/admin/process-delete-content/{id}', 'CMS\\controllers\\ContentController::processDeleteContentAction');
-$app->get('/{page}/{contentid}', 'CMS\\controllers\\MainController::oneArticleAction');
+$app->get('/admin/content', 'CMS\\Controllers\\ContentController::contentAction');
+$app->get('/admin/create-content', 'CMS\\Controllers\\ContentController::createContentFormAction');
+$app->post('/admin/process-content', 'CMS\\Controllers\\ContentController::processContentAction');
+$app->get('/admin/delete-content', 'CMS\\Controllers\\ContentController::deleteContentFormAction');
+$app->get('/admin/process-delete-content/{id}', 'CMS\\Controllers\\ContentController::processDeleteContentAction');
+$app->get('/{page}/{contentid}', 'CMS\\Controllers\\MainController::oneArticleAction');
 
 $app->run();
