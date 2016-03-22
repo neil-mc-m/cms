@@ -1,10 +1,10 @@
 <?php
 
-namespace LightCMS\controllers;
+namespace CMS\controllers;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
-use LightCMS\DbRepository;
+use CMS\DbRepository;
 
 class PagesController
 {
@@ -116,7 +116,8 @@ class PagesController
     {
         $db = new DbRepository($app['dbh'], 'Page', 'page');
         $pageName = $app['request']->get('pagename');
-        $result = $db->deletePage($pageName);
+        $pageTemplate = $app['request']->get('pagetemplate');
+        $result = $db->deletePage($pageName, $pageTemplate);
         $user = $app['session']->get('user');
         $pages = $db->getAll();
         var_dump($pages);

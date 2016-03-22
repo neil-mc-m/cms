@@ -19,8 +19,8 @@ return array(
     'Symfony\\Bridge\\Twig\\' => array($vendorDir . '/symfony/twig-bridge'),
     'Silex\\' => array($vendorDir . '/silex/silex/src/Silex'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
-    'LightCMStests\\' => array($baseDir . '/tests'),
-    'LightCMS\\' => array($baseDir . '/src'),
     'Doctrine\\Common\\Cache\\' => array($vendorDir . '/doctrine/cache/lib/Doctrine/Common/Cache'),
     'Doctrine\\Common\\' => array($vendorDir . '/doctrine/common/lib/Doctrine/Common'),
+    'CMStests\\' => array($baseDir . '/tests'),
+    'CMS\\' => array($baseDir . '/src'),
 );

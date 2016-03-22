@@ -19,7 +19,7 @@
   <line no="6">
     <token name="T_NAMESPACE">namespace</token>
     <token name="T_WHITESPACE"> </token>
-    <token name="T_STRING">LightCMS</token>
+    <token name="T_STRING">CMS</token>
     <token name="T_PHPDOX_SEMICOLON">;</token>
   </line>
   <line no="7"/>

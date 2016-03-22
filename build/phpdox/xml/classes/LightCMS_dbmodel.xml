@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<class xmlns="http://xml.phpdox.net/src" full="LightCMS\dbmodel" namespace="LightCMS" name="dbmodel" abstract="false" final="false" start="12" end="79">
+<class xmlns="http://xml.phpdox.net/src" full="CMS\dbmodel" namespace="CMS" name="dbmodel" abstract="false" final="false" start="12" end="79">
   <file path="src" file="dbmodel.php" realpath="/home/neil/Desktop/light-cms/src/dbmodel.php" size="1828" time="2016-02-25T21:00:17+00:00" unixtime="1456434017" sha1="b49eec93dd2697323c8033c58e3e776075be3f20" relative="dbmodel.php"/>
   <docblock>
     <description compact="all database functionality resides here."/>

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% set active_page = 'home' %}
+{% set active_page = name %}
 
 {% block title %}
 {{ active_page }}
@@ -9,13 +9,14 @@
 {% block subheading %}
     <h2>{{ title }}</h2>
 {% endblock %}
+
 {% block content %}
-<article class="section">
-    <p>
-        {{ article }}
-    </p>
-    <p class="created">
-        This article was created on: {{ created }}
-    </p>
-</article>
+    <article class="section">
+        <p>
+            {{ article }}
+        </p>
+        <p class="created">
+            This article was created on: {{ created }}
+        </p>
+    </article>
 {% endblock %}

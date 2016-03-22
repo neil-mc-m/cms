@@ -1,6 +1,6 @@
 <?php
 
-namespace LightCMS;
+namespace CMS;
 
 use PDO;
 
@@ -48,6 +48,24 @@ class DbRepository
             $result = $stmt->fetchAll(PDO::FETCH_CLASS, $this->className);
 
             return $result;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+    public function getSingleRecord($page)
+    {
+        try {
+
+            $stmt = $this->conn->prepare('SELECT * FROM '.$this->tableName.' WHERE pagename=:page');
+            $stmt->bindParam(':page', $page);
+            $stmt->setFetchMode(PDO::FETCH_CLASS, $this->className);
+            $stmt->execute();
+            if ($result = $stmt->fetch()) {
+                return $result;
+            } else {
+                return;
+            }
+
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
@@ -138,11 +156,10 @@ class DbRepository
     public function getAllPagesContent()
     {
         try {
-            $pdo = new DbManager();
-            $conn = $pdo->getPdoInstance();
-            $stmt = $conn->prepare('SELECT * FROM content');
+
+            $stmt = $this->conn->prepare('SELECT * FROM content');
             $stmt->execute();
-            $result = $stmt->fetchAll(PDO::FETCH_OBJ);
+            $result = $stmt->fetchAll(PDO::FETCH_CLASS, $this->className);
 
             return $result;
         } catch (PDOException $e) {
@@ -167,8 +184,8 @@ class DbRepository
 
             $result = '';
 
-            $stmtpage = $conn->prepare('INSERT IGNORE INTO page(pageid, pagename, pagepath, pagetemplate) VALUES (DEFAULT, :pagename, :pagepath, :pagetemplate)');
-            $stmttemplate = $conn->prepare('INSERT INTO templates(templateid, name, source, last_modified) VALUES (DEFAULT, :name, :source, curdate())');
+            $stmtpage = $conn->prepare('INSERT IGNORE INTO page(pageid, pagename, pagepath, pagetemplate, created) VALUES (DEFAULT, :pagename, :pagepath, :pagetemplate, curdate())');
+            $stmttemplate = $conn->prepare('INSERT IGNORE INTO templates(templateid, name, source, last_modified) VALUES (DEFAULT, :name, :source, curdate())');
             # a pdo transaction to execute two queries at the same time.
             # both have to execute without an error for each to work.
             # i.e if theres an error in the second statement, the first statement
@@ -181,7 +198,7 @@ class DbRepository
             $stmtpage->execute();
 
             $pageTemplate = $pageTemplate.'.html.twig';
-            $templatecontent = "{% extends 'base.html.twig' %}";
+            $templatecontent = "{% extends 'base.html.twig' %}{% block content %}{% endblock %}";
             $stmttemplate->bindParam(':name', $pageTemplate);
             $stmttemplate->bindParam(':source', $templatecontent);
             $stmttemplate->execute();
@@ -205,23 +222,21 @@ class DbRepository
      *
      * @return twig template
      */
-    public function deletePage($pageName)
+    public function deletePage($pageName, $pageTemplate)
     {
         try {
-            $pdo = new DbManager();
-            $conn = $pdo->getPdoInstance();
-            $page = ucfirst($pageName);
-            $result = '';
-            $stmtpage = $conn->prepare('DELETE FROM '.$this->tableName.' WHERE pagename =:pagename');
-            $stmttemplate = $conn->prepare('DELETE FROM templates WHERE name =:pagetemplate');
+            $stmtpage = $this->conn->prepare('DELETE FROM '.$this->tableName.' WHERE pagename =:pagename');
+            $stmttemplate = $this->conn->prepare('DELETE FROM templates WHERE name =:pagetemplate');
             # begins a transaction for a multiple query
-            $conn->beginTransaction();
+            $this->conn->beginTransaction();
             $stmtpage->bindParam(':pagename', $pageName);
             $stmtpage->execute();
+
+            $pageTemplate = $pageTemplate.'.html.twig';
             $stmttemplate->bindParam(':pagetemplate', $pageTemplate);
             $stmttemplate->execute();
-
-            if (!$conn->commit()) {
+            $result = '';
+            if (!$this->conn->commit()) {
                 $result .= 'Heuston we have a problem!';
             }
 
@@ -246,6 +261,20 @@ class DbRepository
                 $result .= 'Heuston we have a problem!';
             }
             return $result .= 'Nice. Some new content created';
+        } catch (PDOException $e) {
+            print $e->getMessage();
+        }
+    }
+
+    public function deleteContent($id)
+    {
+        try {
+            $stmt = $this->conn->prepare('DELETE FROM '.$this->tableName.' WHERE contentid=:id');
+            $stmt->bindParam(':id', $id);
+            if(!$stmt->execute()) {
+                $result .= 'Heuston, we have a problem!';
+            }
+            return $result .= 'Well done, another post deleted!';
         } catch (PDOException $e) {
             print $e->getMessage();
         }

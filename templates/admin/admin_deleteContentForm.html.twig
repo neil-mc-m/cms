@@ -1,0 +1,68 @@
+{% extends 'admin/admin_base.html.twig' %}
+
+
+{% block title %}
+Admin Pages
+{% endblock %}
+
+
+
+{% block navbar %}
+    <a href="{{ path('admin_logout') }}">Logout</a>
+    <p>
+        Welcome home,{{ user.username }}
+        {{ id }}
+    </p>
+{% endblock %}
+{% block settings_nav %}
+<div class="menu-sidebar">
+    <ul class="admin-nav">
+       <li><a href="/admin/dashboard"></a>Dashboard</li>
+       <li><a href="/admin/create-content">Create some content</a></li>
+       <li><a href="/admin/delete-content">Delete a post</a></li>
+       <li><a href="#">Update a post</a></li>
+   </ul>
+</div>
+{% endblock %}
+{% block content %}
+
+
+<div class="main-section">
+
+        {% for content in allcontent %}
+        <div class="delete-box">
+        <p>
+            {{ content.contentid }}
+        </p>
+        <p>
+            {{ content.contentitemtitle }}
+        </p>
+        <p>
+            {{ content.contentitem }}
+        </p>
+        <p>
+            {{ content.created }}
+        </p>
+        <a href="/admin/process-delete-content/{{ content.contentid }}">Delete?</a>
+</div>
+
+{% endfor %}
+
+        {% if result is defined %}
+        {{ result }}
+        {% endif %}
+    </p>
+
+
+        <p>
+
+
+        </p>
+
+
+
+</div>
+
+
+
+{% endblock %}

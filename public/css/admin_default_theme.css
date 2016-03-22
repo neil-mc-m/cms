@@ -146,6 +146,13 @@ li.active {
 .input-box {
   padding-right : 1rem;
 }
+.input-box.text-area {
+    width: 400px;
+    height: 100px;
+}
+.delete-box {
+    border: thin solid grey;
+}
 
 .laptop-icon {
   width       : 25px;

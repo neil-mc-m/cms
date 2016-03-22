@@ -3,13 +3,13 @@
 * The main controller.
 */
 
-namespace LightCMS\controllers;
+namespace CMS\controllers;
 
-use LightCMS\DbManager;
-use LightCMS\DatabaseTwigLoader;
+use CMS\DbManager;
+use CMS\DatabaseTwigLoader;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
-use LightCMS\DbRepository;
+use CMS\DbRepository;
 
 /**
  * The Main Controller used for the 'main' routes out of index.php.
@@ -88,10 +88,12 @@ class MainController
         # get the pages to build the navbar
         $db = new DbRepository($app['dbh'], 'Page', 'page');
         $pages = $db->getAll();
-
+        $singlePage = $db->getSingleRecord($page);
+        var_dump($singlePage);
         $content = $db->getContent($page);
 
         $args_array = array(
+            'name' => $singlePage->getPageName(),
             'pages' => $pages,
             'content' => $content,
         );

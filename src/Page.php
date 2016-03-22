@@ -1,6 +1,6 @@
 <?php
 
-namespace LightCMS;
+namespace CMS;
 
 /**
  * a class for web pages.

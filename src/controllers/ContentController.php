@@ -1,10 +1,10 @@
 <?php
 
-namespace LightCMS\controllers;
+namespace CMS\controllers;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
-use LightCMS\DbRepository;
+use CMS\DbRepository;
 
 class ContentController
 {
@@ -56,5 +56,30 @@ class ContentController
 
 
         return $app->redirect('/admin/dashboard');
+    }
+
+    public function deleteContentFormAction(Request $request, Application $app)
+    {
+        $user = $app['session']->get('user');
+        $db = new DbRepository($app['dbh'], 'Content', 'content');
+        $allContent = $db->getAllPagesContent();
+        $args_array = array(
+            'user' => $user,
+            'id' => session_id(),
+            'allcontent' => $allContent
+        );
+        $templateName = 'admin/admin_deleteContentForm';
+
+        return $app['twig']->render($templateName.'.html.twig', $args_array);
+    }
+
+    public function processDeleteContentAction(Request $request, Application $app, $id)
+    {
+        $user = $app['session']->get('user');
+        $db = new DbRepository($app['dbh'], 'Content', 'content');
+        $result = $db->deleteContent($id);
+
+        return $app->redirect('/admin/delete-content');
+
     }
 }

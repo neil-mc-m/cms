@@ -1,6 +1,6 @@
 <?php
 
-namespace LightCMS\controllers;
+namespace CMS\controllers;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;

@@ -1,6 +1,6 @@
 <?php
 
-namespace LightCMS;
+namespace CMS;
 
 /**
  * A template class to help in the generation of twig templates.

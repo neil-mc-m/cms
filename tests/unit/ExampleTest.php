@@ -1,5 +1,5 @@
 <?php
-use \LightCMS\dbmodel;
+use \CMS\dbmodel;
 
 class ExampleTest extends \Codeception\TestCase\Test
 {
@@ -21,7 +21,7 @@ class ExampleTest extends \Codeception\TestCase\Test
     // tests
     public function testMe()
     {
-        $db = new \LightCMS\dbmodel();
+        $db = new \CMS\dbmodel();
         $db->showOneArticle('1');
         $this->tester->seeInDatabase('articles', array('id' => '1'));
 

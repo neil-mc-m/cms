@@ -1,6 +1,6 @@
 <?php
 
-namespace LightCMS;
+namespace CMS;
 
 use PDO;
 

@@ -3,11 +3,11 @@
  * the admin controller.
  */
 
-namespace LightCMS\controllers;
+namespace CMS\controllers;
 
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
-use LightCMS\DbRepository;
+use CMS\DbRepository;
 
 /**
  * The controller class for all admin CRUD actions.

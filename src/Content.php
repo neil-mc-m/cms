@@ -1,5 +1,5 @@
 <?php
-namespace LightCMS;
+namespace CMS;
 
 class Content
 {
