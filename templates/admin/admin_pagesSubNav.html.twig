@@ -1,9 +1,10 @@
 {# a navbar to replace the main admin nav #}
 {# this nav will deal with all routes under the pages tab #}
 
-<ul class="admin-nav">
+
 {# navbar taken from lecture notes. set the active page at the beginning of each template.#}
+<ul>
 {% for item in pagesSubNav %}
-   <li class="admin-nav"><a id="admin-button"{% if item[0] == active_page %} class="active"{% endif %} href="/admin/{{ (item[0]) }}"><span class="button">{{ item[1] }}</span></a></li>
+   <li><a{% if item[0] == active_page %} class="active"{% endif %} href="/admin/{{ (item[0]) }}">{{ item[1] }}</a></li>
 {% endfor %}
 </ul>

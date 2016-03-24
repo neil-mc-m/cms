@@ -100,7 +100,7 @@ class PagesController
 
         $user = $app['session']->get('user');
         $pages = $db->getAll();
-        var_dump($pages);
+        
         $args_array = array(
             'user' => $user,
             'id' => session_id(),

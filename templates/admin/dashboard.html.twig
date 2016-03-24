@@ -7,14 +7,7 @@ Admin dashboard
 
 
 
-{% block navbar %}
-{{ parent() }}
-    <a href="{{ path('admin_logout') }}">Logout</a>
-    <p>
-        Welcome home,{{ user.username }}
-        {{ id }}
-    </p>
-{% endblock %}
+
 
 {% block content %}
 

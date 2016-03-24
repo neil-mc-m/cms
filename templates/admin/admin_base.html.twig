@@ -24,45 +24,81 @@
 <body>
 
 
-    <header class="header">
-        <div class="header-box">
-            {% block header %}
-            {% endblock %}
-        </div>
-    </header>
+<header class="header">
+    {% block header %}
+        
+        <p>
+             Welcome home,{{ user.username }}
+             {{ id }}
+        </p>
+    {% endblock %}    
+</header>
 
 
-    <div class="navbar">
+  
 
-        <nav>
-
-            <ul>
-                {% block navbar %}
-
-                {% endblock %}
-            </ul>
-        </nav>
-  </div>
+<nav class="navbar">
+    <ul>
+       {% include 'admin/admin_mainNav.html.twig' %}
+    </ul>
+</nav>
 
 
-    {# a subheading div #}
-    <div class="page-subheading">
-        {% block subheading %}{% endblock %}
+
+    {# a sub div to hold a sub nav bar and a search box #}
+<div class="sub-section"> 
+    <nav class="sub-navbar">
+        
+        {% block subnavbar %}{% endblock %}
+        
+    </nav>
+    <div class="sub-search">
+        <input type="text" class="input-box" placeholder="search"></input><br>
+        <a class="logout" href="{{ path('admin_logout') }}">Logout</a>
     </div>
+</div>    
+   
 
 
     {# main content area #}
-    <div class="content">
-        <div class="admin-container">
-            {% block settings_nav %}
-            <div class="menu-sidebar">
-                {% include 'admin/admin_mainNav.html.twig' %}
-            </div>
-            {% endblock %}
-            {% block content %}
+    <div class="container">
+        
+            <div class="side-section">
+                
+                    {% block sidebar %}
+                        <h3>Current Pages</h3>
+    <p>Below is a list of your current pages</p>
+    <p>
+        Use the navbar to edit your pages.
+    </p>
+    <table>
+    <tr>
+        <th>
+            PAGE
+        </th>
+        <th>
+            DATE CREATED
+        </th>
+    </tr>
 
-            {% endblock %}
-        </div>
+        {% for page in pages %}
+        <tr>
+        <td>{{ page.pagename }}</td>
+        <td>{{ page.created }}</td>
+        </tr>
+        {% endfor %}
+
+
+</table>
+                        {% endblock %}
+                </ul>    
+            </div>
+            <div class="main-section">
+                {% block content %}
+
+                {% endblock %}
+            </div>
+        
     </div>
 
 <div class="iframe-preview">

@@ -1,5 +1,5 @@
 {% extends 'admin/admin_base.html.twig' %}
-{% set pagesSubNav = [['dashboard', 'Dashboard'], ['create-page', 'Create a new web-page'], ['view-pages', 'View current pages'], ['delete-page', 'Remove a page']] %}
+{% set pagesSubNav = [['create-page', 'Create a new web-page'], ['view-pages', 'View current pages'], ['delete-page', 'Remove a page']] %}
 {# set the active page to be styled. Do this on every different page #}
 {% set active_page = 'delete-page' %}
 
@@ -9,22 +9,14 @@ Admin delete form
 
 
 
-{% block navbar %}
-    <a href="{{ path('admin_logout') }}">Logout</a>
-    <p>
-        Welcome home,{{ user.username }}
-        {{ id }}
-    </p>
+{% block subnavbar %}
+    {% include 'admin/admin_pagesSubNav.html.twig' %}
 {% endblock %}
 
-{% block settings_nav %}
-<div class="menu-sidebar">
-    {% include 'admin/admin_pagesSubNav.html.twig' %}
-</div>
-{% endblock %}
+
 {% block content %}
 
-    <div class="main-section">
+    
         <h3>Current Pages</h3>
         <form class="deletePageForm" action="/admin/process-delete-page" method="post">
             {% for page in pages %}
@@ -40,7 +32,7 @@ Admin delete form
             {{ result }}
             {% endif %}
         </p>
-    </div>
+    
 
 
 {% endblock %}

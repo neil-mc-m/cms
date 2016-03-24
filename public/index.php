@@ -46,11 +46,7 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
                     'admin' => array('ROLE_ADMIN', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg==')
         ),
     ),
-),
-
-));
-
-
+),));
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
     'monolog.logfile' => $loggerPath .'/development.log'
 ));
@@ -60,7 +56,7 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array(
 # ________________________________________________________________
 #
 $app->get('/', 'CMS\\Controllers\\MainController::indexAction');
-#$app->get('/admin', 'CMS\\Controllers\\SecurityController::logInAction');
+
 $app->get('/login', 'CMS\\Controllers\\SecurityController::logInAction');
 $app->get('/{page}', 'CMS\\Controllers\\MainController::routeAction');
 
@@ -68,11 +64,11 @@ $app->get('/{page}', 'CMS\\Controllers\\MainController::routeAction');
 $app->get('/articles', 'CMS\\Controllers\\MainController::articlesAction');
 $app->get('/articles/{id}', 'CMS\\Controllers\\MainController::oneArticleAction');
 
-#$app->post('/admin/login_check', 'CMS\\Controllers\\SecurityController::loginCheckAction');
+
 $app->get('/admin/logout', 'CMS\\Controllers\\SecurityController::logoutAction');
 
 $app->get('/admin/dashboard', 'CMS\\Controllers\\AdminController::dashboardAction');
-$app->get('/admin/analytics', 'CMS\\Controllers\\AdminController::analyticsAction');
+
 
 $app->get('/admin/pages', 'CMS\\Controllers\\PagesController::pagesAction');
 $app->get('/admin/view-pages', 'CMS\\Controllers\\PagesController::viewPagesAction');

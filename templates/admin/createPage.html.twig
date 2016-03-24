@@ -1,5 +1,5 @@
 {% extends 'admin/admin_base.html.twig' %}
-{% set pagesSubNav = [['dashboard', 'Dashboard'], ['create-page', 'Create a new web-page'], ['view-pages', 'View current pages'], ['delete-page', 'Remove a page']] %}
+{% set pagesSubNav = [['create-page', 'Create a new web-page'], ['view-pages', 'View current pages'], ['delete-page', 'Remove a page']] %}
 {# set the active page to be styled. Do this on every different page #}
 {% set active_page = "create-page" %}
 
@@ -8,28 +8,17 @@
 Admin dashboard | create-page
 {% endblock %}
 
-{% block navbar %}
-    <a href="{{ path('admin_logout') }}">Logout</a>
-    <p>
-        Welcome home,{{ user.username }}
-        {{ id }}
-    </p>
-{% endblock %}
 
-{% block settings_nav %}
-<div class="menu-sidebar">
+
+{% block subnavbar %}
+
     {% include 'admin/admin_pagesSubNav.html.twig' %}
-</div>
+
 {% endblock %}
 
 {% block content %}
 <div class="main-section">
-    <h3>Current pages:</h3>
-    <p>
-        {% for page in pages %}
-        {{ page.pagename|capitalize }}
-        {% endfor %}
-    </p>
+  
     <p>
         Fill in the form to create your new page. The page name box will show up on your navigation bar <strong>exactly</strong> as you
         type it in. The page route and page template boxes are for internal CMS functions. These can be the same as your pagename.
