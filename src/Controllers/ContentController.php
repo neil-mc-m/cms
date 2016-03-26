@@ -50,10 +50,7 @@ class ContentController
         $contentitem = $app['request']->get('contentitem');
         $db = new DbRepository($app['dbh'], 'Content', 'content');
         $app['monolog']->addInfo('You just connected to the database');
-        # get all pages currently stored in the db.
-        # Used for building the navbar and setting page titles.
         $result = $db->createContent($pagename, $contenttype, $contentitemtitle, $contentitem);
-
 
         return $app->redirect('/admin/dashboard');
     }

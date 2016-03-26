@@ -1,39 +1,19 @@
-{% extends 'admin/admin_base.html.twig' %}
+{% extends 'admin/_base.html.twig' %}
 {% set active_page="dashboard" %}
-
 {% block title %}
-Admin dashboard
+    Admin dashboard
 {% endblock %}
-
-
-
-
-
 {% block content %}
-
     <div class="main-section">
         <h3>Welcome to the administrators dashboard. Here you can create new web-pages, edit your pages content and more..</h3>
+        
         <p>
-            Below, is a list of current pages.
+            Use the navigation bar to move through the sections. You can always get back to this screen by clicking the dashboard link.
         </p>
-        <p>
-            Use the navigation bar to the left to move through the sections. You can always get back to this screen by clicking the dashboard link.
-        </p>
-        <h3>Current Pages</h3>
-        <p>
-            {% for page in pages %}
-            {{ page.pagename|capitalize }}
-            {% endfor %}
-        </p>
-
         <p>
             {% if result is defined %}
-            {{ result }}
+                {{ result }}
             {% endif %}
         </p>
     </div>
-
-
-
-
 {% endblock %}

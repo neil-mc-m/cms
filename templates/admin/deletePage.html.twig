@@ -1,7 +1,7 @@
-{% extends 'admin/admin_base.html.twig' %}
+{% extends 'admin/_base.html.twig' %}
 {% set pagesSubNav = [['create-page', 'Create a new web-page'], ['view-pages', 'View current pages'], ['delete-page', 'Remove a page']] %}
 {# set the active page to be styled. Do this on every different page #}
-{% set active_page = 'delete-page' %}
+{% set active_page = 'pages' %}
 
 {% block title %}
 Admin delete form
@@ -9,9 +9,7 @@ Admin delete form
 
 
 
-{% block subnavbar %}
-    {% include 'admin/admin_pagesSubNav.html.twig' %}
-{% endblock %}
+
 
 
 {% block content %}

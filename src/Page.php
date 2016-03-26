@@ -27,13 +27,6 @@ class Page
     public $pagename;
 
     /**
-     * the path to the page eg /home.
-     *
-     * @var string
-     */
-    public $pagepath;
-
-    /**
      * the template to return eg home.html.twig.
      *
      * @var string
@@ -49,16 +42,6 @@ class Page
     public function getPageName()
     {
         return $this->pagename;
-    }
-
-    /**
-     * Get the value of the path to the page eg /home.
-     *
-     * @return string
-     */
-    public function getPagePath()
-    {
-        return $this->pagepath;
     }
 
     /**
@@ -93,12 +76,6 @@ class Page
      *
      * @return self
      */
-    public function setPagePath($pagepath)
-    {
-        $this->pagepath = $pagepath;
-
-        return $this;
-    }
 
     /**
      * Set the value of the template to return eg home.html.twig.

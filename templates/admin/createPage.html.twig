@@ -1,7 +1,7 @@
-{% extends 'admin/admin_base.html.twig' %}
+{% extends 'admin/_base.html.twig' %}
 {% set pagesSubNav = [['create-page', 'Create a new web-page'], ['view-pages', 'View current pages'], ['delete-page', 'Remove a page']] %}
 {# set the active page to be styled. Do this on every different page #}
-{% set active_page = "create-page" %}
+{% set active_page = "pages" %}
 
 
 {% block title %}
@@ -10,18 +10,11 @@ Admin dashboard | create-page
 
 
 
-{% block subnavbar %}
-
-    {% include 'admin/admin_pagesSubNav.html.twig' %}
-
-{% endblock %}
-
 {% block content %}
 <div class="main-section">
   
     <p>
-        Fill in the form to create your new page. The page name box will show up on your navigation bar <strong>exactly</strong> as you
-        type it in. The page route and page template boxes are for internal CMS functions. These can be the same as your pagename.
+        Fill in the form to create your new page. The template name can be the same as your pagename.
     </p>
     <p>
         <strong>Note :</strong> All fields are required.
@@ -31,11 +24,6 @@ Admin dashboard | create-page
         <p>
             <label>Page Name<br>
             <input type="text" class="input-box" name="pagename" placeholder="Page Name" autofocus required/>
-            </label>
-        </p>
-        <p>
-            <label>Page Route<br>
-            <input type="text" class="input-box" name="pagepath" placeholder="Page Route" required/>
             </label>
         </p>
         <p>

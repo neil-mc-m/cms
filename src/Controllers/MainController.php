@@ -35,7 +35,6 @@ class MainController
         # get all pages currently stored in the db.
         # Used for building the navbar and setting page titles.
         $pages = $db->getAll();
-
         # as this is the home page controller, get the home pages content
         $content = $db->getContent('home');
 
@@ -91,6 +90,7 @@ class MainController
         $singlePage = $db->getSingleRecord($page);
         var_dump($singlePage);
         $content = $db->getContent($page);
+        var_dump($content);
 
         $args_array = array(
             'name' => $singlePage->getPageName(),
@@ -114,13 +114,12 @@ class MainController
     {
         $db = new DbRepository($app['dbh'], 'Page', 'page');
         $pages = $db->getAll();
-
-
         $result = $db->showOne($contentid);
         var_dump($result);
+
         $args_array = array(
          'pages' => $pages,
-         'name' => $result->getPageName(),
+         'pagename' => $result->getPageName(),
          'title' => $result->getContentitemtitle(),
          'article' => $result->getContentitem(),
          'created' => $result->getCreated()

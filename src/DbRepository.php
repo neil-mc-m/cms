@@ -141,9 +141,8 @@ class DbRepository
     public function getContent($page)
     {
         try {
-            $pdo = new DbManager();
-            $conn = $pdo->getPdoInstance();
-            $stmt = $conn->prepare('SELECT * FROM content WHERE pagename =:page');
+            
+            $stmt = $this->conn->prepare('SELECT * FROM content WHERE pagename =:page');
             $stmt->bindParam(':page', $page, PDO::PARAM_STR, 5);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -176,7 +175,7 @@ class DbRepository
      *
      * @return twig template        the template for the page.
      */
-    public function createPage($pageName, $pagePath, $pageTemplate)
+    public function createPage($pageName, $pageTemplate)
     {
         try {
             $pdo = new DbManager();
@@ -184,7 +183,7 @@ class DbRepository
 
             $result = '';
 
-            $stmtpage = $conn->prepare('INSERT IGNORE INTO page(pageid, pagename, pagepath, pagetemplate, created) VALUES (DEFAULT, :pagename, :pagepath, :pagetemplate, curdate())');
+            $stmtpage = $conn->prepare('INSERT IGNORE INTO page(pageid, pagename, pagetemplate, created) VALUES (DEFAULT, :pagename, :pagetemplate, curdate())');
             $stmttemplate = $conn->prepare('INSERT IGNORE INTO templates(templateid, name, source, last_modified) VALUES (DEFAULT, :name, :source, curdate())');
             # a pdo transaction to execute two queries at the same time.
             # both have to execute without an error for each to work.
@@ -193,12 +192,11 @@ class DbRepository
             $conn->beginTransaction();
             $pageName = strtolower($pageName);
             $stmtpage->bindParam(':pagename', $pageName);
-            $stmtpage->bindParam(':pagepath', $pagePath);
             $stmtpage->bindParam(':pagetemplate', $pageTemplate);
             $stmtpage->execute();
 
             $pageTemplate = $pageTemplate.'.html.twig';
-            $templatecontent = "{% extends 'base.html.twig' %}{% block content %}{% endblock %}";
+            $templatecontent = "{% extends 'base.html.twig' %}";
             $stmttemplate->bindParam(':name', $pageTemplate);
             $stmttemplate->bindParam(':source', $templatecontent);
             $stmttemplate->execute();

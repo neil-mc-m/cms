@@ -76,10 +76,9 @@ class PagesController
     public function newPageAction(Request $request, Application $app)
     {
         $pageName = $app['request']->get('pagename');
-        $pagePath = $app['request']->get('pagepath');
         $pageTemplate = $app['request']->get('pagetemplate');
         $db = new DbRepository($app['dbh'], 'Page', 'page');
-        $result = $db->createPage($pageName, $pagePath, $pageTemplate);
+        $result = $db->createPage($pageName, $pageTemplate);
         $user = $app['session']->get('user');
         $pages = $db->getAll();
 
