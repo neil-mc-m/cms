@@ -93,7 +93,7 @@ class MainController
         var_dump($content);
 
         $args_array = array(
-            'name' => $singlePage->getPageName(),
+            'pagename' => $singlePage->getPageName(),
             'pages' => $pages,
             'content' => $content,
         );
