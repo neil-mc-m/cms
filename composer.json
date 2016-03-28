@@ -7,7 +7,8 @@
     "twig/twig":"~1.22",
     "symfony/security": "^3.0",
     "monolog/monolog": "^1.18",
-    "doctrine/dbal": "~2.2"
+    "doctrine/dbal": "~2.2",
+    "jasny/twig-extensions": "^1.0"
   },
   "autoload":{
     "psr-4":{

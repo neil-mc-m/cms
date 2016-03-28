@@ -49,8 +49,14 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
 ),));
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
     'monolog.logfile' => $loggerPath .'/development.log'
-));
-;
+));;
+# an extension to add a paragraphing filter to twig templates.
+# see https://github.com/jasny/twig-extensions. 
+$app['twig'] = $app->share($app->extend('twig', function($twig, $app) {
+    $twig->addExtension(new Jasny\Twig\TextExtension());
+
+    return $twig;
+}));
 # ________________________________________________________________
 #                      ROUTES
 # ________________________________________________________________
@@ -58,6 +64,7 @@ $app->register(new Silex\Provider\MonologServiceProvider(), array(
 $app->get('/', 'CMS\\Controllers\\MainController::indexAction');
 
 $app->get('/login', 'CMS\\Controllers\\SecurityController::logInAction');
+$app->get('/search/{q}', 'CMS\\Controllers\\SearchController::searchAction');
 $app->get('/{page}', 'CMS\\Controllers\\MainController::routeAction');
 
 

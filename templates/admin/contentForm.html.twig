@@ -1,54 +1,36 @@
 {% extends 'admin/_base.html.twig' %}
-
-
 {% block title %}
-Admin Pages
+    Admin Pages
 {% endblock %}
-
-
-
-
 {% block content %}
-
-{{ parent() }}
-<div class="main-section">
-    <form class="contentForm" action="/admin/process-content" method="post">
-        <p>
-            Pagename<br>
-            <input class="input-box" type="text" name="pagename" placeholder="Place your pagename here..">
-        </p>
-        <p>
-            Content type<br>
-            <input class="input-box" type="text" name="contenttype" placeholder="Content type">
-        </p>
+    {{ parent() }}
+    <div class="main-section">
+        <form class="contentForm" action="/admin/process-content" method="post">
             <p>
-                Content item title<br>
+                Pagename<br>
+                {% for page in pages %}
+                    <input type="radio" name="pagename" value="{{ page.pagename }}" checked>{{ page.pagename }}<br>
+                {% endfor %}
+            </p>
+            <p>
+                Content type<br>
+                <input class="input-box" type="text" name="contenttype" placeholder="Content type">
+            </p>
+            <p>
+                Content title<br>
                 <input class="input-box" type="text" name="contentitemtitle" placeholder="Title">
             </p>
             <p>
-                Content item<br>
-                <textarea class="input-box text-area" type="textarea" name="contentitem" placeholder="Type your content in here.."></textarea>
+                Content Body<br>
+                <textarea class="input-box text-area" type="textarea" name="contentitem" placeholder="Type your content in here..insert a \n wherever you want a linebreak." rows="40" cols="60" wrap="hard"></textarea>
             </p>
             <p>
                 <input class="input-box" type="submit"  value="Create Content">
             </p>
-    </form>
-
+        </form>
         {% if result is defined %}
-        {{ result }}
+            {{ result }}
         {% endif %}
     </p>
-
-
-        <p>
-
-
-        </p>
-
-
-
 </div>
-
-
-
 {% endblock %}

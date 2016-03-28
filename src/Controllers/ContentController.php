@@ -33,7 +33,10 @@ class ContentController
     public function createContentFormAction(Request $request, Application $app)
     {
         $user = $app['session']->get('user');
+        $db = new DbRepository($app['dbh'], 'Page', 'page');
+        $pages = $db->getAll();
         $args_array = array(
+            'pages' => $pages,
             'user' => $user,
             'id' => session_id(),
         );
@@ -65,7 +68,7 @@ class ContentController
             'id' => session_id(),
             'allcontent' => $allContent
         );
-        $templateName = 'admin/admin_deleteContentForm';
+        $templateName = 'admin/deleteContentForm';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }

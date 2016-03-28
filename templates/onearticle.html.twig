@@ -12,9 +12,10 @@
 
 {% block content %}
     <article class="section">
-        <p>
-            {{ article }}
-        </p>
+        	{# the paragraph filter is an extension registered in index.php line 55 #}
+        	{# taken from https://github.com/jasny/twig-extensions #}
+            {{ article|paragraph }}
+        
         <p class="created">
             This article was created on: {{ created }}
         </p>

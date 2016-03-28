@@ -19,9 +19,9 @@
     <header class="header">
         {% block header %}
             
-            <p>
+            <h1>
                 CMS
-            </p>
+            </h1>
         {% endblock %}
     </header>
     
@@ -33,7 +33,13 @@
     {# a sub div to hold a sub nav bar and a search box #}
     <div class="sub-section">
         <div class="sub-search">
-            <input type="text" class="input-box" placeholder="search"></input><br>
+            {% block searchbox %}
+    <form id="searchForm">
+        <input type="text" placeholder="Search" class="input-box" onkeyup="showResult(this.value)">
+        <div id="livesearch"></div>
+    </form>
+{% endblock %}
+            
             
         </div>
     </div>
@@ -99,6 +105,7 @@
 {# the javscript functions will not be available on every page #}
 {# so when they're needed, include them in a block in a template #}
 {% block javascript %}
+    <script src="{{ app.request.basepath }}/js/ajax.js"></script>
 {% endblock %}
 </body>
 </html>

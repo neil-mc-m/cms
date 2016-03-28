@@ -277,4 +277,22 @@ class DbRepository
             print $e->getMessage();
         }
     }
+    public function search($q)
+    {
+        try {
+            $array = array();
+            $stmt = $this->conn->prepare('SELECT * FROM '.$this->tableName.' WHERE contentitemtitle LIKE :q');
+            $q = '%'.$q.'%';
+            $stmt->bindParam(':q', $q);
+            $stmt->execute();
+            
+            while ($result = $stmt->fetchAll(PDO::FETCH_OBJ)) {
+                $array[] = $result;
+            }
+            $array = json_encode($array);
+            return $array;
+        } catch (PDOException $e) {
+            print $e->getMessage();
+        }
+    }
 }
