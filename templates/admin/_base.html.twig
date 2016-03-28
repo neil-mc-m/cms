@@ -20,7 +20,7 @@
         {% block header %}
             
             <h1>
-                CMS
+            CMS
             </h1>
         {% endblock %}
     </header>
@@ -34,11 +34,11 @@
     <div class="sub-section">
         <div class="sub-search">
             {% block searchbox %}
-    <form id="searchForm">
-        <input type="text" placeholder="Search" class="input-box" onkeyup="showResult(this.value)">
-        <div id="livesearch"></div>
-    </form>
-{% endblock %}
+                <form id="searchForm">
+                    <input type="text" placeholder="Search" class="input-box" onkeyup="showResult(this.value)">
+                    <div id="livesearch"></div>
+                </form>
+            {% endblock %}
             
             
         </div>
@@ -102,10 +102,8 @@
 </footer>
 {% endblock %}
 {# javascript functions #}
-{# the javscript functions will not be available on every page #}
-{# so when they're needed, include them in a block in a template #}
 {% block javascript %}
-    <script src="{{ app.request.basepath }}/js/ajax.js"></script>
+<script src="{{ app.request.basepath }}/js/ajax.js"></script>
 {% endblock %}
 </body>
 </html>

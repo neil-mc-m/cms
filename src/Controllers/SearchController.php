@@ -5,7 +5,7 @@ namespace CMS\Controllers;
 // passes it to a model function,
 // recieves the result as an array of JSON objects
 // and decodes it to a php nested associative array.
-// Might be a more direct way?
+// 
 use CMS\DbManager;
 use CMS\DbRepository;
 use Silex\Application;
@@ -22,9 +22,12 @@ class SearchController
 		
 		// the true flag will set the array to be associative
 		$value = json_decode($value, true);
+		
 		for ($row = 0; $row < sizeof($value); $row++) {
-			return "<a href=''>" . $value[$row][$row]['contentitemtitle'] . "</a>";
-		}
+			$contentid = $value[$row][$row]['contentid'];
+			return "<a href='/admin/view-single-content/{$contentid}'>" . $value[$row][$row]['contentitemtitle'] . "</a>";
+		} 
+		
 
 	}
 	

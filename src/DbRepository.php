@@ -225,6 +225,7 @@ class DbRepository
         try {
             $stmtpage = $this->conn->prepare('DELETE FROM '.$this->tableName.' WHERE pagename =:pagename');
             $stmttemplate = $this->conn->prepare('DELETE FROM templates WHERE name =:pagetemplate');
+            $stmtcontent = $this->conn->prepare('DELETE FROM content WHERE pagename=:pagename');
             # begins a transaction for a multiple query
             $this->conn->beginTransaction();
             $stmtpage->bindParam(':pagename', $pageName);
@@ -233,6 +234,10 @@ class DbRepository
             $pageTemplate = $pageTemplate.'.html.twig';
             $stmttemplate->bindParam(':pagetemplate', $pageTemplate);
             $stmttemplate->execute();
+
+            $stmtcontent->bindParam(':pagename', $pageName);
+            $stmtcontent->execute();
+            
             $result = '';
             if (!$this->conn->commit()) {
                 $result .= 'Heuston we have a problem!';
@@ -267,6 +272,7 @@ class DbRepository
     public function deleteContent($id)
     {
         try {
+            $result = '';
             $stmt = $this->conn->prepare('DELETE FROM '.$this->tableName.' WHERE contentid=:id');
             $stmt->bindParam(':id', $id);
             if(!$stmt->execute()) {

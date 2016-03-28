@@ -76,19 +76,24 @@ $app->get('/admin/logout', 'CMS\\Controllers\\SecurityController::logoutAction')
 
 $app->get('/admin/dashboard', 'CMS\\Controllers\\AdminController::dashboardAction');
 
-
 $app->get('/admin/pages', 'CMS\\Controllers\\PagesController::pagesAction');
 $app->get('/admin/view-pages', 'CMS\\Controllers\\PagesController::viewPagesAction');
+
 $app->get('/admin/create-page', 'CMS\\Controllers\\PagesController::createPageAction');
 $app->post('/admin/new-page', 'CMS\\Controllers\\PagesController::newPageAction');
+
 $app->get('/admin/delete-page', 'CMS\\Controllers\\PagesController::deletePageAction');
 $app->post('/admin/process-delete-page', 'CMS\\Controllers\\PagesController::processDeletePageAction');
 
-$app->get('/admin/content', 'CMS\\Controllers\\ContentController::contentAction');
+$app->get('/admin/view-content', 'CMS\\Controllers\\ContentController::contentAction');
+$app->get('/admin/view-single-content/{contentid}', 'CMS\\Controllers\\ContentController::singleContentAction');
+
 $app->get('/admin/create-content', 'CMS\\Controllers\\ContentController::createContentFormAction');
 $app->post('/admin/process-content', 'CMS\\Controllers\\ContentController::processContentAction');
+
 $app->get('/admin/delete-content', 'CMS\\Controllers\\ContentController::deleteContentFormAction');
-$app->get('/admin/process-delete-content/{id}', 'CMS\\Controllers\\ContentController::processDeleteContentAction');
+$app->get('/admin/process-delete-content/{contentid}', 'CMS\\Controllers\\ContentController::processDeleteContentAction');
+
 $app->get('/{page}/{contentid}', 'CMS\\Controllers\\MainController::oneArticleAction');
 
 $app->run();

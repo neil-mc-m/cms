@@ -30,6 +30,28 @@ class ContentController
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
 
+    public function singleContentAction(Request $request, Application $app, $contentid)
+    {
+        $user = $app['session']->get('user');
+        $db = new DbRepository($app['dbh'], 'Page', 'page');
+        $pages = $db->getAll();
+        $content = $db->showOne($contentid);
+        var_dump($content);
+        $args_array = array(
+            'user' => $user,
+            'pages' => $pages,
+            'id' => session_id(),
+            'contentitemtitle' => $content->getContentItemTitle(),
+            'contentitem' => $content->getContentItem(),
+            'created' => $content->getCreated(),
+            'contentid' => $content->getContentId()
+            );
+        $templateName = 'admin/singleContent';
+
+        return $app['twig']->render($templateName.'.html.twig', $args_array);
+    }
+
+
     public function createContentFormAction(Request $request, Application $app)
     {
         $user = $app['session']->get('user');
@@ -73,13 +95,24 @@ class ContentController
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
 
-    public function processDeleteContentAction(Request $request, Application $app, $id)
+    public function processDeleteContentAction(Request $request, Application $app, $contentid)
     {
         $user = $app['session']->get('user');
         $db = new DbRepository($app['dbh'], 'Content', 'content');
-        $result = $db->deleteContent($id);
+        $result = $db->deleteContent($contentid);
+        $pages = $db->getAll();
+        $content = $db->getAllPagesContent();
 
-        return $app->redirect('/admin/delete-content');
+        $args_array = array(
+            'user' => $user,
+            'id' => session_id(),
+            'content' => $content,
+            'pages' => $pages,
+            'result' => $result
+            );
+        $templateName = 'admin/content';
+
+        return $app['twig']->render($templateName.'.html.twig', $args_array);
 
     }
 }

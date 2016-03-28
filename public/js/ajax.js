@@ -1,4 +1,5 @@
 // the search function.
+// used in year 2, semester 1 web-dev project.
 function showResult(str) {
     if (str.length == 0) {
         document.getElementById("livesearch").innerHTML = " ";

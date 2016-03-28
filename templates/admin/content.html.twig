@@ -1,62 +1,30 @@
 {% extends 'admin/_base.html.twig' %}
-
-
 {% block title %}
-Admin Pages
-{% endblock %}
-
-
-
-{% block navbar %}
-    <a href="{{ path('admin_logout') }}">Logout</a>
-    <p>
-        Welcome home,{{ user.username }}
-        {{ id }}
-    </p>
-{% endblock %}
-{% block settings_nav %}
-<div class="menu-sidebar">
-    <ul class="admin-nav">
-       <li class="admin-nav"><a id="admin-button" href="/admin/dashboard"><span class="button">Dashboard</span></a></li>
-       <li class="admin-nav"><a id="admin-button" href="/admin/create-content"><span class="button">Create some content</span></a></li>
-       <li class="admin-nav"><a id="admin-button" href="/admin/delete-content"><span class="button">Delete a post</span></a></li>
-       <li class="admin-nav"><a id="admin-button" href="#"><span class="button">Update a post</span></a></li>
-   </ul>
-</div>
+    Admin Content
 {% endblock %}
 {% block content %}
-
-
-<div class="main-section">
-    <h3>Current Pages with Content</h3>
-    <p>
-        {% for page in pages %}
-            <h4>{{ page.pagename }}</h4>
+    <div class="main-section">
+        <h3>Current Pages with Content</h3>
+        <p>
+            {% for page in pages %}
+                <h4>{{ page.pagename }}</h4>
                 {% for content in content %}
                     {% if page.pagename == content.pagename %}
                         <p><strong>{{ content.contentitemtitle }}</strong></p>
                         <p>{{content.contentitem }}</p>
                         <p>{{ content.created }}</p>
+                        <p>{{ content.contentid }}</p>
+                        <a href="{{ app.request.basepath }}/admin/process-delete-content/{{ content.contentid }}" onclick="return confirm('Sure you want to delete this post?');">Delete?</a>
+                        <a href="/admin/edit-content">Edit?</a>
+                        <a href="/admin/view-single-content/{{ content.contentid }}">View?</a>
                     {% endif %}
                 {% endfor %}
-        {% endfor %}
-    </p>
-    <p>
-        {% if result is defined %}
-        {{ result }}
-        {% endif %}
-    </p>
-
-
-        <p>
-
-
+            {% endfor %}
         </p>
-
-
-
-</div>
-
-
-
+        <p>
+            {% if result is defined %}
+                {{ result }}
+            {% endif %}
+        </p>
+    </div>
 {% endblock %}

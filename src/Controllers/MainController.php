@@ -98,7 +98,7 @@ class MainController
             'content' => $content,
         );
 
-        return $app['twig']->render($page.'.html.twig', $args_array);
+        return $app['twig']->render($singlePage->getPageTemplate().'.html.twig', $args_array);
     }
     /**
      * display one articles.
