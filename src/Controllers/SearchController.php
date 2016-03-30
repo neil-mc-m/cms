@@ -16,7 +16,7 @@ class SearchController
 {
 	public function searchAction(Request $request, Application $app, $q)
 	{
-		$db = new DbRepository($app['dbh'], 'Content', 'content');
+		$db = new DbRepository($app['dbh']);
 		
 		$value = $db->search($q);
 		
@@ -24,8 +24,8 @@ class SearchController
 		$value = json_decode($value, true);
 		
 		for ($row = 0; $row < sizeof($value); $row++) {
-			$contentid = $value[$row][$row]['contentid'];
-			return "<a href='/admin/view-single-content/{$contentid}'>" . $value[$row][$row]['contentitemtitle'] . "</a>";
+			$contentId = $value[$row][$row]['contentId'];
+			return "<a href='/admin/view-single-content/{$contentId}'>" . $value[$row][$row]['contentItemTitle'] . "</a>";
 		} 
 		
 

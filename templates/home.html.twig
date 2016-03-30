@@ -21,9 +21,9 @@
     {% if content is defined %}
         {% for con in content %}
             <article class="section">
-                <a href="/{{ con.pagename }}/{{ con.contentid }}">{{ con.contentitemtitle }}</a>
+                <a href="/{{ con.pageName }}/{{ con.contentId }}">{{ con.contentItemTitle }}</a>
                 <p>
-                    {{ con.contentitem|slice(0,100) }}...<a href="/{{ con.pagename }}/{{ con.contentid }}">read more</a>
+                    {{ con.contentItem|slice(0,100) }}...<a href="/{{ con.pageName }}/{{ con.contentId }}">read more</a>
                 </p>
                 <p>
                     {{ con.created }}

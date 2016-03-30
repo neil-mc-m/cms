@@ -12,53 +12,38 @@ use PDO;
 class DbRepository
 {
     /**
-     * @var classname
-     */
-    private $classname;
-
-    /**
-     * @var tablename
-     */
-    private $tablename;
-
-    /**
      * PDO database connection object.
-     * @var [type]
+     * @var PDO instance
      */
     private $conn;
-    /**
-     * @param classname and tablename sent to the constructor as parameters
-     */
-    public function __construct(PDO $conn, $className, $tableName)
+   
+    public function __construct(PDO $conn)
     {
         $this->conn = $conn;
-        $this->className = __NAMESPACE__.'\\'.$className;
-        $this->tableName = $tableName;
     }
 
-    /**
-     * @return an array of objects fetched into their classes.
-     */
-    public function getAll()
+   
+    public function getAllPages()
     {
         try {
 
-            $stmt = $this->conn->prepare('SELECT * FROM '.$this->tableName);
+            $stmt = $this->conn->prepare('SELECT * FROM page');
             $stmt->execute();
-            $result = $stmt->fetchAll(PDO::FETCH_CLASS, $this->className);
+            $result = $stmt->fetchAll(PDO::FETCH_CLASS, __NAMESPACE__.'\\Page');
 
             return $result;
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
     }
-    public function getSingleRecord($page)
+
+    public function getSinglePage($pageName)
     {
         try {
 
-            $stmt = $this->conn->prepare('SELECT * FROM '.$this->tableName.' WHERE pagename=:page');
-            $stmt->bindParam(':page', $page);
-            $stmt->setFetchMode(PDO::FETCH_CLASS, $this->className);
+            $stmt = $this->conn->prepare('SELECT * FROM page WHERE pageName=:pageName');
+            $stmt->bindParam(':pageName', $pageName);
+            $stmt->setFetchMode(PDO::FETCH_CLASS, __NAMESPACE__.'\\Page');
             $stmt->execute();
             if ($result = $stmt->fetch()) {
                 return $result;
@@ -72,16 +57,16 @@ class DbRepository
     }
 
     /**
-     * @param an article id
+     * @param a content id
      *
      * @return a bool for success/failure
      */
-    public function showOne($contentid)
+    public function showOne($contentId)
     {
         try {
 
-            $stmt = $this->conn->prepare('SELECT * FROM content WHERE contentid =:contentid');
-            $stmt->bindParam(':contentid', $contentid, PDO::PARAM_INT);
+            $stmt = $this->conn->prepare('SELECT * FROM content WHERE contentId =:contentId');
+            $stmt->bindParam(':contentId', $contentId, PDO::PARAM_INT);
             $stmt->setFetchMode(PDO::FETCH_CLASS, __NAMESPACE__.'\\Content');
             $stmt->execute();
             if ($result = $stmt->fetch()) {
@@ -95,55 +80,18 @@ class DbRepository
     }
 
     /**
-     * get a route corresponding to the page variable.
-     *
-     * @param string $page a route
-     *
-     * @return twig template    a template for the route
-     */
-    public function getRoute($page)
-    {
-        try {
-
-            $stmt = $this->conn->prepare('SELECT * FROM '.$this->tableName.' WHERE pagepath =:slug');
-            $stmt->bindParam(':slug', $slug, PDO::PARAM_STR, 5);
-            $stmt->execute();
-            $result = $stmt->fetchAll(PDO::FETCH_CLASS, $this->className);
-
-            return $result;
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
-    }
-    public function getAllContent()
-    {
-        try {
-            $pdo = new DbManager();
-            $conn = $pdo->getPdoInstance();
-
-            $stmt = $conn->prepare('SELECT page.pagename,content.contentitemtitle FROM page LEFT JOIN content ON page.pagename=content.pagename');
-
-            $stmt->execute();
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            return $result;
-        } catch (PDOException $e) {
-            echo $e->getMessage();
-        }
-    }
-    /**
      * gets a pages content.
      *
      * @param string $page a page
      *
      * @return twig template    template for the page.
      */
-    public function getContent($page)
+    public function getContent($pageName)
     {
         try {
             
-            $stmt = $this->conn->prepare('SELECT * FROM content WHERE pagename =:page');
-            $stmt->bindParam(':page', $page, PDO::PARAM_STR, 5);
+            $stmt = $this->conn->prepare('SELECT * FROM content WHERE pageName =:pageName');
+            $stmt->bindParam(':pageName', $pageName, PDO::PARAM_STR, 5);
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -158,7 +106,7 @@ class DbRepository
 
             $stmt = $this->conn->prepare('SELECT * FROM content');
             $stmt->execute();
-            $result = $stmt->fetchAll(PDO::FETCH_CLASS, $this->className);
+            $result = $stmt->fetchAll(PDO::FETCH_CLASS, __NAMESPACE__.'\\Content');
 
             return $result;
         } catch (PDOException $e) {
@@ -167,7 +115,7 @@ class DbRepository
     }
 
     /**
-     * Creates a new web page fro m the parameters given.
+     * Creates a new web page from the parameters given.
      *
      * @param string $pageName     the pagename
      * @param string $pagePath     the page path/route
@@ -223,7 +171,7 @@ class DbRepository
     public function deletePage($pageName, $pageTemplate)
     {
         try {
-            $stmtpage = $this->conn->prepare('DELETE FROM '.$this->tableName.' WHERE pagename =:pagename');
+            $stmtpage = $this->conn->prepare('DELETE FROM page WHERE pagename =:pagename');
             $stmttemplate = $this->conn->prepare('DELETE FROM templates WHERE name =:pagetemplate');
             $stmtcontent = $this->conn->prepare('DELETE FROM content WHERE pagename=:pagename');
             # begins a transaction for a multiple query
@@ -249,17 +197,17 @@ class DbRepository
         }
     }
 
-    public function createContent($pagename, $contenttype, $contentitemtitle, $contentitem)
+    public function createContent($pageName, $contentType, $contentItemTitle, $contentItem)
     {
         try {
             $pdo = new DbManager();
             $conn = $pdo->getPdoInstance();
             $result = '';
-            $stmt = $conn->prepare('INSERT INTO '.$this->tableName.'(contentid, pagename, contenttype, contentitemtitle, contentitem, created) VALUES (DEFAULT, :pagename, :contenttype, :contentitemtitle, :contentitem, curdate())');
-            $stmt->bindParam(':pagename', $pagename);
-            $stmt->bindParam(':contenttype', $contenttype);
-            $stmt->bindParam(':contentitemtitle', $contentitemtitle);
-            $stmt->bindParam(':contentitem', $contentitem);
+            $stmt = $conn->prepare('INSERT INTO content(contentId, pageName, contentType, contentItemTitle, contentItem, created) VALUES (DEFAULT, :pagename, :contenttype, :contentitemtitle, :contentitem, curdate())');
+            $stmt->bindParam(':pagename', $pageName);
+            $stmt->bindParam(':contenttype', $contentType);
+            $stmt->bindParam(':contentitemtitle', $contentItemTitle);
+            $stmt->bindParam(':contentitem', $contentItem);
             if (!$stmt->execute()) {
                 $result .= 'Heuston we have a problem!';
             }
@@ -269,12 +217,12 @@ class DbRepository
         }
     }
 
-    public function deleteContent($id)
+    public function deleteContent($contentId)
     {
         try {
             $result = '';
-            $stmt = $this->conn->prepare('DELETE FROM '.$this->tableName.' WHERE contentid=:id');
-            $stmt->bindParam(':id', $id);
+            $stmt = $this->conn->prepare('DELETE FROM content WHERE contentId=:contentId');
+            $stmt->bindParam(':contentId', $contentId);
             if(!$stmt->execute()) {
                 $result .= 'Heuston, we have a problem!';
             }
@@ -283,11 +231,31 @@ class DbRepository
             print $e->getMessage();
         }
     }
+
+    public function editContent($contentId, $pageName, $contentType, $contentItemTitle, $contentItem)
+    {
+        try {
+            $result = '';
+            $stmt = $this->conn->prepare('UPDATE content SET pageName=:pageName, contentType=:contentType, contentItemTitle=:contentItemTitle, contentItem=:contentItem, modified=curdate() WHERE contentId=:contentId');
+            $stmt->bindParam(':pageName', $pageName);
+            $stmt->bindParam(':contentType', $contentType);
+            $stmt->bindParam(':contentItemTitle', $contentItemTitle);
+            $stmt->bindParam(':contentItem', $contentItem);
+            $stmt->bindParam(':contentId', $contentId);
+            if (!$stmt->execute()) {
+                return $result .= 'Heuston, We have a problem!';
+            }
+            return $result .= 'Successfully updated'.$stmt->rowCount().'Items';
+        } catch (PDOException $e) {
+            print $e->getMessage();
+        }
+    }
+    
     public function search($q)
     {
         try {
             $array = array();
-            $stmt = $this->conn->prepare('SELECT * FROM '.$this->tableName.' WHERE contentitemtitle LIKE :q');
+            $stmt = $this->conn->prepare('SELECT * FROM content WHERE contentItemTitle LIKE :q');
             $q = '%'.$q.'%';
             $stmt->bindParam(':q', $q);
             $stmt->execute();

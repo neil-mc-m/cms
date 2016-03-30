@@ -3,11 +3,11 @@ namespace CMS;
 
 class Content
 {
-    public $contentid;
-    public $pagename;
-    public $contenttype;
-    public $contentitemtitle;
-    public $contentitem;
+    public $contentId;
+    public $pageName;
+    public $contentType;
+    public $contentItemTitle;
+    public $contentItem;
     public $created;
 
 
@@ -17,9 +17,9 @@ class Content
      *
      * @return mixed
      */
-    public function getContentid()
+    public function getContentId()
     {
-        return $this->contentid;
+        return $this->contentId;
     }
 
     /**
@@ -27,9 +27,9 @@ class Content
      *
      * @return mixed
      */
-    public function getPagename()
+    public function getPageName()
     {
-        return $this->pagename;
+        return $this->pageName;
     }
 
     /**
@@ -37,9 +37,9 @@ class Content
      *
      * @return mixed
      */
-    public function getContenttype()
+    public function getContentType()
     {
-        return $this->contenttype;
+        return $this->contentType;
     }
 
     /**
@@ -47,9 +47,9 @@ class Content
      *
      * @return mixed
      */
-    public function getContentitemtitle()
+    public function getContentItemTitle()
     {
-        return $this->contentitemtitle;
+        return $this->contentItemTitle;
     }
 
     /**
@@ -57,9 +57,9 @@ class Content
      *
      * @return mixed
      */
-    public function getContentitem()
+    public function getContentItem()
     {
-        return $this->contentitem;
+        return $this->contentItem;
     }
 
     /**
@@ -80,9 +80,9 @@ class Content
      *
      * @return self
      */
-    public function setContentid($contentid)
+    public function setContentId($contentId)
     {
-        $this->contentid = $contentid;
+        $this->contentId = $contentId;
 
         return $this;
     }
@@ -94,9 +94,9 @@ class Content
      *
      * @return self
      */
-    public function setPagename($pagename)
+    public function setPageName($pageName)
     {
-        $this->pagename = $pagename;
+        $this->pageName = $pageName;
 
         return $this;
     }
@@ -108,9 +108,9 @@ class Content
      *
      * @return self
      */
-    public function setContenttype($contenttype)
+    public function setContentType($contentType)
     {
-        $this->contenttype = $contenttype;
+        $this->contentType = $contentType;
 
         return $this;
     }
@@ -122,9 +122,9 @@ class Content
      *
      * @return self
      */
-    public function setContentitemtitle($contentitemtitle)
+    public function setContentItemTitle($contentItemTitle)
     {
-        $this->contentitemtitle = $contentitemtitle;
+        $this->contentItemTitle = $contentItemTitle;
 
         return $this;
     }
@@ -136,9 +136,9 @@ class Content
      *
      * @return self
      */
-    public function setContentitem($contentitem)
+    public function setContentItem($contentItem)
     {
-        $this->contentitem = $contentitem;
+        $this->contentItem = $contentItem;
 
         return $this;
     }

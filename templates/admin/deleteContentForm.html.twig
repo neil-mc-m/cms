@@ -13,18 +13,18 @@ Admin Pages
         {% for content in allcontent %}
         <div class="delete-box">
         <p>
-            {{ content.contentid }}
+            {{ content.contentId }}
         </p>
         <p>
-            {{ content.contentitemtitle }}
+            {{ content.contentItemTitle }}
         </p>
         <p>
-            {{ content.contentitem }}
+            {{ content.contentItem }}
         </p>
         <p>
             {{ content.created }}
         </p>
-        <a href="/admin/process-delete-content/{{ content.contentid }}">Delete?</a>
+        <a href="/admin/process-delete-content/{{ content.contentId }}">Delete?</a>
 </div>
 
 {% endfor %}

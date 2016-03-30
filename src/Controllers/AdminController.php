@@ -29,8 +29,8 @@ class AdminController
         $user = $app['security.token_storage']->getToken()->getUser()->getUsername();
         $app['session']->set('user', array('username' => $user));
         $user = $app['session']->get('user');
-        $db = new DbRepository($app['dbh'], 'Page', 'page');
-        $pages = $db->getAll();
+        $db = new DbRepository($app['dbh']);
+        $pages = $db->getAllPages();
         $args_array = array(
             'user' => $user,
             'id' => session_id(),

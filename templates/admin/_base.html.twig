@@ -51,23 +51,27 @@
             
             {% block sidebar %}
                 <h3>Current Pages</h3>
-                <p>Below is a list of your current pages</p>
                 <p>
-                    Use the navbar to edit your pages.
+                    Below is a list of your current pages
                 </p>
+               
                 <table>
                     <tr>
                         <th>
-                            PAGE
+                            Name
                         </th>
                         <th>
-                            DATE CREATED
+                            Template
+                        </th>
+                        <th>
+                            Date Created
                         </th>
                     </tr>
                     {% if pages is defined %}
                         {% for page in pages %}
                             <tr>
-                                <td>{{ page.pagename }}</td>
+                                <td>{{ page.pageName }}</td>
+                                <td>{{ page.pageTemplate }}</td>
                                 <td>{{ page.created }}</td>
                             </tr>
                         {% endfor %}
@@ -82,7 +86,7 @@
     </div>
     <div class="section">
         <p>Welcome,{{ user.username }}</p>
-        <p>{{ id }}</p>
+        <p>{{ app.session.id }}</p>
         <a class="logout" href="{{ path('admin_logout') }}">Logout</a>
     </div>
     

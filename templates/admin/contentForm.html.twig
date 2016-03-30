@@ -9,20 +9,20 @@
             <p>
                 Pagename<br>
                 {% for page in pages %}
-                    <input type="radio" name="pagename" value="{{ page.pagename }}" checked>{{ page.pagename }}<br>
+                    <input type="radio" name="pageName" value="{{ page.pageName }}" checked>{{ page.pageName }}<br>
                 {% endfor %}
             </p>
             <p>
                 Content type<br>
-                <input class="input-box" type="text" name="contenttype" placeholder="Content type">
+                <input class="input-box" type="text" name="contentType" placeholder="Content type">
             </p>
             <p>
                 Content title<br>
-                <input class="input-box" type="text" name="contentitemtitle" placeholder="Title">
+                <input class="input-box" type="text" name="contentItemTitle" placeholder="Title">
             </p>
             <p>
                 Content Body<br>
-                <textarea class="input-box text-area" type="textarea" name="contentitem" placeholder="Type your content in here..insert a \n wherever you want a linebreak." rows="40" cols="60" wrap="hard"></textarea>
+                <textarea class="input-box text-area" type="textarea" name="contentItem" placeholder="Type your content in here.." rows="40" cols="120" wrap="hard"></textarea>
             </p>
             <p>
                 <input class="input-box" type="submit"  value="Create Content">

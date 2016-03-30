@@ -135,14 +135,15 @@ li.dropdown {
 /* text input boxes */
 .input-box[placeholder] {
   padding: 1rem;
-  margin-top: .5rem;
-  margin-bottom: 1.5rem;
+  /*margin-top: .5rem;*/
+  /*margin-bottom: 1.5rem;*/
   font-family: "Raleway", sans-serif;
 }
 
 .input-box[value] {
   padding: 1rem;
-  margin-top: 5%;
+  margin-bottom: 1rem;
+  /*margin-top: 5%;*/
   font-family: "Raleway", sans-serif;
 }
 
@@ -151,8 +152,9 @@ li.dropdown {
 }
 
 .input-box.text-area {
-  width: 400px;
-  height: 100px;
+  font-family: "Raleway", sans-serif;
+  width: 60rem;
+  height: 20rem;
 }
 
 /********************************************/

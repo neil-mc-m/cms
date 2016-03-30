@@ -18,8 +18,8 @@ Admin delete form
         <h3>Current Pages</h3>
         <form class="deletePageForm" action="/admin/process-delete-page" method="post">
             {% for page in pages %}
-            <input type="radio" name="pagename" value="{{ page.pagename }}" checked>{{ page.pagename }}<br>
-            <input type="hidden" name="pagetemplate" value="{{ page.pagetemplate }}"/>
+            <input type="radio" name="pageName" value="{{ page.pageName }}" checked>{{ page.pageName }}<br>
+            <input type="hidden" name="pageTemplate" value="{{ page.pageTemplate }}"/>
             {% endfor %}
             <input type="submit" value="delete" onclick="return confirm('Sure you want to delete this page?');">
         </form>

@@ -1,0 +1,34 @@
+{% extends 'admin/_base.html.twig' %}
+{% block title %}
+    Admin Pages
+{% endblock %}
+{% block content %}
+    <form class="editContentForm" action="/admin/process-edit-content" method="post">
+            <p>
+                Pagename<br>
+                <input class="input-box" type="text" name="pageName" value="{{ content.pageName }}">
+            </p>
+            <p>
+                Content type<br>
+                <input class="input-box" type="text" name="contentType" value="{{ content.contentType }}">
+            </p>
+            <p>
+                Content title<br>
+                <input class="input-box" type="text" name="contentItemTitle" value="{{ content.contentItemTitle }}">
+            </p>
+            <p>
+                Content Body<br>
+                <textarea class="input-box text-area" type="textarea" name="contentItem">{{ content.contentItem }}</textarea>
+            </p>
+            <p>
+                <input type="hidden" name="contentId" value="{{ content.contentId }}">
+                <input class="input-box" type="submit"  value="Edit Content">
+            </p>
+        </form>
+    <p>
+        {% if result is defined %}
+            {{ result }}
+        {% endif %}
+    </p>
+
+{% endblock %}

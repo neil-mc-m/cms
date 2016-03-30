@@ -30,16 +30,16 @@ class MainController
      */
     public function indexAction(Request $request, Application $app)
     {
-        $db = new DbRepository($app['dbh'], 'Page', 'page');
+        $db = new DbRepository($app['dbh']);
         $app['monolog']->addInfo('You just connected to the database');
         # get all pages currently stored in the db.
         # Used for building the navbar and setting page titles.
-        $pages = $db->getAll();
+        #$pages = $db->getAllPages();
         # as this is the home page controller, get the home pages content
         $content = $db->getContent('home');
 
         $args_array = array(
-            'pages' => $pages,
+            #'pages' => $pages,
             'content' => $content,
         );
         $templateName = 'home';
@@ -82,19 +82,19 @@ class MainController
      *
      * @return twig template        the requested twig template.
      */
-    public function routeAction(Request $request, Application $app, $page)
+    public function routeAction(Request $request, Application $app, $pageName)
     {
         # get the pages to build the navbar
-        $db = new DbRepository($app['dbh'], 'Page', 'page');
-        $pages = $db->getAll();
-        $singlePage = $db->getSingleRecord($page);
+        $db = new DbRepository($app['dbh']);
+        #$pages = $db->getAllPages();
+        $singlePage = $db->getSinglePage($pageName);
         var_dump($singlePage);
-        $content = $db->getContent($page);
+        $content = $db->getContent($pageName);
         var_dump($content);
 
         $args_array = array(
-            'pagename' => $singlePage->getPageName(),
-            'pages' => $pages,
+            'pageName' => $singlePage->getPageName(),
+            #'pages' => $pages,
             'content' => $content,
         );
 
@@ -110,16 +110,16 @@ class MainController
      *
      * @return an article template.
      */
-    public function oneArticleAction(Request $request, Application $app, $page, $contentid)
+    public function oneArticleAction(Request $request, Application $app, $page, $contentId)
     {
-        $db = new DbRepository($app['dbh'], 'Page', 'page');
-        $pages = $db->getAll();
-        $result = $db->showOne($contentid);
+        $db = new DbRepository($app['dbh']);
+        #$pages = $db->getAllPages();
+        $result = $db->showOne($contentId);
         var_dump($result);
 
         $args_array = array(
-         'pages' => $pages,
-         'pagename' => $result->getPageName(),
+         #'pages' => $pages,
+         'pageName' => $result->getPageName(),
          'title' => $result->getContentitemtitle(),
          'article' => $result->getContentitem(),
          'created' => $result->getCreated()

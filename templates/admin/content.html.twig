@@ -7,16 +7,16 @@
         <h3>Current Pages with Content</h3>
         <p>
             {% for page in pages %}
-                <h4>{{ page.pagename }}</h4>
+                <h4>{{ page.pageName }}</h4>
                 {% for content in content %}
-                    {% if page.pagename == content.pagename %}
-                        <p><strong>{{ content.contentitemtitle }}</strong></p>
-                        <p>{{content.contentitem }}</p>
+                    {% if page.pageName == content.pageName %}
+                        <p><strong>{{ content.contentItemTitle }}</strong></p>
+                        <p>{{content.contentItem }}</p>
                         <p>{{ content.created }}</p>
-                        <p>{{ content.contentid }}</p>
-                        <a href="{{ app.request.basepath }}/admin/process-delete-content/{{ content.contentid }}" onclick="return confirm('Sure you want to delete this post?');">Delete?</a>
-                        <a href="/admin/edit-content">Edit?</a>
-                        <a href="/admin/view-single-content/{{ content.contentid }}">View?</a>
+                        <p>{{ content.contentId }}</p>
+                        <a href="{{ app.request.basepath }}/admin/process-delete-content/{{ content.contentId }}" onclick="return confirm('Sure you want to delete this post?');">Delete?</a>
+                        <a href="/admin/edit-content/{{ content.contentId }}">Edit?</a>
+                        <a href="/admin/view-single-content/{{ content.contentId }}">View?</a>
                     {% endif %}
                 {% endfor %}
             {% endfor %}

@@ -3,6 +3,7 @@
 #                    SETUP
 # _______________________________________________________________
 use CMS\DbManager;
+use CMS\DbRepository;
 use CMS\DatabaseTwigLoader;
 use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
 
@@ -13,13 +14,21 @@ $loggerPath = dirname(__DIR__).'/logs';
 
 
 $app = new Silex\Application();
+# store regularly used variables(services?) in the app container
 $dbmanager = new DbManager();
+# app['dbh'] is a connection instance and is passed to the constructor
+# of the database repository. 
 $app['dbh'] = $dbmanager->getPdoInstance();
+$db = new DbRepository($app['dbh']);
+# variable pages will be accessible in twig templates as app.pages.
+# and will (usually) be an array of page objects
+# so you can loop through with a twig for loop. 
+# e.g {% for page in app.pages %}{{ page.pageName or page.pageTemplate }}
+# this will save having to query the database every time you want to access 
+# the page objects. 
+$app['pages'] = $db->getAllPages(); 
 $app['loader1']  = new DatabaseTwigLoader($app['dbh']);
 $app['loader2'] = new Twig_Loader_Filesystem($myTemplatesPath);
-# $app['loader'] = new Twig_Loader_Chain(array($loader1, $loader2));
-
-
 $app['debug'] = true;
 
 
@@ -65,7 +74,7 @@ $app->get('/', 'CMS\\Controllers\\MainController::indexAction');
 
 $app->get('/login', 'CMS\\Controllers\\SecurityController::logInAction');
 $app->get('/search/{q}', 'CMS\\Controllers\\SearchController::searchAction');
-$app->get('/{page}', 'CMS\\Controllers\\MainController::routeAction');
+$app->get('/{pageName}', 'CMS\\Controllers\\MainController::routeAction');
 
 
 $app->get('/articles', 'CMS\\Controllers\\MainController::articlesAction');
@@ -94,6 +103,8 @@ $app->post('/admin/process-content', 'CMS\\Controllers\\ContentController::proce
 $app->get('/admin/delete-content', 'CMS\\Controllers\\ContentController::deleteContentFormAction');
 $app->get('/admin/process-delete-content/{contentid}', 'CMS\\Controllers\\ContentController::processDeleteContentAction');
 
-$app->get('/{page}/{contentid}', 'CMS\\Controllers\\MainController::oneArticleAction');
+$app->get('/admin/edit-content/{contentId}', 'CMS\\Controllers\\ContentController::editContentAction');
+$app->post('admin/process-edit-content', 'CMS\\Controllers\\ContentController::processEditContentAction');
+$app->get('/{page}/{contentId}', 'CMS\\Controllers\\MainController::oneArticleAction');
 
 $app->run();

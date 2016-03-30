@@ -18,20 +18,20 @@ class Page
      *
      * @var int
      */
-    public $pageid;
+    public $pageId;
     /**
      * The name of the page eg home.
      *
      * @var string
      */
-    public $pagename;
+    public $pageName;
 
     /**
      * the template to return eg home.html.twig.
      *
      * @var string
      */
-    public $pagetemplate;
+    public $pageTemplate;
 
     /////////////Getters////////////////
     /**
@@ -41,7 +41,7 @@ class Page
      */
     public function getPageName()
     {
-        return $this->pagename;
+        return $this->pageName;
     }
 
     /**
@@ -51,7 +51,7 @@ class Page
      */
     public function getPageTemplate()
     {
-        return $this->pagetemplate;
+        return $this->pageTemplate;
     }
 
     ////////////setters//////////////////
@@ -62,20 +62,12 @@ class Page
      *
      * @return self
      */
-    public function setPageName($pagename)
+    public function setPageName($pageName)
     {
-        $this->pagename = $pagename;
+        $this->pageName = $pageName;
 
         return $this;
     }
-
-    /**
-     * Set the value of the path to the page eg /home.
-     *
-     * @param string pagePath
-     *
-     * @return self
-     */
 
     /**
      * Set the value of the template to return eg home.html.twig.
@@ -84,9 +76,9 @@ class Page
      *
      * @return self
      */
-    public function setPageTemplate($pagetemplate)
+    public function setPageTemplate($pageTemplate)
     {
-        $this->pagetemplate = $pagetemplate;
+        $this->pageTemplate = $pageTemplate;
 
         return $this;
     }

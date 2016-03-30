@@ -1,6 +1,6 @@
 {# the main frontend navbar #}
-{% if pages is defined %}
-{% for page in pages %}
-    <li{% if active_page == page.pagename|lower %} class="active"{% endif %}><a href="{{ app.request.basepath }}/{{ page.pageTemplate }}">{{ page.pageName|capitalize }}</a></li>
+{# {% if pages is defined %} #}
+{% for page in app.pages %}
+    <li{% if active_page == page.pageName|lower %} class="active"{% endif %}><a href="{{ app.request.basepath }}/{{ page.pageName }}">{{ page.pageName|capitalize }}</a></li>
 {% endfor %}
-{% endif %}
+{# {% endif %} #}
