@@ -32,14 +32,11 @@ class MainController
     {
         $db = new DbRepository($app['dbh']);
         $app['monolog']->addInfo('You just connected to the database');
-        # get all pages currently stored in the db.
-        # Used for building the navbar and setting page titles.
-        #$pages = $db->getAllPages();
         # as this is the home page controller, get the home pages content
         $content = $db->getContent('home');
 
         $args_array = array(
-            #'pages' => $pages,
+            
             'content' => $content,
         );
         $templateName = 'home';
@@ -82,19 +79,16 @@ class MainController
      *
      * @return twig template        the requested twig template.
      */
-    public function routeAction(Request $request, Application $app, $pageName)
+    public function routeAction(Request $request, Application $app, $pageRoute)
     {
-        # get the pages to build the navbar
         $db = new DbRepository($app['dbh']);
-        #$pages = $db->getAllPages();
+        $pageName = $db->getPageName($pageRoute);
         $singlePage = $db->getSinglePage($pageName);
-        var_dump($singlePage);
+        
         $content = $db->getContent($pageName);
-        var_dump($content);
-
+        
         $args_array = array(
             'pageName' => $singlePage->getPageName(),
-            #'pages' => $pages,
             'content' => $content,
         );
 
@@ -113,12 +107,10 @@ class MainController
     public function oneArticleAction(Request $request, Application $app, $page, $contentId)
     {
         $db = new DbRepository($app['dbh']);
-        #$pages = $db->getAllPages();
         $result = $db->showOne($contentId);
-        var_dump($result);
 
         $args_array = array(
-         #'pages' => $pages,
+         'contentId' => $result->getContentId(),   
          'pageName' => $result->getPageName(),
          'title' => $result->getContentitemtitle(),
          'article' => $result->getContentitem(),

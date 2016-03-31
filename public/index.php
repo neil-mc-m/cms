@@ -20,7 +20,7 @@ $dbmanager = new DbManager();
 # of the database repository. 
 $app['dbh'] = $dbmanager->getPdoInstance();
 $db = new DbRepository($app['dbh']);
-# variable pages will be accessible in twig templates as app.pages.
+# The $pages variable will be accessible in twig templates as app.pages.
 # and will (usually) be an array of page objects
 # so you can loop through with a twig for loop. 
 # e.g {% for page in app.pages %}{{ page.pageName or page.pageTemplate }}
@@ -74,7 +74,7 @@ $app->get('/', 'CMS\\Controllers\\MainController::indexAction');
 
 $app->get('/login', 'CMS\\Controllers\\SecurityController::logInAction');
 $app->get('/search/{q}', 'CMS\\Controllers\\SearchController::searchAction');
-$app->get('/{pageName}', 'CMS\\Controllers\\MainController::routeAction');
+$app->get('/{pageRoute}', 'CMS\\Controllers\\MainController::routeAction');
 
 
 $app->get('/articles', 'CMS\\Controllers\\MainController::articlesAction');

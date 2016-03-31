@@ -20,10 +20,10 @@
 {% block content %}
     {% if content is defined %}
         {% for con in content %}
-            <article class="section">
-                <a href="/{{ con.pageName }}/{{ con.contentId }}">{{ con.contentItemTitle }}</a>
+            <article class="main-section">
+                <h2>{{ con.contentItemTitle }}</h2>
                 <p>
-                    {{ con.contentItem|slice(0,100) }}...<a href="/{{ con.pageName }}/{{ con.contentId }}">read more</a>
+                    {{ con.contentItem|slice(0,100) }}...<a class="readmore-link" href="/{{ con.pageName }}/{{ con.contentId }}">read more</a>
                 </p>
                 <p>
                     {{ con.created }}
@@ -36,5 +36,11 @@
                 </div>
             </article>
         {% endfor %}
+        {% for con in content %}
+    <article class="side-section">
+                <h2>Older Posts</h2>
+                <a class="readmore-link" href="/{{ con.pageName }}/{{ con.contentId }}">{{ con.contentItemTitle }}</a>
+            {% endfor %}
+        </article>
     {% endif %}
 {% endblock %}

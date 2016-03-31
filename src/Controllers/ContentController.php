@@ -14,12 +14,11 @@ class ContentController
         $app['monolog']->addInfo('You just connected to the database');
         # get all pages currently stored in the db.
         # Used for building the navbar and setting page titles.
-        $pages = $db->getAllPages();
+        
         $content = $db->getAllPagesContent();
 
         $args_array = array(
             'content' => $content,
-            'pages' => $pages,
             'user' => $app['session']->get('user')
         );
 
@@ -31,12 +30,11 @@ class ContentController
     public function singleContentAction(Request $request, Application $app, $contentid)
     {
         $db = new DbRepository($app['dbh']);
-        $pages = $db->getAllPages();
+        
         $content = $db->showOne($contentid);
 
         $args_array = array(
             'user' => $app['session']->get('user'),
-            'pages' => $pages,
             'contentitemtitle' => $content->getContentItemTitle(),
             'contentitem' => $content->getContentItem(),
             'created' => $content->getCreated(),
@@ -51,12 +49,9 @@ class ContentController
 
     public function createContentFormAction(Request $request, Application $app)
     {
-        $user = ;
         $db = new DbRepository($app['dbh']);
-        $pages = $db->getAllPages();
 
         $args_array = array(
-            'pages' => $pages,
             'user' => $app['session']->get('user')
         );
 
@@ -66,18 +61,16 @@ class ContentController
     }
     public function processContentAction(Request $request, Application $app)
     {
-        $pagename = $app['request']->get('pagename');
-        $contenttype = $app['request']->get('contenttype');
-        $contentitemtitle = $app['request']->get('contentitemtitle');
-        $contentitem = $app['request']->get('contentitem');
+        $pageName = $app['request']->get('pageName');
+        $contentType = $app['request']->get('contentType');
+        $contentItemTitle = $app['request']->get('contentItemTitle');
+        $contentItem = $app['request']->get('contentItem');
         $db = new DbRepository($app['dbh']);
         $app['monolog']->addInfo('You just connected to the database');
-        $pages = $db->getAllPages();
-        $result = $db->createContent($pagename, $contenttype, $contentitemtitle, $contentitem);
+        $result = $db->createContent($pageName, $contentType, $contentItemTitle, $contentItem);
 
         $args_array = array(
             'user' => $app['session']->get('user'),
-            'pages' => $pages,
             'result' => $result
             );
 
@@ -105,13 +98,11 @@ class ContentController
     {
         $db = new DbRepository($app['dbh']);
         $result = $db->deleteContent($contentid);
-        $pages = $db->getAllPages();
         $content = $db->getAllPagesContent();
 
         $args_array = array(
             'user' => $app['session']->get('user'),
             'content' => $content,
-            'pages' => $pages,
             'result' => $result
             );
 

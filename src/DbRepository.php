@@ -56,6 +56,20 @@ class DbRepository
         }
     }
 
+    public function getPageName($pageRoute)
+    {
+        try {
+            $stmt = $this->conn->prepare('SELECT pageName FROM page WHERE pageRoute=:pageRoute');
+            $stmt->bindParam(':pageRoute', $pageRoute);
+            $stmt->execute();
+            $result = $stmt->fetchColumn();
+
+            return $result;
+        } catch (PDOException $e) {
+            print $e->getMessage();
+        }
+    }
+
     /**
      * @param a content id
      *
@@ -123,7 +137,7 @@ class DbRepository
      *
      * @return twig template        the template for the page.
      */
-    public function createPage($pageName, $pageTemplate)
+    public function createPage($pageName, $pageRoute, $pageTemplate)
     {
         try {
             $pdo = new DbManager();
@@ -131,7 +145,7 @@ class DbRepository
 
             $result = '';
 
-            $stmtpage = $conn->prepare('INSERT IGNORE INTO page(pageid, pagename, pagetemplate, created) VALUES (DEFAULT, :pagename, :pagetemplate, curdate())');
+            $stmtpage = $conn->prepare('INSERT IGNORE INTO page(pageid, pagename, pageroute, pagetemplate, created) VALUES (DEFAULT, :pagename, :pageroute, :pagetemplate, curdate())');
             $stmttemplate = $conn->prepare('INSERT IGNORE INTO templates(templateid, name, source, last_modified) VALUES (DEFAULT, :name, :source, curdate())');
             # a pdo transaction to execute two queries at the same time.
             # both have to execute without an error for each to work.
@@ -140,6 +154,7 @@ class DbRepository
             $conn->beginTransaction();
             $pageName = strtolower($pageName);
             $stmtpage->bindParam(':pagename', $pageName);
+            $stmtpage->bindParam(':pageroute', $pageRoute);
             $stmtpage->bindParam(':pagetemplate', $pageTemplate);
             $stmtpage->execute();
 
@@ -245,7 +260,7 @@ class DbRepository
             if (!$stmt->execute()) {
                 return $result .= 'Heuston, We have a problem!';
             }
-            return $result .= 'Successfully updated'.$stmt->rowCount().'Items';
+            return $result .= 'Successfully updated '.$stmt->rowCount().' Items';
         } catch (PDOException $e) {
             print $e->getMessage();
         }

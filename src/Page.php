@@ -27,6 +27,14 @@ class Page
     public $pageName;
 
     /**
+     * A route generated from the pageName variable.
+     * 
+     * @var string
+     */
+     
+    public $pageRoute;
+
+    /**
      * the template to return eg home.html.twig.
      *
      * @var string
@@ -43,7 +51,15 @@ class Page
     {
         return $this->pageName;
     }
-
+    /**
+     * Get the pageRoute from the pageName variable.
+     * 
+     * @return string
+     */ 
+    public function getPageRoute()
+    {
+        return $this->pageRoute;
+    }
     /**
      * Get the value of the template to return eg home.html.twig.
      *
@@ -69,6 +85,12 @@ class Page
         return $this;
     }
 
+    public function setPageRoute($pageName)
+    {
+        $this->pageRoute = str_replace(' ', '-', $pageName);
+
+        return $this;
+    }
     /**
      * Set the value of the template to return eg home.html.twig.
      *
@@ -83,7 +105,4 @@ class Page
         return $this;
     }
 
-    public function getAllNames()
-    {
-    }
 }

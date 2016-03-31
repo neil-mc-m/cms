@@ -18,7 +18,7 @@ Admin Pages
 {% block content %}
 
     <h3>Current Pages</h3>
-        {% for page in pages %}
+        {% for page in app.pages %}
         <div class="page-preview-box">
             <h4>{{ page.pageName }}</h4>
                 {% for content in content %}

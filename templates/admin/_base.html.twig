@@ -67,15 +67,15 @@
                             Date Created
                         </th>
                     </tr>
-                    {% if pages is defined %}
-                        {% for page in pages %}
+                    
+                        {% for page in app.pages %}
                             <tr>
                                 <td>{{ page.pageName }}</td>
                                 <td>{{ page.pageTemplate }}</td>
                                 <td>{{ page.created }}</td>
                             </tr>
                         {% endfor %}
-                    {% endif %}
+                    
                 </table>
             {% endblock %}
         </ul>

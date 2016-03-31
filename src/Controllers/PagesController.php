@@ -2,6 +2,7 @@
 
 namespace CMS\Controllers;
 
+use CMS\Page;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use CMS\DbRepository;
@@ -11,13 +12,13 @@ class PagesController
     public function pagesAction(Request $request, Application $app)
     {
         $db = new DbRepository($app['dbh']);
-        $pages = $db->getAllPages();
-        $user = $app['session']->get('user');
+        #$pages = $db->getAllPages();
+        
         #var_dump($pages);
         $args_array = array(
-            'user' => $user,
-            'id' => session_id(),
-            'pages' => $pages,
+            'user' => $app['session']->get('user'),
+            
+            #'pages' => $pages,
         );
         $templateName = 'admin/pages';
 
@@ -27,14 +28,13 @@ class PagesController
     public function viewPagesAction(Request $request, Application $app)
     {
         $db = new DbRepository($app['dbh']);
-        $pages = $db->getAllPages();
+        #$pages = $db->getAllPages();
         $content = $db->getAllPagesContent();
-        $user = $app['session']->get('user');
+       
         #var_dump($pages);
         $args_array = array(
-            'user' => $user,
-            'id' => session_id(),
-            'pages' => $pages,
+            'user' => $app['session']->get('user'),
+            #'pages' => $pages,
             'content' => $content,
         );
         $templateName = 'admin/viewPages';
@@ -53,12 +53,11 @@ class PagesController
     {
         $db = new DbRepository($app['dbh']);
         $pages = $db->getAllPages();
-        $user = $app['session']->get('user');
         #var_dump($pages);
         $args_array = array(
-            'user' => $user,
-            'id' => session_id(),
-            'pages' => $pages,
+            'user' => $app['session']->get('user'),
+            
+            #'pages' => $pages,
         );
         $templateName = 'admin/createPage';
 
@@ -77,8 +76,10 @@ class PagesController
     {
         $pageName = $app['request']->get('pageName');
         $pageTemplate = $app['request']->get('pageTemplate');
+        $page = new Page();
+        $pageRoute = $page->setPageRoute($pageName);
         $db = new DbRepository($app['dbh']);
-        $result = $db->createPage($pageName, $pageTemplate);
+        $result = $db->createPage($pageName, $page->getPageRoute(), $pageTemplate);
         $user = $app['session']->get('user');
         $pages = $db->getAllPages();
 
@@ -114,8 +115,8 @@ class PagesController
     public function processDeletePageAction(Request $request, Application $app)
     {
         $db = new DbRepository($app['dbh']);
-        $pageName = $app['request']->get('pagename');
-        $pageTemplate = $app['request']->get('pagetemplate');
+        $pageName = $app['request']->get('pageName');
+        $pageTemplate = $app['request']->get('pageTemplate');
         $result = $db->deletePage($pageName, $pageTemplate);
         $user = $app['session']->get('user');
         $pages = $db->getAllPages();
