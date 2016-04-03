@@ -1,0 +1,15 @@
+{# The footer #}
+
+<div class="footer-section">
+    &copy; CMS<br>
+    {# the twig now function gives the current time with a filter for the current date (taken from the twig docs) #}
+    <img class="cal-icon" src="{{ app.request.basepath }}/images/calendar.svg" alt="calender pic"/>
+
+    {{ "now"|date(timezone="Europe/Dublin") }}
+</div>
+<div class="footer-section">
+	<h4>Quicklinks</h4>
+    	<ul class="footer-links">
+           {% include 'footerNav.html.twig' %}
+    	</ul>
+</div>

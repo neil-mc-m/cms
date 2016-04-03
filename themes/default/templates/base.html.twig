@@ -9,14 +9,15 @@
     <style>
     {% block style %}
         @import url(https://fonts.googleapis.com/css?family=Raleway);
-        @import '{{ app.request.basepath }}/css/user_default_theme.css';
+        @import url(https://fonts.googleapis.com/css?family=Josefin+Sans:600italic);
+        @import '{{ app.request.basepath }}/css/default_theme.css';
     {% endblock %}
     </style>
 </head>
 <body>
-    <header class="header-box">
+    <header class="header-box" style="background-image: url('{{ app.request.basepath }}{{ app.image }}')">
         {% block header %}
-            <h1 class="title">Your title here...</h1>
+            <h1 class="title">{{ app.title }}</h1>
         {% endblock %}
     </header>
     {# the navbar #}

@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% set active_page = 'home' %}
+
+{% block title %}
+Log-in
+{% endblock %}
+
+{% block navbar %}
+
+{% endblock %}
+
+{% block content %}
+{{ error }}
+    <form action="{{ path('admin_login_check') }}" method="post">
+        <label for="username">Username:</label>
+        <input type="text" name="_username" value="{{ last_username }}"/>
+        <label for="password">Password:</label>
+        <input type="password" name="_password" value="password"/>
+        <input type="hidden" name="_target_path" value="/admin/dashboard" />
+        <input type="submit" />
+    </form>
+{% endblock %}

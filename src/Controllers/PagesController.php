@@ -20,7 +20,7 @@ class PagesController
             
             #'pages' => $pages,
         );
-        $templateName = 'admin/pages';
+        $templateName = 'pages';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
@@ -37,7 +37,7 @@ class PagesController
             #'pages' => $pages,
             'content' => $content,
         );
-        $templateName = 'admin/viewPages';
+        $templateName = 'viewPages';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
@@ -59,7 +59,7 @@ class PagesController
             
             #'pages' => $pages,
         );
-        $templateName = 'admin/createPage';
+        $templateName = 'createPage';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
@@ -89,7 +89,7 @@ class PagesController
             'pages' => $pages,
             'result' => $result,
         );
-        $templateName = 'admin/dashboard';
+        $templateName = 'dashboard';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
@@ -107,7 +107,7 @@ class PagesController
             'pages' => $pages,
 
         );
-        $templateName = 'admin/deletePage';
+        $templateName = 'deletePage';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
@@ -127,7 +127,7 @@ class PagesController
             'pages' => $pages,
             'result' => $result,
         );
-        $templateName = 'admin/deletePage';
+        $templateName = 'deletePage';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }

@@ -1,0 +1,5 @@
+{# {% if pages is defined %} #}
+    {% for page in app.pages %}
+        <li class="footer-nav"><a class="alt-links" href="{{ app.request.basepath }}/{{ page.pageName|lower }}">{{ page.pageName|capitalize }}</a></li>
+    {% endfor %}
+{# {% endif %} #}

@@ -5,9 +5,20 @@ namespace CMS\Controllers;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use CMS\DbRepository;
-
+/**
+ * The Content Controller class.
+ * 
+ * Used for processing requests for content. CRUD actions on content
+ * 
+ * 
+ */
 class ContentController
 {
+    /**
+     * 
+     * 
+     */ 
+     
     public function contentAction(Request $request, Application $app)
     {
         $db = new DbRepository($app['dbh']);
@@ -22,7 +33,7 @@ class ContentController
             'user' => $app['session']->get('user')
         );
 
-        $templateName = 'admin/content';
+        $templateName = '_content';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
@@ -41,7 +52,7 @@ class ContentController
             'contentid' => $content->getContentId()
             );
 
-        $templateName = 'admin/singleContent';
+        $templateName = 'singleContent';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
@@ -55,7 +66,7 @@ class ContentController
             'user' => $app['session']->get('user')
         );
 
-        $templateName = 'admin/contentForm';
+        $templateName = 'contentForm';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
@@ -74,7 +85,7 @@ class ContentController
             'result' => $result
             );
 
-        $templateName = 'admin/dashboard';
+        $templateName = 'dashboard';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
@@ -89,7 +100,7 @@ class ContentController
             'allcontent' => $allContent
         );
 
-        $templateName = 'admin/deleteContentForm';
+        $templateName = 'deleteContentForm';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
@@ -106,7 +117,7 @@ class ContentController
             'result' => $result
             );
 
-        $templateName = 'admin/content';
+        $templateName = 'content';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
 
@@ -122,7 +133,7 @@ class ContentController
             'content' => $content
             );
 
-        $templateName = 'admin/editContentForm';
+        $templateName = 'editContentForm';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
@@ -142,7 +153,7 @@ class ContentController
             'result' => $result    
             );
 
-        $templateName = 'admin/dashboard';
+        $templateName = 'dashboard';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }

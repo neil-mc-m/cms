@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block style %}
+@import '{{ app.request.basepath }}/css/default_theme.css';
+{% endblock %}
+
+{% block content %}
+<div class="container">
+{% for article in articles %}
+
+        <article class="section">
+            <h2>{{ article.title }}</h2>
+            <p>{{ article.article|slice(0, 50) }}<a href="/articles/{{ article.id }}">....Read More</a></p>
+        </article>
+
+{% endfor %}
+</div>
+{% endblock %}

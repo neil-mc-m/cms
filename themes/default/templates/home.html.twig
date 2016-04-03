@@ -1,0 +1,46 @@
+{# the home page template #}
+{% extends 'base.html.twig' %}
+
+{% set active_page = 'home' %}
+
+{% block title %}
+{{ active_page }}
+{% endblock %}
+
+
+
+
+
+
+
+
+{% block subheading %}<h2>Your sub heading div</h2>{% endblock %}
+
+
+{% block content %}
+    {% if content is defined %}
+        {% for con in content %}
+            <article class="main-section">
+                <h2>{{ con.contentItemTitle }}</h2>
+                <p>
+                    {{ con.contentItem|slice(0,100) }}...<a class="readmore-link" href="/{{ con.pageName }}/{{ con.contentId }}">read more</a>
+                </p>
+                <p>
+                    {{ con.created }}
+                    <img class="cal-icon" src="{{ app.request.basepath }}images/calendar.svg" alt="calender pic"/>
+                </p>
+                <div class="comment-box">
+                    <p>
+                        comments:
+                    </p>
+                </div>
+            </article>
+        {% endfor %}
+        {% for con in content %}
+    <article class="side-section">
+                <h2>Older Posts</h2>
+                <a class="readmore-link" href="/{{ con.pageName }}/{{ con.contentId }}">{{ con.contentItemTitle }}</a>
+            {% endfor %}
+        </article>
+    {% endif %}
+{% endblock %}

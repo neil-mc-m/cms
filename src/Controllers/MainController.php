@@ -104,7 +104,7 @@ class MainController
      *
      * @return an article template.
      */
-    public function oneArticleAction(Request $request, Application $app, $page, $contentId)
+    public function oneArticleAction(Request $request, Application $app, $pageRoute, $contentId)
     {
         $db = new DbRepository($app['dbh']);
         $result = $db->showOne($contentId);

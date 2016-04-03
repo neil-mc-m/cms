@@ -8,12 +8,29 @@ use CMS\DatabaseTwigLoader;
 use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
 
 require_once __DIR__.'/../vendor/autoload.php';
-$myTemplatesPath = __DIR__.'/../templates';
+# parse the config file 
+$config = parse_ini_file('../config/config.ini', true);
+# get the theme and add it to the twig loaders path.
+$myTemplatesPath1 = __DIR__.'/../themes/'.$config['themes']['theme'].'/templates';
+$myTemplatesPath2 = __DIR__.'/../templates/admin';
 $loggerPath = dirname(__DIR__).'/logs';
-
-
-
 $app = new Silex\Application();
+
+
+
+$app['title'] = '';
+if (isset($config['title']['title'])) {
+    $app['title'] = $config['title']['title'];
+}
+
+$app['image'] = '';
+if (isset($config['bg-image']['image'])) {
+    $app['image'] = '/images/'.$config['bg-image']['image']; 
+}
+
+
+
+
 # store regularly used variables(services?) in the app container
 $dbmanager = new DbManager();
 # app['dbh'] is a connection instance and is passed to the constructor
@@ -26,21 +43,20 @@ $db = new DbRepository($app['dbh']);
 # e.g {% for page in app.pages %}{{ page.pageName or page.pageTemplate }}
 # this will save having to query the database every time you want to access 
 # the page objects. 
-$app['pages'] = $db->getAllPages(); 
+$app['pages'] = $db->getAllPages();
+# twig loaders for templates: a database loader for dynamically created templates,
+# and a filesystem loader for templates stored on the filesystem. 
 $app['loader1']  = new DatabaseTwigLoader($app['dbh']);
-$app['loader2'] = new Twig_Loader_Filesystem($myTemplatesPath);
+$app['loader2'] = new Twig_Loader_Filesystem(array($myTemplatesPath1, $myTemplatesPath2));
 $app['debug'] = true;
-
-
 # ______________________________________________________________
 #              ADD PROVIDERS HERE
 # ______________________________________________________________
 #
-
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 $app->register(new Silex\Provider\SessionServiceProvider());
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
-    'twig.path' => $myTemplatesPath,
+    #'twig.path' => array($myTemplatesPath1, $myTemplatesPath2),
     'twig.loader' => $app->share(function()use($app){
         return new Twig_Loader_Chain(array($app['loader1'], $app['loader2']));
         })));
@@ -105,6 +121,7 @@ $app->get('/admin/process-delete-content/{contentid}', 'CMS\\Controllers\\Conten
 
 $app->get('/admin/edit-content/{contentId}', 'CMS\\Controllers\\ContentController::editContentAction');
 $app->post('admin/process-edit-content', 'CMS\\Controllers\\ContentController::processEditContentAction');
-$app->get('/{page}/{contentId}', 'CMS\\Controllers\\MainController::oneArticleAction');
+$app->get('/{pageRoute}/{contentId}', 'CMS\\Controllers\\MainController::oneArticleAction');
+
 
 $app->run();

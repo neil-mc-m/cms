@@ -1,4 +1,4 @@
-{% extends 'admin/_base.html.twig' %}
+{% extends '_base.html.twig' %}
 {% block title %}
     Admin Pages
 {% endblock %}
@@ -8,7 +8,7 @@
         <form class="contentForm" action="/admin/process-content" method="post">
             <p>
                 Pagename<br>
-                {% for page in pages %}
+                {% for page in app.pages %}
                     <input type="radio" name="pageName" value="{{ page.pageName }}" checked>{{ page.pageName }}<br>
                 {% endfor %}
             </p>

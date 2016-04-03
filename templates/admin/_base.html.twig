@@ -11,7 +11,7 @@
     <style>
     {% block style %}
         @import url(https://fonts.googleapis.com/css?family=Raleway);
-        @import '{{ app.request.basepath }}/css/admin_default_theme.css';
+        @import '{{ app.request.basepath }}/css/admin_theme.css';
     {% endblock %}
     </style>
 </head>
@@ -27,7 +27,7 @@
     
     <nav>
         <ul class="navbar">
-            {% include 'admin/mainNav.html.twig' %}
+            {% include 'mainNav.html.twig' %}
         </ul>
     </nav>
     {# a sub div to hold a sub nav bar and a search box #}

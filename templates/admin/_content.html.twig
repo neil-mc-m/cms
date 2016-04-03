@@ -1,12 +1,12 @@
-{% extends 'admin/_base.html.twig' %}
+{% extends '_base.html.twig' %}
 {% block title %}
     Admin Content
 {% endblock %}
 {% block content %}
-    <div class="main-section">
+    
         <h3>Current Pages with Content</h3>
         <p>
-            {% for page in pages %}
+            {% for page in app.pages %}
                 <h4>{{ page.pageName }}</h4>
                 {% for content in content %}
                     {% if page.pageName == content.pageName %}
@@ -26,5 +26,5 @@
                 {{ result }}
             {% endif %}
         </p>
-    </div>
+    
 {% endblock %}

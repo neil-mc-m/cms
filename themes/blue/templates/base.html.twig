@@ -1,0 +1,54 @@
+{# base template from which all other templates will extend #}
+{% set active_page = pageName|default('home') %}
+<!DOCTYPE html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+    CMS |{% block title %}{% if pageName is defined %}{{ pageName }}{% endif %}{% endblock %}
+    </title>
+    <style>
+    {% block style %}
+        @import url(https://fonts.googleapis.com/css?family=Raleway);
+        @import '{{ app.request.basepath }}/css/blue_theme.css';
+    {% endblock %}
+    </style>
+</head>
+<body>
+    <header class="header-box">
+        {% block header %}
+            <h1 class="title">Your title here...</h1>
+        {% endblock %}
+    </header>
+    {# the navbar #}
+    <nav class="navbar">
+        <ul>
+            {% block navbar %}
+                {% include 'navbar.html.twig' %}
+            {% endblock %}
+        </ul>
+    </nav>
+    {# a subheading div #}
+    <div class="page-subheading">
+        {% block subheading %}{% endblock %}
+    </div>
+    {# main content area #}
+    <div class="content-container">
+        {% block content %}
+            {% include 'content.html.twig' %}
+        {% endblock %}
+    </div>
+    {# a space for a link to go backwards in the navigation tree #}
+    <div class="back-link">
+        {% block back_link %}{% endblock %}
+    </div>
+    {# the footer #}
+    <footer class="footer">
+        {% include 'footer.html.twig' %}
+    </footer>
+    {# javascript functions #}
+    {# the javscript functions will not be available on every page #}
+    {# so when they're needed, include them in a block in a template #}
+    {% block javascript %}
+    {% endblock %}
+</body>
+</html>

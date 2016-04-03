@@ -1,4 +1,4 @@
-{% extends 'admin/_base.html.twig' %}
+{% extends '_base.html.twig' %}
 {% set pagesSubNav = [['create-page', 'Create a new web-page'], ['view-pages', 'View current pages'], ['delete-page', 'Remove a page']] %}
 {# set the active page to be styled. Do this on every different page #}
 {% set active_page = "pages" %}
@@ -32,7 +32,7 @@ Admin Pages
 
 
                 <ul>
-                    <li><a class="admin-button" href="/{{ page.pageName|lower }}" target="_blank"><span class="button">Preview</span></a></li>
+                    <li><a class="admin-button" href="/{{ page.pageRoute }}" target="_blank"><span class="button">Preview</span></a></li>
                 </ul>
 
 
