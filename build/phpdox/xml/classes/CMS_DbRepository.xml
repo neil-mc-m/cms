@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="CMS\DbRepository" namespace="CMS" name="DbRepository" abstract="false" final="false" start="12" end="287">
+  <file path="src" file="DbRepository.php" realpath="/var/www/html/cms/src/DbRepository.php" size="9485" time="2016-04-01T22:06:46+00:00" unixtime="1459548406" sha1="f8489b339a8c27f536aea7a8312733e8e8c50765" relative="DbRepository.php"/>
+  <docblock>
+    <description compact="A data access class.">All data access for tables.</description>
+  </docblock>
+  <member name="conn" visibility="private" static="false" line="18">
+    <docblock>
+      <description compact="PDO database connection object."/>
+      <var description="instance" type="object">
+        <type full="PDO" namespace="" name="PDO"/>
+      </var>
+    </docblock>
+  </member>
+  <constructor name="__construct" start="20" end="23" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="conn" byreference="false" type="object">
+      <type full="PDO" namespace="" name="PDO"/>
+    </parameter>
+  </constructor>
+  <method name="getAllPages" start="26" end="38" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="getSinglePage" start="40" end="57" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="pageName" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getPageName" start="59" end="71" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="pageRoute" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="showOne" start="78" end="94" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description/>
+      <param description="content id" type="object">
+        <type full="CMS\a" namespace="CMS" name="a"/>
+      </param>
+      <return description="bool for success/failure" type="object">
+        <type full="CMS\a" namespace="CMS" name="a"/>
+      </return>
+    </docblock>
+    <parameter name="contentId" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getContent" start="103" end="116" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="gets a pages content."/>
+      <param description="a page" type="string" variable="$page"/>
+      <return description="template    template for the page." type="object">
+        <type full="CMS\twig" namespace="CMS" name="twig"/>
+      </return>
+    </docblock>
+    <parameter name="pageName" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getAllPagesContent" start="117" end="129" abstract="false" final="false" static="false" visibility="public"/>
+  <method name="createPage" start="140" end="175" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Creates a new web page from the parameters given."/>
+      <param description="the pagename" type="string" variable="$pageName"/>
+      <param description="the page path/route" type="string" variable="$pagePath"/>
+      <param description="the page template" type="string" variable="$pageTemplate"/>
+      <return description="template        the template for the page." type="object">
+        <type full="CMS\twig" namespace="CMS" name="twig"/>
+      </return>
+    </docblock>
+    <parameter name="pageName" byreference="false" type="{unknown}"/>
+    <parameter name="pageRoute" byreference="false" type="{unknown}"/>
+    <parameter name="pageTemplate" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="deletePage" start="186" end="213" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Remove a page.">Also removes a template from the database with the same page name.</description>
+      <param description="the page to remove" type="string" variable="$pageName"/>
+      <return description="template" type="object">
+        <type full="CMS\twig" namespace="CMS" name="twig"/>
+      </return>
+    </docblock>
+    <parameter name="pageName" byreference="false" type="{unknown}"/>
+    <parameter name="pageTemplate" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="createContent" start="215" end="233" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="pageName" byreference="false" type="{unknown}"/>
+    <parameter name="contentType" byreference="false" type="{unknown}"/>
+    <parameter name="contentItemTitle" byreference="false" type="{unknown}"/>
+    <parameter name="contentItem" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="deleteContent" start="235" end="248" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="contentId" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="editContent" start="250" end="267" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="contentId" byreference="false" type="{unknown}"/>
+    <parameter name="pageName" byreference="false" type="{unknown}"/>
+    <parameter name="contentType" byreference="false" type="{unknown}"/>
+    <parameter name="contentItemTitle" byreference="false" type="{unknown}"/>
+    <parameter name="contentItem" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="search" start="269" end="286" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="q" byreference="false" type="{unknown}"/>
+  </method>
+</class>

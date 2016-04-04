@@ -114,6 +114,7 @@ class MainController
          'pageName' => $result->getPageName(),
          'title' => $result->getContentitemtitle(),
          'article' => $result->getContentitem(),
+         'image' => $result->getImagePath(),
          'created' => $result->getCreated()
        );
         $templateName = 'onearticle';

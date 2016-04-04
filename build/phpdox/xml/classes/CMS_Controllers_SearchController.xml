@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="CMS\Controllers\SearchController" namespace="CMS\Controllers" name="SearchController" abstract="false" final="false" start="15" end="34">
+  <file path="src/Controllers" file="SearchController.php" realpath="/var/www/html/cms/src/Controllers/SearchController.php" size="913" time="2016-04-01T22:06:46+00:00" unixtime="1459548406" sha1="8f348d4757c60bff8452f716893a1f9bf891b85c" relative="Controllers/SearchController.php"/>
+  <method name="searchAction" start="17" end="32" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="request" byreference="false" type="object">
+      <type full="Symfony\Component\HttpFoundation\Request" namespace="Symfony\Component\HttpFoundation" name="Request"/>
+    </parameter>
+    <parameter name="app" byreference="false" type="object">
+      <type full="Silex\Application" namespace="Silex" name="Application"/>
+    </parameter>
+    <parameter name="q" byreference="false" type="{unknown}"/>
+    <inline>
+      <comment value="the true flag will set the array to be associative" line="23"/>
+    </inline>
+  </method>
+</class>

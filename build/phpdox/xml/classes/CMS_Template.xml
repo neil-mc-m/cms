@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="CMS\Template" namespace="CMS" name="Template" abstract="false" final="false" start="8" end="132">
+  <file path="src" file="Template.php" realpath="/var/www/html/cms/src/Template.php" size="2200" time="2016-04-01T22:06:46+00:00" unixtime="1459548406" sha1="ade4c6a8da806e49dab7ab7ad96e601a666c4358" relative="Template.php"/>
+  <docblock>
+    <description compact="A template class to help in the generation of twig templates."/>
+  </docblock>
+  <member name="id" visibility="public" static="false" line="15">
+    <docblock>
+      <description compact="template id."/>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="templatename" visibility="public" static="false" line="21">
+    <docblock>
+      <description compact="template name."/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="templatecontent" visibility="public" static="false" line="27">
+    <docblock>
+      <description compact="content for a template."/>
+      <var description="should be a twig statement. eg {% extends 'base.html.twig' %}" type="object">
+        <type full="CMS\string." namespace="CMS" name="string."/>
+      </var>
+    </docblock>
+  </member>
+  <member name="created" visibility="public" static="false" line="33">
+    <docblock>
+      <description compact="date created."/>
+      <var type="object">
+        <type full="CMS\date" namespace="CMS" name="date"/>
+      </var>
+    </docblock>
+  </member>
+  <method name="getId" start="41" end="44" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Get the value of Id."/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="getTemplatename" start="51" end="54" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Get the value of Templatename."/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="getTemplatecontent" start="61" end="64" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Get the value of Templatecontent."/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="getCreated" start="71" end="74" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Get the value of Created."/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="setId" start="84" end="89" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Set the value of Id."/>
+      <param type="mixed" variable="id"/>
+      <return resolution="self" type="object">
+        <type full="CMS\Template" namespace="CMS" name="Template"/>
+      </return>
+    </docblock>
+    <parameter name="id" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="setTemplatename" start="98" end="103" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Set the value of Templatename."/>
+      <param type="mixed" variable="templatename"/>
+      <return resolution="self" type="object">
+        <type full="CMS\Template" namespace="CMS" name="Template"/>
+      </return>
+    </docblock>
+    <parameter name="templatename" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="setTemplatecontent" start="112" end="117" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Set the value of Templatecontent."/>
+      <param type="mixed" variable="templatecontent"/>
+      <return resolution="self" type="object">
+        <type full="CMS\Template" namespace="CMS" name="Template"/>
+      </return>
+    </docblock>
+    <parameter name="templatecontent" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="setCreated" start="126" end="131" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Set the value of Created."/>
+      <param type="mixed" variable="created"/>
+      <return resolution="self" type="object">
+        <type full="CMS\Template" namespace="CMS" name="Template"/>
+      </return>
+    </docblock>
+    <parameter name="created" byreference="false" type="{unknown}"/>
+  </method>
+</class>

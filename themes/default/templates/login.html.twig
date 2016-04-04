@@ -12,12 +12,12 @@ Log-in
 
 {% block content %}
 {{ error }}
-    <form action="{{ path('admin_login_check') }}" method="post">
-        <label for="username">Username:</label>
-        <input type="text" name="_username" value="{{ last_username }}"/>
-        <label for="password">Password:</label>
-        <input type="password" name="_password" value="password"/>
-        <input type="hidden" name="_target_path" value="/admin/dashboard" />
-        <input type="submit" />
+    <form action="{{ path('admin_login_check') }}" method="post" id="loginForm">
+        <label for="username">Username</label>
+        <input type="text" name="_username" value="{{ last_username }}" id="username"/>
+        <label for="password">Password</label>
+        <input type="password" name="_password" value="password" id="password"/>
+        <input type="hidden" name="_target_path" value="/admin/dashboard"/>
+        <input type="submit" value="login"/>
     </form>
 {% endblock %}

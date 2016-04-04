@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="CMS\Controllers\SecurityController" namespace="CMS\Controllers" name="SecurityController" abstract="false" final="false" start="13" end="62">
+  <file path="src/Controllers" file="SecurityController.php" realpath="/var/www/html/cms/src/Controllers/SecurityController.php" size="1841" time="2016-04-01T22:06:46+00:00" unixtime="1459548406" sha1="5e93458dcba7c0c5c84aa63278df522ff486f89f" relative="Controllers/SecurityController.php"/>
+  <docblock>
+    <description compact="The security controller responsible for logging in."/>
+    <class value="SecurityController"/>
+  </docblock>
+  <method name="logInAction" start="23" end="32" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="A controller to handle logging in."/>
+      <param description="current request object" type="object" variable="$request">
+        <type full="Symfony\Component\HttpFoundation\Request" namespace="Symfony\Component\HttpFoundation" name="Request"/>
+      </param>
+      <param description="current app instance" type="object" variable="$app">
+        <type full="Silex\Application" namespace="Silex" name="Application"/>
+      </param>
+      <return description="template        a log in form" type="object">
+        <type full="CMS\Controllers\twig" namespace="CMS\Controllers" name="twig"/>
+      </return>
+    </docblock>
+    <parameter name="request" byreference="false" type="object">
+      <type full="Symfony\Component\HttpFoundation\Request" namespace="Symfony\Component\HttpFoundation" name="Request"/>
+    </parameter>
+    <parameter name="app" byreference="false" type="object">
+      <type full="Silex\Application" namespace="Silex" name="Application"/>
+    </parameter>
+  </method>
+  <method name="logoutAction" start="58" end="61" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="request" byreference="false" type="object">
+      <type full="Symfony\Component\HttpFoundation\Request" namespace="Symfony\Component\HttpFoundation" name="Request"/>
+    </parameter>
+    <parameter name="app" byreference="false" type="object">
+      <type full="Silex\Application" namespace="Silex" name="Application"/>
+    </parameter>
+  </method>
+</class>

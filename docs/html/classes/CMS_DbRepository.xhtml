@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - CMS\DbRepository</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.xhtml">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.xhtml">Namespaces</a>
+        </li>
+        <li>
+          <a href="../classes.xhtml">Classes</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.xhtml">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.xhtml">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.xhtml">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.xhtml#CMS">CMS</a>
+          </li>
+          <li class="separator">DbRepository</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="../source/DbRepository.php.xhtml#line12">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>CMS\</small>DbRepository</h1>
+        <h4>A data access class.</h4>
+        <p>All data access for tables.</p>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class DbRepository
+            {<br/><ul class="none"><li>// members</li><li>private <span title="PDO">PDO</span> <a href="#members">$conn</a>;
+                    </li></ul><ul class="none"><li>// methods</li><li>public void <a title="CMS\DbRepository" href="../classes/CMS_DbRepository/__construct.xhtml">__construct</a>()
+                    </li><li>public void <a title="CMS\DbRepository" href="../classes/CMS_DbRepository/getAllPages.xhtml">getAllPages</a>()
+                    </li><li>public void <a title="CMS\DbRepository" href="../classes/CMS_DbRepository/getSinglePage.xhtml">getSinglePage</a>()
+                    </li><li>public void <a title="CMS\DbRepository" href="../classes/CMS_DbRepository/getPageName.xhtml">getPageName</a>()
+                    </li><li>public a <a title="CMS\DbRepository" href="../classes/CMS_DbRepository/showOne.xhtml">showOne</a>()
+                    </li><li>public twig <a title="CMS\DbRepository" href="../classes/CMS_DbRepository/getContent.xhtml">getContent</a>()
+                    </li><li>public void <a title="CMS\DbRepository" href="../classes/CMS_DbRepository/getAllPagesContent.xhtml">getAllPagesContent</a>()
+                    </li><li>public twig <a title="CMS\DbRepository" href="../classes/CMS_DbRepository/createPage.xhtml">createPage</a>()
+                    </li><li>public twig <a title="CMS\DbRepository" href="../classes/CMS_DbRepository/deletePage.xhtml">deletePage</a>()
+                    </li><li>public void <a title="CMS\DbRepository" href="../classes/CMS_DbRepository/createContent.xhtml">createContent</a>()
+                    </li><li>public void <a title="CMS\DbRepository" href="../classes/CMS_DbRepository/deleteContent.xhtml">deleteContent</a>()
+                    </li><li>public void <a title="CMS\DbRepository" href="../classes/CMS_DbRepository/editContent.xhtml">editContent</a>()
+                    </li><li>public void <a title="CMS\DbRepository" href="../classes/CMS_DbRepository/search.xhtml">search</a>()
+                    </li></ul>
+
+            }<br/></div>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>private</h4>
+          <ul class="members">
+            <li id="conn"><strong>$conn</strong>
+                —
+                <a title="PDO" href="../classes/PDO.xhtml">PDO</a><br/><span class="indent">PDO database connection object.</span></li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>public</h4>
+          <ul>
+            <li id="__construct">
+              <a title="CMS\DbRepository" href="../classes/CMS_DbRepository/__construct.xhtml">__construct()</a>
+            </li>
+            <li id="createContent">
+              <a title="CMS\DbRepository" href="../classes/CMS_DbRepository/createContent.xhtml">createContent()</a>
+            </li>
+            <li id="createPage"><a title="CMS\DbRepository" href="../classes/CMS_DbRepository/createPage.xhtml">createPage()</a>
+                — Creates a new web page from the parameters given.</li>
+            <li id="deleteContent">
+              <a title="CMS\DbRepository" href="../classes/CMS_DbRepository/deleteContent.xhtml">deleteContent()</a>
+            </li>
+            <li id="deletePage"><a title="CMS\DbRepository" href="../classes/CMS_DbRepository/deletePage.xhtml">deletePage()</a>
+                — Remove a page.</li>
+            <li id="editContent">
+              <a title="CMS\DbRepository" href="../classes/CMS_DbRepository/editContent.xhtml">editContent()</a>
+            </li>
+            <li id="getAllPages">
+              <a title="CMS\DbRepository" href="../classes/CMS_DbRepository/getAllPages.xhtml">getAllPages()</a>
+            </li>
+            <li id="getAllPagesContent">
+              <a title="CMS\DbRepository" href="../classes/CMS_DbRepository/getAllPagesContent.xhtml">getAllPagesContent()</a>
+            </li>
+            <li id="getContent"><a title="CMS\DbRepository" href="../classes/CMS_DbRepository/getContent.xhtml">getContent()</a>
+                — gets a pages content.</li>
+            <li id="getPageName">
+              <a title="CMS\DbRepository" href="../classes/CMS_DbRepository/getPageName.xhtml">getPageName()</a>
+            </li>
+            <li id="getSinglePage">
+              <a title="CMS\DbRepository" href="../classes/CMS_DbRepository/getSinglePage.xhtml">getSinglePage()</a>
+            </li>
+            <li id="search">
+              <a title="CMS\DbRepository" href="../classes/CMS_DbRepository/search.xhtml">search()</a>
+            </li>
+            <li id="showOne">
+              <a title="CMS\DbRepository" href="../classes/CMS_DbRepository/showOne.xhtml">showOne()</a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.8.1.1 - Copyright (C) 2010 - 2016 by Arne Blankerts</span>
+    </footer>
+  </body>
+</html>

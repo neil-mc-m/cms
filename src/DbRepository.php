@@ -266,6 +266,39 @@ class DbRepository
         }
     }
     
+    public function viewImages()
+    {
+        try {
+            $stmt = $this->conn->prepare('SELECT * FROM image');
+            $stmt->execute();
+            $result = $stmt->fetchAll(PDO::FETCH_CLASS, __NAMESPACE__.'\\Image');
+
+            return $result;
+        } catch (PDOException $e) {
+            print $e->getMessage();
+        }
+    }
+
+    public function addImage($imagePath, $contentId)
+    {
+        try {
+            $stmt = $this->conn->prepare('UPDATE content SET imagePath=:imagePath WHERE contentId=:contentId');
+            $stmt->bindParam(':imagePath', $imagePath);
+            $stmt->bindParam(':contentId', $contentId);
+            $stmt->execute();
+            $result = '';
+            if ($stmt->rowCount() > 0) {
+                $result .= 'Successfully added '.$stmt->rowCount().' Image to some content';
+            } else {
+                $result .= 'Heuston we have a problemo!';
+            }
+
+            return $result;
+        } catch (PDOException $e) {
+            print $e->getMessage();
+        }
+    }
+
     public function search($q)
     {
         try {

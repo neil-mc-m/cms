@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="CMS\CustomUserProvider" namespace="CMS" name="CustomUserProvider" abstract="false" final="false" start="12" end="55">
+  <file path="src" file="CustomUserProvider.php" realpath="/var/www/html/cms/src/CustomUserProvider.php" size="1852" time="2016-04-01T22:06:46+00:00" unixtime="1459548406" sha1="8dbbeb2eaa52f1d75afda5892c13657efc428812" relative="CustomUserProvider.php"/>
+  <implements full="Symfony\Component\Security\Core\User\UserProviderInterface" namespace="Symfony\Component\Security\Core\User" name="UserProviderInterface" unresolved="true"/>
+  <member name="conn" visibility="private" static="false" line="14"/>
+  <member name="app" visibility="private" static="false" line="15"/>
+  <constructor name="__construct" start="17" end="23" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="app" byreference="false" type="{unknown}"/>
+  </constructor>
+  <method name="loadUserByUsername" start="25" end="40" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="username" byreference="false" type="{unknown}"/>
+    <inline>
+      <comment value="$stmt = $this-&gt;conn-&gt;executeQuery('SELECT * FROM user WHERE userName = ?', array(strtolower($username)));" line="31"/>
+    </inline>
+  </method>
+  <method name="refreshUser" start="42" end="49" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="user" byreference="false" type="object">
+      <type full="Symfony\Component\Security\Core\User\UserInterface" namespace="Symfony\Component\Security\Core\User" name="UserInterface"/>
+    </parameter>
+  </method>
+  <method name="supportsClass" start="51" end="54" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="class" byreference="false" type="{unknown}"/>
+  </method>
+</class>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="CMS\DatabaseTwigLoader" namespace="CMS" name="DatabaseTwigLoader" abstract="false" final="false" start="13" end="68">
+  <file path="src" file="DatabaseTwigLoader.php" realpath="/var/www/html/cms/src/DatabaseTwigLoader.php" size="1511" time="2016-04-01T22:06:46+00:00" unixtime="1459548406" sha1="07320b4e685ff067259c93ab86cf0b54ec335ceb" relative="DatabaseTwigLoader.php"/>
+  <docblock>
+    <description compact="A twig loader class to load templates from the database."/>
+  </docblock>
+  <implements full="Twig_LoaderInterface" namespace="" name="Twig_LoaderInterface" unresolved="true"/>
+  <implements full="Twig_ExistsLoaderInterface" namespace="" name="Twig_ExistsLoaderInterface" unresolved="true"/>
+  <member name="dbh" visibility="protected" static="false" line="20">
+    <docblock>
+      <description compact="The PDO database connection."/>
+      <var description="connection instance." type="object">
+        <type full="PDO" namespace="" name="PDO"/>
+      </var>
+    </docblock>
+  </member>
+  <constructor name="__construct" start="27" end="30" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="construct the class with the database connection."/>
+      <param description=".PDO connection." type="object" variable="$dbh">
+        <type full="PDO" namespace="" name="PDO"/>
+      </param>
+    </docblock>
+    <parameter name="dbh" byreference="false" type="object">
+      <type full="PDO" namespace="" name="PDO"/>
+    </parameter>
+  </constructor>
+  <method name="getSource" start="32" end="39" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="name" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="exists" start="42" end="45" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="name" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getCacheKey" start="47" end="50" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="name" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="isFresh" start="52" end="59" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="name" byreference="false" type="{unknown}"/>
+    <parameter name="time" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getValue" start="61" end="67" abstract="false" final="false" static="false" visibility="protected">
+    <parameter name="column" byreference="false" type="{unknown}"/>
+    <parameter name="name" byreference="false" type="{unknown}"/>
+  </method>
+</class>

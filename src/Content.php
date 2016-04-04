@@ -8,7 +8,9 @@ class Content
     public $contentType;
     public $contentItemTitle;
     public $contentItem;
+    public $imagePath;
     public $created;
+    public $modified;
 
 
 
@@ -63,6 +65,16 @@ class Content
     }
 
     /**
+     * Get the value of imagePath
+     * 
+     * @return mixed
+     */ 
+    public function getImagePath()
+    {
+        return $this->imagePath;
+    }
+
+    /**
      * Get the value of Created
      *
      * @return mixed
@@ -70,6 +82,16 @@ class Content
     public function getCreated()
     {
         return $this->created;
+    }
+
+    /**
+     * Gets the value of modified.
+     *
+     * @return mixed
+     */
+    public function getModified()
+    {
+        return $this->modified;
     }
 
 
@@ -144,6 +166,19 @@ class Content
     }
 
     /**
+     * Set the image path.
+     * 
+     * @param mixed imagePath
+     * 
+     * @return self
+     */ 
+    public function setImagePath($imagePath)
+    {
+        $this->imagePath = $imagePath;
+
+        return $this;
+    }
+    /**
      * Set the value of Created
      *
      * @param mixed created
@@ -157,4 +192,19 @@ class Content
         return $this;
     }
 
+    /**
+     * Set the value for modified.
+     * 
+     * @param mixed modified
+     * 
+     * @return self
+     */ 
+    public function setModified($modified)
+    {
+        $this->modified = $modified;
+
+        return $this;
+    }
+
+ 
 }

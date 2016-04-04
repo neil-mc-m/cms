@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="CMS\Controllers\MainController" namespace="CMS\Controllers" name="MainController" abstract="false" final="false" start="19" end="123">
+  <file path="src/Controllers" file="MainController.php" realpath="/var/www/html/cms/src/Controllers/MainController.php" size="3394" time="2016-04-02T20:07:45+00:00" unixtime="1459627665" sha1="7aafdafb98375cf44c9eca0726eb0f02d88de8e0" relative="Controllers/MainController.php"/>
+  <docblock>
+    <description compact="The Main Controller used for the 'main' routes out of index.php."/>
+    <class value="MainController."/>
+  </docblock>
+  <method name="indexAction" start="31" end="45" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="home page Controller.">Renders a template for the homepage.</description>
+      <param type="object" variable="$request">
+        <type full="Symfony\Component\HttpFoundation\Request" namespace="Symfony\Component\HttpFoundation" name="Request"/>
+      </param>
+      <param type="object" variable="$app">
+        <type full="Silex\Application" namespace="Silex" name="Application"/>
+      </param>
+      <return description="template" type="object">
+        <type full="CMS\Controllers\homepage" namespace="CMS\Controllers" name="homepage"/>
+      </return>
+    </docblock>
+    <parameter name="request" byreference="false" type="object">
+      <type full="Symfony\Component\HttpFoundation\Request" namespace="Symfony\Component\HttpFoundation" name="Request"/>
+    </parameter>
+    <parameter name="app" byreference="false" type="object">
+      <type full="Silex\Application" namespace="Silex" name="Application"/>
+    </parameter>
+    <inline>
+      <comment value="as this is the home page controller, get the home pages content" line="35"/>
+    </inline>
+  </method>
+  <method name="routeAction" start="82" end="96" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Main routing out of the home page."/>
+      <param description="[description]" type="object" variable="$request">
+        <type full="Symfony\Component\HttpFoundation\Request" namespace="Symfony\Component\HttpFoundation" name="Request"/>
+      </param>
+      <param description="[description]" type="object" variable="$app">
+        <type full="Silex\Application" namespace="Silex" name="Application"/>
+      </param>
+      <param description="the route/link used from the home page" type="string" variable="$page"/>
+      <return description="template        the requested twig template." type="object">
+        <type full="CMS\Controllers\twig" namespace="CMS\Controllers" name="twig"/>
+      </return>
+    </docblock>
+    <parameter name="request" byreference="false" type="object">
+      <type full="Symfony\Component\HttpFoundation\Request" namespace="Symfony\Component\HttpFoundation" name="Request"/>
+    </parameter>
+    <parameter name="app" byreference="false" type="object">
+      <type full="Silex\Application" namespace="Silex" name="Application"/>
+    </parameter>
+    <parameter name="pageRoute" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="oneArticleAction" start="107" end="122" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="display one articles.">renders a template with one articles.</description>
+      <param type="object">
+        <type full="Symfony\Component\HttpFoundation\Request" namespace="Symfony\Component\HttpFoundation" name="Request"/>
+      </param>
+      <param type="object">
+        <type full="Silex\Application" namespace="Silex" name="Application"/>
+      </param>
+      <return description="article template." type="object">
+        <type full="CMS\Controllers\an" namespace="CMS\Controllers" name="an"/>
+      </return>
+    </docblock>
+    <parameter name="request" byreference="false" type="object">
+      <type full="Symfony\Component\HttpFoundation\Request" namespace="Symfony\Component\HttpFoundation" name="Request"/>
+    </parameter>
+    <parameter name="app" byreference="false" type="object">
+      <type full="Silex\Application" namespace="Silex" name="Application"/>
+    </parameter>
+    <parameter name="pageRoute" byreference="false" type="{unknown}"/>
+    <parameter name="contentId" byreference="false" type="{unknown}"/>
+  </method>
+</class>

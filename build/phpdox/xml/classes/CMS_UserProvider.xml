@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="CMS\UserProvider" namespace="CMS" name="UserProvider" abstract="false" final="false" start="12" end="45">
+  <file path="src" file="UserProvider.php" realpath="/var/www/html/cms/src/UserProvider.php" size="1373" time="2016-04-01T22:06:46+00:00" unixtime="1459548406" sha1="0da2985e038312c7fdc00fae6e7959219d4cb7dc" relative="UserProvider.php"/>
+  <implements full="Symfony\Component\Security\Core\User\UserProviderInterface" namespace="Symfony\Component\Security\Core\User" name="UserProviderInterface" unresolved="true"/>
+  <member name="conn" visibility="private" static="false" line="14"/>
+  <constructor name="__construct" start="16" end="19" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="conn" byreference="false" type="object">
+      <type full="PDO" namespace="" name="PDO"/>
+    </parameter>
+  </constructor>
+  <method name="loadUserByUsername" start="21" end="30" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="username" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="refreshUser" start="32" end="39" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="user" byreference="false" type="object">
+      <type full="Symfony\Component\Security\Core\User\UserInterface" namespace="Symfony\Component\Security\Core\User" name="UserInterface"/>
+    </parameter>
+  </method>
+  <method name="supportsClass" start="41" end="44" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="class" byreference="false" type="{unknown}"/>
+  </method>
+</class>

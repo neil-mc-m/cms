@@ -120,8 +120,13 @@ $app->get('/admin/delete-content', 'CMS\\Controllers\\ContentController::deleteC
 $app->get('/admin/process-delete-content/{contentid}', 'CMS\\Controllers\\ContentController::processDeleteContentAction');
 
 $app->get('/admin/edit-content/{contentId}', 'CMS\\Controllers\\ContentController::editContentAction');
-$app->post('admin/process-edit-content', 'CMS\\Controllers\\ContentController::processEditContentAction');
+$app->post('/admin/process-edit-content', 'CMS\\Controllers\\ContentController::processEditContentAction');
+
+
+
+$app->get('/admin/images', 'CMS\\Controllers\\ImageController::viewImagesAction');
+$app->post('/admin/add-image', 'CMS\\Controllers\\ImageController::addImageAction');
+
+
 $app->get('/{pageRoute}/{contentId}', 'CMS\\Controllers\\MainController::oneArticleAction');
-
-
 $app->run();

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="CMS\Content" namespace="CMS" name="Content" abstract="false" final="false" start="4" end="160">
+  <file path="src" file="Content.php" realpath="/var/www/html/cms/src/Content.php" size="2620" time="2016-04-01T22:06:46+00:00" unixtime="1459548406" sha1="fa1658f84e53f5f56c1b691c27e72be5aa213ef9" relative="Content.php"/>
+  <member name="contentId" visibility="public" static="false" line="6"/>
+  <member name="pageName" visibility="public" static="false" line="7"/>
+  <member name="contentType" visibility="public" static="false" line="8"/>
+  <member name="contentItemTitle" visibility="public" static="false" line="9"/>
+  <member name="contentItem" visibility="public" static="false" line="10"/>
+  <member name="created" visibility="public" static="false" line="11"/>
+  <method name="getContentId" start="20" end="23" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Get the value of Contentid"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="getPageName" start="30" end="33" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Get the value of Pagename"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="getContentType" start="40" end="43" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Get the value of Contenttype"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="getContentItemTitle" start="50" end="53" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Get the value of Contentitemtitle"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="getContentItem" start="60" end="63" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Get the value of Contentitem"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="getCreated" start="70" end="73" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Get the value of Created"/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="setContentId" start="83" end="88" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Set the value of Contentid"/>
+      <param type="mixed" variable="contentid"/>
+      <return resolution="self" type="object">
+        <type full="CMS\Content" namespace="CMS" name="Content"/>
+      </return>
+    </docblock>
+    <parameter name="contentId" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="setPageName" start="97" end="102" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Set the value of Pagename"/>
+      <param type="mixed" variable="pagename"/>
+      <return resolution="self" type="object">
+        <type full="CMS\Content" namespace="CMS" name="Content"/>
+      </return>
+    </docblock>
+    <parameter name="pageName" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="setContentType" start="111" end="116" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Set the value of Contenttype"/>
+      <param type="mixed" variable="contenttype"/>
+      <return resolution="self" type="object">
+        <type full="CMS\Content" namespace="CMS" name="Content"/>
+      </return>
+    </docblock>
+    <parameter name="contentType" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="setContentItemTitle" start="125" end="130" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Set the value of Contentitemtitle"/>
+      <param type="mixed" variable="contentitemtitle"/>
+      <return resolution="self" type="object">
+        <type full="CMS\Content" namespace="CMS" name="Content"/>
+      </return>
+    </docblock>
+    <parameter name="contentItemTitle" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="setContentItem" start="139" end="144" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Set the value of Contentitem"/>
+      <param type="mixed" variable="contentitem"/>
+      <return resolution="self" type="object">
+        <type full="CMS\Content" namespace="CMS" name="Content"/>
+      </return>
+    </docblock>
+    <parameter name="contentItem" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="setCreated" start="153" end="158" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Set the value of Created"/>
+      <param type="mixed" variable="created"/>
+      <return resolution="self" type="object">
+        <type full="CMS\Content" namespace="CMS" name="Content"/>
+      </return>
+    </docblock>
+    <parameter name="created" byreference="false" type="{unknown}"/>
+  </method>
+</class>

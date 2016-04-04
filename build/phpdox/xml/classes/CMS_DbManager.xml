@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="CMS\DbManager" namespace="CMS" name="DbManager" abstract="false" final="false" start="12" end="53">
+  <file path="src" file="DbManager.php" realpath="/var/www/html/cms/src/DbManager.php" size="1174" time="2016-04-01T23:58:36+00:00" unixtime="1459555116" sha1="7459e873fd47e2fa4eb5ddb14d20e05cf6b1ad54" relative="DbManager.php"/>
+  <docblock>
+    <description compact="database connection manager."/>
+    <class value="DbManager"/>
+  </docblock>
+  <member name="pdo" visibility="private" static="false" line="17">
+    <docblock>
+      <description/>
+      <var description="instance of the pdo connection" type="object">
+        <type full="CMS\an" namespace="CMS" name="an"/>
+      </var>
+    </docblock>
+  </member>
+  <constructor name="__construct" start="25" end="44" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="constructor which connects to the database each time the DbManager object is created."/>
+      <construct/>
+    </docblock>
+  </constructor>
+  <method name="getPdoInstance" start="49" end="52" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description/>
+      <return description="instance of the pdo connection" type="object">
+        <type full="CMS\an" namespace="CMS" name="an"/>
+      </return>
+    </docblock>
+  </method>
+</class>

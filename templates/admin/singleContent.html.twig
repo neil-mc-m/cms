@@ -5,8 +5,9 @@
 {% block content %}
     <div class="main-section">
         <p>
-           
-                
+           {% if image is defined %}
+                <img src="{{ app.request.basepath }}{{ image|raw }}">
+            {% endif %}
                 <p><strong>{{ contentitemtitle }}</strong></p>
                 <p>{{ contentitem }}</p>
                 <p>{{ created }}</p>

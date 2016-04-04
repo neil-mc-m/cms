@@ -14,6 +14,7 @@
     <article class="main-section">
         	{# the paragraph filter is an extension registered in index.php line 55 #}
         	{# taken from https://github.com/jasny/twig-extensions #}
+            <img src="{{ app.request.basepath }}{{ image|raw }}">
             {{ article|paragraph }}
         
         <p class="created">
@@ -22,7 +23,7 @@
     </article>
     <article class="side-section">
                 <h2>Older Posts</h2>
-                <a class="readmore-link" href="/{{ pageName }}/{{ contentId }}">{{ title }}</a>
+                <a class="readmore-link" href="/{% for page in app.pages %}{% if page.pageName == pageName %}{{ page.pageRoute }}{% endif %}{% endfor %}/{{ contentId }}">{{ title }}</a>
             
         </article>
 {% endblock %}

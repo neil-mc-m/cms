@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="CMS\Controllers\PagesController" namespace="CMS\Controllers" name="PagesController" abstract="false" final="false" start="10" end="134">
+  <file path="src/Controllers" file="PagesController.php" realpath="/var/www/html/cms/src/Controllers/PagesController.php" size="3935" time="2016-04-02T22:31:22+00:00" unixtime="1459636282" sha1="5a1293457bf17f93b205e330a493c7222d8136fd" relative="Controllers/PagesController.php"/>
+  <method name="pagesAction" start="12" end="26" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="request" byreference="false" type="object">
+      <type full="Symfony\Component\HttpFoundation\Request" namespace="Symfony\Component\HttpFoundation" name="Request"/>
+    </parameter>
+    <parameter name="app" byreference="false" type="object">
+      <type full="Silex\Application" namespace="Silex" name="Application"/>
+    </parameter>
+    <inline>
+      <comment value="$pages = $db-&gt;getAllPages();" line="15"/>
+    </inline>
+  </method>
+  <method name="viewPagesAction" start="28" end="43" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="request" byreference="false" type="object">
+      <type full="Symfony\Component\HttpFoundation\Request" namespace="Symfony\Component\HttpFoundation" name="Request"/>
+    </parameter>
+    <parameter name="app" byreference="false" type="object">
+      <type full="Silex\Application" namespace="Silex" name="Application"/>
+    </parameter>
+    <inline>
+      <comment value="$pages = $db-&gt;getAllPages();" line="31"/>
+    </inline>
+  </method>
+  <method name="createPageAction" start="52" end="65" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Create a new web-page."/>
+      <param description="the request object" type="object" variable="$request">
+        <type full="Symfony\Component\HttpFoundation\Request" namespace="Symfony\Component\HttpFoundation" name="Request"/>
+      </param>
+      <param description="the app object" type="object" variable="$app">
+        <type full="Silex\Application" namespace="Silex" name="Application"/>
+      </param>
+      <return description="template        a create-page template" type="object">
+        <type full="CMS\Controllers\twig" namespace="CMS\Controllers" name="twig"/>
+      </return>
+    </docblock>
+    <parameter name="request" byreference="false" type="object">
+      <type full="Symfony\Component\HttpFoundation\Request" namespace="Symfony\Component\HttpFoundation" name="Request"/>
+    </parameter>
+    <parameter name="app" byreference="false" type="object">
+      <type full="Silex\Application" namespace="Silex" name="Application"/>
+    </parameter>
+  </method>
+  <method name="newPageAction" start="75" end="95" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Controller to create a new page."/>
+      <param type="object" variable="$request">
+        <type full="Symfony\Component\HttpFoundation\Request" namespace="Symfony\Component\HttpFoundation" name="Request"/>
+      </param>
+      <param type="object" variable="$app">
+        <type full="Silex\Application" namespace="Silex" name="Application"/>
+      </param>
+      <return description="template" type="object">
+        <type full="CMS\Controllers\twig" namespace="CMS\Controllers" name="twig"/>
+      </return>
+    </docblock>
+    <parameter name="request" byreference="false" type="object">
+      <type full="Symfony\Component\HttpFoundation\Request" namespace="Symfony\Component\HttpFoundation" name="Request"/>
+    </parameter>
+    <parameter name="app" byreference="false" type="object">
+      <type full="Silex\Application" namespace="Silex" name="Application"/>
+    </parameter>
+  </method>
+  <method name="deletePageAction" start="97" end="113" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="request" byreference="false" type="object">
+      <type full="Symfony\Component\HttpFoundation\Request" namespace="Symfony\Component\HttpFoundation" name="Request"/>
+    </parameter>
+    <parameter name="app" byreference="false" type="object">
+      <type full="Silex\Application" namespace="Silex" name="Application"/>
+    </parameter>
+  </method>
+  <method name="processDeletePageAction" start="115" end="133" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="request" byreference="false" type="object">
+      <type full="Symfony\Component\HttpFoundation\Request" namespace="Symfony\Component\HttpFoundation" name="Request"/>
+    </parameter>
+    <parameter name="app" byreference="false" type="object">
+      <type full="Silex\Application" namespace="Silex" name="Application"/>
+    </parameter>
+  </method>
+</class>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="CMS\Article" namespace="CMS" name="Article" abstract="false" final="false" start="5" end="158">
+  <file path="src" file="Article.php" realpath="/var/www/html/cms/src/Article.php" size="2784" time="2016-04-01T22:06:46+00:00" unixtime="1459548406" sha1="ccd7ef4b3a52249e04aea5d0edddfee01c4e0fc5" relative="Article.php"/>
+  <member name="contentid" visibility="public" static="false" line="7"/>
+  <member name="contenttype" visibility="public" static="false" line="8"/>
+  <member name="articletitle" visibility="public" static="false" line="9"/>
+  <member name="paragraphtitle" visibility="public" static="false" line="10"/>
+  <member name="paragraphbody" visibility="public" static="false" line="11"/>
+  <member name="created" visibility="public" static="false" line="12"/>
+  <method name="getContentid" start="20" end="23" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Gets the value of contentid."/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="setContentid" start="32" end="37" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Sets the value of contentid."/>
+      <param description="the contentid" type="mixed" variable="$contentid"/>
+      <return resolution="self" type="object">
+        <type full="CMS\Article" namespace="CMS" name="Article"/>
+      </return>
+    </docblock>
+    <parameter name="contentid" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getContenttype" start="44" end="47" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Gets the value of contenttype."/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="setContenttype" start="56" end="61" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Sets the value of contenttype."/>
+      <param description="the contenttype" type="mixed" variable="$contenttype"/>
+      <return resolution="self" type="object">
+        <type full="CMS\Article" namespace="CMS" name="Article"/>
+      </return>
+    </docblock>
+    <parameter name="contenttype" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getArticletitle" start="68" end="71" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Gets the value of articletitle."/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="setArticletitle" start="80" end="85" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Sets the value of articletitle."/>
+      <param description="the articletitle" type="mixed" variable="$articletitle"/>
+      <return resolution="self" type="object">
+        <type full="CMS\Article" namespace="CMS" name="Article"/>
+      </return>
+    </docblock>
+    <parameter name="articletitle" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getParagraphtitle" start="92" end="95" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Gets the value of paragraphtitle."/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="setParagraphtitle" start="104" end="109" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Sets the value of paragraphtitle."/>
+      <param description="the paragraphtitle" type="mixed" variable="$paragraphtitle"/>
+      <return resolution="self" type="object">
+        <type full="CMS\Article" namespace="CMS" name="Article"/>
+      </return>
+    </docblock>
+    <parameter name="paragraphtitle" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getParagraphbody" start="116" end="119" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Gets the value of paragraphbody."/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="setParagraphbody" start="128" end="133" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Sets the value of paragraphbody."/>
+      <param description="the paragraphbody" type="mixed" variable="$paragraphbody"/>
+      <return resolution="self" type="object">
+        <type full="CMS\Article" namespace="CMS" name="Article"/>
+      </return>
+    </docblock>
+    <parameter name="paragraphbody" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="getCreated" start="140" end="143" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Gets the value of created."/>
+      <return type="mixed"/>
+    </docblock>
+  </method>
+  <method name="setCreated" start="152" end="157" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Sets the value of created."/>
+      <param description="the created" type="mixed" variable="$created"/>
+      <return resolution="self" type="object">
+        <type full="CMS\Article" namespace="CMS" name="Article"/>
+      </return>
+    </docblock>
+    <parameter name="created" byreference="false" type="{unknown}"/>
+  </method>
+</class>

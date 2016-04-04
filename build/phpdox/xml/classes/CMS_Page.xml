@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="CMS\Page" namespace="CMS" name="Page" abstract="false" final="false" start="14" end="108">
+  <file path="src" file="Page.php" realpath="/var/www/html/cms/src/Page.php" size="1880" time="2016-04-01T22:06:46+00:00" unixtime="1459548406" sha1="71cb4edeca02d3822be9931ce5f17ec26dc6af00" relative="Page.php"/>
+  <docblock>
+    <description compact="This class will be used for generating webpages."/>
+    <class value="Page"/>
+  </docblock>
+  <member name="pageId" visibility="public" static="false" line="21">
+    <docblock>
+      <description compact="an id."/>
+      <var type="int"/>
+    </docblock>
+  </member>
+  <member name="pageName" visibility="public" static="false" line="27">
+    <docblock>
+      <description compact="The name of the page eg home."/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="pageRoute" visibility="public" static="false" line="35">
+    <docblock>
+      <description compact="A route generated from the pageName variable."/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <member name="pageTemplate" visibility="public" static="false" line="42">
+    <docblock>
+      <description compact="the template to return eg home.html.twig."/>
+      <var type="string"/>
+    </docblock>
+  </member>
+  <method name="getPageName" start="50" end="53" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Get the value of The name of the page eg home."/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getPageRoute" start="59" end="62" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Get the pageRoute from the pageName variable."/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="getPageTemplate" start="68" end="71" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Get the value of the template to return eg home.html.twig."/>
+      <return type="string"/>
+    </docblock>
+  </method>
+  <method name="setPageName" start="81" end="86" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Set the value of The name of the page eg home."/>
+      <param type="string" variable="pageName"/>
+      <return resolution="self" type="object">
+        <type full="CMS\Page" namespace="CMS" name="Page"/>
+      </return>
+    </docblock>
+    <parameter name="pageName" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="setPageRoute" start="88" end="93" abstract="false" final="false" static="false" visibility="public">
+    <parameter name="pageName" byreference="false" type="{unknown}"/>
+  </method>
+  <method name="setPageTemplate" start="101" end="106" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Set the value of the template to return eg home.html.twig."/>
+      <param type="string" variable="pageTemplate"/>
+      <return resolution="self" type="object">
+        <type full="CMS\Page" namespace="CMS" name="Page"/>
+      </return>
+    </docblock>
+    <parameter name="pageTemplate" byreference="false" type="{unknown}"/>
+  </method>
+</class>

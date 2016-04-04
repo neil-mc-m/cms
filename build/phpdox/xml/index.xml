@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<index xmlns="http://xml.phpdox.net/src" basedir="/home/neil/Desktop/light-cms/src">
+<index xmlns="http://xml.phpdox.net/src" basedir="/var/www/html/cms/src">
   <namespace name="CMS">
-    
-    
-  <class name="MainController" src="MainController.php" description="The Main Controller used for the 'main' routes out of index.php." xml="classes/CMS_MainController.xml"/><class name="dbmodel" src="dbmodel.php" description="all database functionality resides here." xml="classes/CMS_dbmodel.xml"/></namespace>
+    <class name="Content" src="Content.php" xml="classes/CMS_Content.xml"/>
+    <class name="CustomUserProvider" src="CustomUserProvider.php" xml="classes/CMS_CustomUserProvider.xml"/>
+    <class name="Template" src="Template.php" description="A template class to help in the generation of twig templates." xml="classes/CMS_Template.xml"/>
+    <class name="DbRepository" src="DbRepository.php" description="A data access class." xml="classes/CMS_DbRepository.xml"/>
+    <class name="Page" src="Page.php" description="This class will be used for generating webpages." xml="classes/CMS_Page.xml"/>
+    <class name="Article" src="Article.php" xml="classes/CMS_Article.xml"/>
+    <class name="UserProvider" src="UserProvider.php" xml="classes/CMS_UserProvider.xml"/>
+    <class name="DatabaseTwigLoader" src="DatabaseTwigLoader.php" description="A twig loader class to load templates from the database." xml="classes/CMS_DatabaseTwigLoader.xml"/>
+    <class name="DbManager" src="DbManager.php" description="database connection manager." xml="classes/CMS_DbManager.xml"/>
+  </namespace>
+  <namespace name="CMS\Controllers">
+    <class name="PagesController" src="Controllers/PagesController.php" xml="classes/CMS_Controllers_PagesController.xml"/>
+    <class name="SecurityController" src="Controllers/SecurityController.php" description="The security controller responsible for logging in." xml="classes/CMS_Controllers_SecurityController.xml"/>
+    <class name="SearchController" src="Controllers/SearchController.php" xml="classes/CMS_Controllers_SearchController.xml"/>
+    <class name="AdminController" src="Controllers/AdminController.php" description="The controller class for all admin CRUD actions." xml="classes/CMS_Controllers_AdminController.xml"/>
+    <class name="MainController" src="Controllers/MainController.php" description="The Main Controller used for the 'main' routes out of index.php." xml="classes/CMS_Controllers_MainController.xml"/>
+    <class name="ContentController" src="Controllers/ContentController.php" description="The Content Controller class." xml="classes/CMS_Controllers_ContentController.xml"/>
+  </namespace>
 </index>

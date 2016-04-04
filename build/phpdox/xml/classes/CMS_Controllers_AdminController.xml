@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<class xmlns="http://xml.phpdox.net/src" full="CMS\Controllers\AdminController" namespace="CMS\Controllers" name="AdminController" abstract="false" final="false" start="17" end="42">
+  <file path="src/Controllers" file="AdminController.php" realpath="/var/www/html/cms/src/Controllers/AdminController.php" size="973" time="2016-04-02T20:08:08+00:00" unixtime="1459627688" sha1="2100209622b7730f287cfa6f3b4a7643736213ff" relative="Controllers/AdminController.php"/>
+  <docblock>
+    <description compact="The controller class for all admin CRUD actions."/>
+    <class value="AdminController"/>
+  </docblock>
+  <method name="dashboardAction" start="27" end="41" abstract="false" final="false" static="false" visibility="public">
+    <docblock>
+      <description compact="Load the admins dashboard."/>
+      <param type="object" variable="$request">
+        <type full="Symfony\Component\HttpFoundation\Request" namespace="Symfony\Component\HttpFoundation" name="Request"/>
+      </param>
+      <param type="object" variable="$app">
+        <type full="Silex\Application" namespace="Silex" name="Application"/>
+      </param>
+      <return description="twig template for admin/dashboard" type="object">
+        <type full="CMS\Controllers\[type]" namespace="CMS\Controllers" name="[type]"/>
+      </return>
+    </docblock>
+    <parameter name="request" byreference="false" type="object">
+      <type full="Symfony\Component\HttpFoundation\Request" namespace="Symfony\Component\HttpFoundation" name="Request"/>
+    </parameter>
+    <parameter name="app" byreference="false" type="object">
+      <type full="Silex\Application" namespace="Silex" name="Application"/>
+    </parameter>
+  </method>
+</class>

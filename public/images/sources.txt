@@ -1,2 +1,8 @@
-cms_logo.jpg
-http://www.logogarden.com - logo creator website. This is a free logo.
+calender.svg
+https://useiconic.com/open/
+
+backdrop.jpg
+https://unsplash.com
+
+sky.jpg
+https://unsplach.com
