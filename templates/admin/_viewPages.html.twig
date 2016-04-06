@@ -17,14 +17,16 @@ Admin Pages
 
 {% block content %}
 
-    <h3>Current Pages</h3>
-        {% for page in app.pages %}
+    <h2 class="cust-h">Current Pages</h2>
+            {% for page in app.pages %}
         <div class="page-preview-box">
-            <h4>{{ page.pageName }}</h4>
+            <h4>Page : {{ page.pageName }}</h4>
                 {% for content in content %}
+                    
+
                     {% if page.pageName == content.pageName %}
-                        <p>Current articles</p>
-                        <p>{{ content.contentItemTitle }}</p>
+                        
+                        <p>Article Title : {{ content.contentItemTitle }}</p>
 
                     {% endif %}
 

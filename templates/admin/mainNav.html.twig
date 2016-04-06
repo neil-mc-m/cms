@@ -9,12 +9,17 @@
 		</div>
 	</li>
 	<li class="dropdown">
-		<a href="#">Content</a>
+		<a {% if active_page == 'content' %} class="active"{% endif %}href="#">Content</a>
 		<div class="dropdown-content">
 			<a href="/admin/view-content">View content</a>
       	 	<a href="/admin/create-content">Create some content</a>
 		</div>
 	</li>
-	<li><a href="#">Images</a></li>
+	<li class="dropdown"><a {% if active_page == 'images' %} class="active"{% endif %}href="/admin/images">Images</a>
+		<div class="dropdown-content">
+			<a href="/admin/images">View images</a>
+      	 	<a href="#">Upload an image</a>
+		</div>
+	</li>
 
 

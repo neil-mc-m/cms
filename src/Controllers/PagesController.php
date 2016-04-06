@@ -9,40 +9,38 @@ use CMS\DbRepository;
 
 class PagesController
 {
-    public function pagesAction(Request $request, Application $app)
-    {
-        $db = new DbRepository($app['dbh']);
-        #$pages = $db->getAllPages();
+    // public function pagesAction(Request $request, Application $app)
+    // {
+    //     $db = new DbRepository($app['dbh']);
+    //     #$pages = $db->getAllPages();
         
-        #var_dump($pages);
-        $args_array = array(
-            'user' => $app['session']->get('user'),
+    //     #var_dump($pages);
+    //     $args_array = array(
+    //         'user' => $app['session']->get('user'),
             
-            #'pages' => $pages,
-        );
-        $templateName = 'pages';
+    //         #'pages' => $pages,
+    //     );
+    //     $templateName = '_pages';
 
-        return $app['twig']->render($templateName.'.html.twig', $args_array);
-    }
+    //     return $app['twig']->render($templateName.'.html.twig', $args_array);
+    // }
 
     public function viewPagesAction(Request $request, Application $app)
     {
         $db = new DbRepository($app['dbh']);
-        #$pages = $db->getAllPages();
         $content = $db->getAllPagesContent();
-       
-        #var_dump($pages);
+    
         $args_array = array(
             'user' => $app['session']->get('user'),
             #'pages' => $pages,
             'content' => $content,
         );
-        $templateName = 'viewPages';
+        $templateName = '_viewPages';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
     /**
-     * Create a new web-page.
+     * A form to create a new web-page.
      *
      * @param Request     $request the request object
      * @param Application $app     the app object
@@ -53,19 +51,17 @@ class PagesController
     {
         $db = new DbRepository($app['dbh']);
         $pages = $db->getAllPages();
-        #var_dump($pages);
+        
         $args_array = array(
             'user' => $app['session']->get('user'),
-            
-            #'pages' => $pages,
         );
-        $templateName = 'createPage';
+        $templateName = '_createPage';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
 
     /**
-     * Controller to create a new page.
+     * Controller to process creation of a new page.
      *
      * @param Request     $request
      * @param Application $app
@@ -80,54 +76,57 @@ class PagesController
         $pageRoute = $page->setPageRoute($pageName);
         $db = new DbRepository($app['dbh']);
         $result = $db->createPage($pageName, $page->getPageRoute(), $pageTemplate);
-        $user = $app['session']->get('user');
-        $pages = $db->getAllPages();
 
         $args_array = array(
-            'user' => $user,
-            'id' => session_id(),
-            'pages' => $pages,
+            'user' => $app['session']->get('user'),
             'result' => $result,
         );
-        $templateName = 'dashboard';
+        $templateName = '_dashboard';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
 
+    /**
+     * A controller to render the delete page form
+     * 
+     * @param request, the request object.
+     * @param app, the application object ($app)
+     * 
+     * @return renders the delete page form.
+     * 
+     */ 
     public function deletePageAction(Request $request, Application $app)
     {
-        $db = new DbRepository($app['dbh']);
-
-        $user = $app['session']->get('user');
-        $pages = $db->getAllPages();
-        
         $args_array = array(
-            'user' => $user,
-            'id' => session_id(),
-            'pages' => $pages,
+            'user' => $app['session']->get('user'),
 
         );
-        $templateName = 'deletePage';
+        $templateName = '_deletePage';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
 
+    /**
+     * A controller to process deleting a web page.
+     * 
+     * @param request object
+     * @param app, the application object ($app)
+     * 
+     * @return processes and re-renders the delete page form.
+     * 
+     */ 
     public function processDeletePageAction(Request $request, Application $app)
     {
         $db = new DbRepository($app['dbh']);
         $pageName = $app['request']->get('pageName');
         $pageTemplate = $app['request']->get('pageTemplate');
         $result = $db->deletePage($pageName, $pageTemplate);
-        $user = $app['session']->get('user');
-        $pages = $db->getAllPages();
-        var_dump($pages);
+
         $args_array = array(
-            'user' => $user,
-            'id' => session_id(),
-            'pages' => $pages,
+            'user' => $app['session']->get('user'), 
             'result' => $result,
         );
-        $templateName = 'deletePage';
+        $templateName = '_dashboard';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }

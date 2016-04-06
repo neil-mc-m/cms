@@ -13,8 +13,7 @@ class ImageController
 		$db = new DbRepository($app['dbh']);
 		$images = $db->viewImages();
 		$content = $db->getAllPagesContent();
-		var_dump($images);
-		var_dump($content);
+		
 		$args_array = array(
 			'user' => $app['session']->get('user'),
 			'images' => $images,
@@ -31,8 +30,7 @@ class ImageController
 		$db = new DbRepository($app['dbh']);
 		$contentId = $app['request']->get('contentId');
 		$imagePath = $app['request']->get('imagePath');
-		var_dump($contentId);
-		var_dump($imagePath);
+		
 		$result = $db->addImage($imagePath, $contentId);
 		$content = $db->showOne($contentId);
 

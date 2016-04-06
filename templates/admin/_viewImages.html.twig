@@ -1,29 +1,37 @@
 {% extends '_base.html.twig' %}
+{% set active_page = 'images' %}
 {% block title %}
     Admin Content
 {% endblock %}
 {% block content %}
     
-    <p>Add to content?</p>
-    <p>Content Title</p>
-   
+    <p>You can add an image to an article here. Select your image and article and press the add button.</p>
+    
+<form name="addImageForm" action="/admin/add-image" method="post">  
+<p>Image to add</p> 
 {% for image in images %}
-    <form name="addImageForm" action="/admin/add-image" method="post">
-                <img src="{{ app.request.basepath }}{{ image.imagePath }}">
+    
+        
+                <img src="{{ app.request.basepath }}{{ image.imagePath|raw }}">
+                <input type="radio" name="imagePath" value="{{ image.imagePath }}">
+                {% endfor %}
+                <p>Article to add too</p>
         {% for content in content %}
 
             
 
-            <p><input type="radio" name="{{ content.contentItemTitle }}" value="{{ content.contentItemTitle }}">{{ content.contentItemTitle }}</p>
+            <p><input type="radio" name="contentId" value="{{ content.contentId }}">{{ content.contentItemTitle }}</p>
             
-            <input type="hidden" name="contentId" value="{{ content.contentId }}">
-            <input type="hidden" name="imagePath" value="{{ image.imagePath }}">
-            <input style="width: 10rem; height: 3.2rem;" type="submit"  value="Add">
+            
+            
+            
             {% endfor %}
+            <input style="width: 10rem; height: 3.2rem;" type="submit"  value="Add">
+            
+            
             
             
             </form>
-            {% endfor %}
             
         
 

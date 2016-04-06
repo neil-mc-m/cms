@@ -30,7 +30,7 @@ footer {
 }
 
 a.active {
-  color: #ff4000;
+  color: #FF5733;
 }
 
 /* ************************************** */
@@ -43,9 +43,8 @@ a.active {
   flex-direction: row;
   font-size: 1.6rem;
   list-style-type: none;
-  border-bottom: thin solid #003;
   flex: 1;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 /**************************/
@@ -78,34 +77,65 @@ li.dropdown {
 }
 
 .dropdown-content a:hover {
-  background-color: #f1f1f1;
+  background-color: #FF5733;
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
 }
 
+a:hover {
+  border-bottom: thick solid #581845;
+}
+
 /***********************************/
 
+/* sidebar with search and user info */
+
+.sub-section {
+  display: flex;
+}
+
+.sub-search {
+  align-self: flex-start;
+}
+
+.logout {
+  
+  padding: 1.5%;
+  font-size: 1.2rem;
+  color: #003;
+  text-decoration: none;
+}
+
 /* the content container  */
+
 .container {
   display: flex;
 }
 
 /* content sections */
+
 .main-section {
   padding: 1rem;
-  flex: 2 0 0;
+  display: flex;
+  flex-direction: column;
+  flex: 3 0 0;
+  padding: 2rem;
+  margin-bottom: 2rem;
 }
-
+.sm-container {
+  margin-bottom: 2rem;
+}
 .section {
-  background-color: #f2f2f2;
+  background-color: #FFFEFE;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2);
   flex: 1 0 0;
   padding: 1rem;
 }
 
 /* live search */
+
 #searchForm {
   display: flex;
 }
@@ -118,24 +148,20 @@ li.dropdown {
   width: 11.7rem;
 }
 
-.page-preview-box {
-  border: thin solid black;
-}
-
-.page-subheading {
-  border: thin solid black;
-}
-
-.header-box {
-  border: thin solid black;
-}
 
 /*********************/
-
+/* custom headings */
+.cust-h {
+  color: #FF5733;
+  font-weight: normal;
+  font-size: 1.8rem;
+}
 /* text input boxes */
 .input-box[placeholder] {
   padding: 1rem;
+
   /*margin-top: .5rem;*/
+
   /*margin-bottom: 1.5rem;*/
   font-family: "Raleway", sans-serif;
 }
@@ -143,6 +169,7 @@ li.dropdown {
 .input-box[value] {
   padding: 1rem;
   margin-bottom: 1rem;
+
   /*margin-top: 5%;*/
   font-family: "Raleway", sans-serif;
 }
@@ -195,17 +222,12 @@ li.dropdown {
   }
 
   /* search box */
-  
-
   .container {
     flex-wrap: wrap;
   }
 
-#livesearch a {
-  
-  
-  padding: 1rem;
-  
-  width: 6rem;
-}
+  #livesearch a {
+    padding: 1rem;
+    width: 6rem;
+  }
 }

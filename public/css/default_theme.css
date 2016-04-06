@@ -13,6 +13,11 @@ html {
   overflow-x: hidden;
 }
 
+.img-resp {
+  width: 30%;
+  height: auto;
+}
+
 .header-box {
   color: white;
   border: thin solid grey;
