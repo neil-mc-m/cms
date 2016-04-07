@@ -35,7 +35,7 @@ class AdminController
             
         );
         
-        $templateName = 'dashboard';
+        $templateName = '_dashboard';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }

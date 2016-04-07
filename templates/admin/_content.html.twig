@@ -5,27 +5,25 @@
 {% endblock %}
 {% block content %}
     
-        <h2 class="cust-h">Current Pages with Content</h2>
-        
+    <h2>CURRENT PAGES WITH CONTENT</h2>
+    
+    
+        {% for content in content %}
             {% for page in app.pages %}
-                
-                <h3>Page Name :{{ page.pageName }}</h3>
-                
-                {% for content in content %}
-                    {% if page.pageName == content.pageName %}
-                        <div class="sm-container">
-                        <p>Article Name : {{ content.contentItemTitle }}</p>
-                        <p>{{content.contentItem }}</p>
-                        <p>{{ content.created }}</p>
-                        <p>{{ content.contentId }}</p>
-                        <a class="logout" href="{{ app.request.basepath }}/admin/process-delete-content/{{ content.contentId }}" onclick="return confirm('Sure you want to delete this post?');">Delete</a>
-                        <a class="logout" href="/admin/edit-content/{{ content.contentId }}">Edit</a>
-                        <a class="logout" href="/admin/view-single-content/{{ content.contentId }}">View</a>
-                        </div>
-                    {% endif %}
-                    
-                {% endfor %}
-            {% endfor %}
-        
+            {% if page.pageName == content.pageName %}
+                <h3>Page Name : <span class="cust-name">{{ page.pageName }}</span></h3>
+                {% endif %}
+             {% endfor %}               
+                <div class="sm-container">
+                    <p><strong>Article Name :</strong> {{ content.contentItemTitle }}</p>
+                    <p>{{ content.contentItem }}</p>
+                    <p>Date Created : {{ content.created }}</p>
+                    <a class="alt-link" href="{{ app.request.basepath }}/admin/process-delete-content/{{ content.contentId }}" onclick="return confirm('Sure you want to delete this post?');"><span class="button">Delete</span></a>
+                    <a class="alt-link" href="/admin/edit-content/{{ content.contentId }}"><span class="button">Edit</span></a>
+                    <a class="alt-link" href="/admin/view-single-content/{{ content.contentId }}"><span class="button">View</span></a>
+                </div>
             
+
+        {% endfor %}
+    
 {% endblock %}

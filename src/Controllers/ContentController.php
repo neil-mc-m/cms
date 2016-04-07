@@ -38,21 +38,22 @@ class ContentController
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
 
-    public function singleContentAction(Request $request, Application $app, $contentid)
+    public function singleContentAction(Request $request, Application $app, $contentId)
     {
         $db = new DbRepository($app['dbh']);
         
-        $content = $db->showOne($contentid);
+        $content = $db->showOne($contentId);
 
         $args_array = array(
             'user' => $app['session']->get('user'),
+            'pagename' => $content->getPageName(),
             'contentitemtitle' => $content->getContentItemTitle(),
             'contentitem' => $content->getContentItem(),
             'created' => $content->getCreated(),
             'contentid' => $content->getContentId()
             );
 
-        $templateName = 'singleContent';
+        $templateName = '_singleContent';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
@@ -66,7 +67,7 @@ class ContentController
             'user' => $app['session']->get('user')
         );
 
-        $templateName = 'contentForm';
+        $templateName = '_contentForm';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
@@ -85,7 +86,7 @@ class ContentController
             'result' => $result
             );
 
-        $templateName = 'dashboard';
+        $templateName = '_dashboard';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
@@ -100,7 +101,7 @@ class ContentController
             'allcontent' => $allContent
         );
 
-        $templateName = 'deleteContentForm';
+        $templateName = '_deleteContentForm';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
@@ -117,7 +118,7 @@ class ContentController
             'result' => $result
             );
 
-        $templateName = 'content';
+        $templateName = '_content';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
 
@@ -133,7 +134,7 @@ class ContentController
             'content' => $content
             );
 
-        $templateName = 'editContentForm';
+        $templateName = '_editContentForm';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
@@ -153,7 +154,7 @@ class ContentController
             'result' => $result    
             );
 
-        $templateName = 'dashboard';
+        $templateName = '_dashboard';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }

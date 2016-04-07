@@ -1,0 +1,22 @@
+{% extends '_base.html.twig' %}
+{% set active_page = 'content' %}
+{% block title %}
+    Admin Content
+{% endblock %}
+{% block content %}
+    <div class="sm-container">
+        <h2>SINGLE CONTENT</h2>
+        <p>Page name : <span class="cust-name">{{ pagename }}</span></p>
+           {% if image is defined %}
+                <p><img src="{{ app.request.basepath }}{{ image|raw }}"></p>
+            {% endif %}
+                <p><strong>{{ contentitemtitle }}</strong></p>
+                <p>{{ contentitem }}</p>
+                <p>{{ created }}</p>
+                
+                <a class="alt-link" href="{{ app.request.basepath }}/admin/process-delete-content/{{ contentid }}" onclick="return confirm('Sure you want to delete this post?');"><span class="button">Delete</span></a>
+                <a class="alt-link" href="/admin/edit-content"><span class="button">Edit</span></a>
+          </div> 
+       
+    
+{% endblock %}

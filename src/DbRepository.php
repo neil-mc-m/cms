@@ -145,7 +145,7 @@ class DbRepository
 
             $result = '';
 
-            $stmtpage = $conn->prepare('INSERT IGNORE INTO page(pageid, pagename, pageroute, pagetemplate, created) VALUES (DEFAULT, :pagename, :pageroute, :pagetemplate, curdate())');
+            $stmtpage = $conn->prepare('INSERT IGNORE INTO page(pageId, pageName, pageRoute, pageTemplate, created) VALUES (DEFAULT, :pageName, :pageRoute, :pageTemplate, curdate())');
             $stmttemplate = $conn->prepare('INSERT IGNORE INTO templates(templateid, name, source, last_modified) VALUES (DEFAULT, :name, :source, curdate())');
             # a pdo transaction to execute two queries at the same time.
             # both have to execute without an error for each to work.
@@ -153,9 +153,9 @@ class DbRepository
             # wont execute either so its both or nothing.
             $conn->beginTransaction();
             $pageName = strtolower($pageName);
-            $stmtpage->bindParam(':pagename', $pageName);
-            $stmtpage->bindParam(':pageroute', $pageRoute);
-            $stmtpage->bindParam(':pagetemplate', $pageTemplate);
+            $stmtpage->bindParam(':pageName', $pageName);
+            $stmtpage->bindParam(':pageRoute', $pageRoute);
+            $stmtpage->bindParam(':pageTemplate', $pageTemplate);
             $stmtpage->execute();
 
             $pageTemplate = $pageTemplate.'.html.twig';
@@ -186,19 +186,19 @@ class DbRepository
     public function deletePage($pageName, $pageTemplate)
     {
         try {
-            $stmtpage = $this->conn->prepare('DELETE FROM page WHERE pagename =:pagename');
-            $stmttemplate = $this->conn->prepare('DELETE FROM templates WHERE name =:pagetemplate');
-            $stmtcontent = $this->conn->prepare('DELETE FROM content WHERE pagename=:pagename');
+            $stmtpage = $this->conn->prepare('DELETE FROM page WHERE pageName =:pageName');
+            $stmttemplate = $this->conn->prepare('DELETE FROM templates WHERE name =:pageTemplate');
+            $stmtcontent = $this->conn->prepare('DELETE FROM content WHERE pageName=:pageName');
             # begins a transaction for a multiple query
             $this->conn->beginTransaction();
-            $stmtpage->bindParam(':pagename', $pageName);
+            $stmtpage->bindParam(':pageName', $pageName);
             $stmtpage->execute();
 
             $pageTemplate = $pageTemplate.'.html.twig';
-            $stmttemplate->bindParam(':pagetemplate', $pageTemplate);
+            $stmttemplate->bindParam(':pageTemplate', $pageTemplate);
             $stmttemplate->execute();
 
-            $stmtcontent->bindParam(':pagename', $pageName);
+            $stmtcontent->bindParam(':pageName', $pageName);
             $stmtcontent->execute();
             
             $result = '';

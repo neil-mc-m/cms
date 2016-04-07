@@ -27,7 +27,7 @@
     
     <nav>
         <ul class="navbar">
-            {% include 'mainNav.html.twig' %}
+            {% include '_mainNav.html.twig' %}
         </ul>
     </nav>
     {# a sub div to hold a sub nav bar and a search box #}
@@ -42,23 +42,23 @@
             
             {% block sidebar %}
                 <div class="sub-search">
-            {% block searchbox %}
-                <form id="searchForm">
-                    <input type="text" placeholder="Search" class="input-box" onkeyup="showResult(this.value)">
-                    <div id="livesearch"></div>
-                </form>
-            {% endblock %}
-        </div>
-        <div class="sub-info">
-            <p>Welcome,{{ user.username }}</p>
-            <a class="logout" href="{{ path('admin_logout') }}">Logout</a>
-            <p class="cust-h">
-                {% if result is defined %}
-                   {{ result }}
-                {% endif %}
-            </p>
-        </div>
-               
+                    {% block searchbox %}
+                        <form id="searchForm">
+                            <input type="text" placeholder="Search" class="input-box" onkeyup="showResult(this.value)">
+                            <div id="livesearch"></div>
+                        </form>
+                    {% endblock %}
+                </div>
+                <div class="sub-info">
+                    <p>Welcome,{{ user.username }}</p>
+                    <a class="alt-link" href="{{ path('admin_logout') }}">Logout</a>
+                    <p class="cust-h">
+                        {% if result is defined %}
+                            {{ result }}
+                        {% endif %}
+                    </p>
+                </div>
+                
             {% endblock %}
         </div>
         <div class="main-section">
@@ -66,41 +66,22 @@
             {% endblock %}
         </div>
         <div class="section">
-             <h3>Current Pages</h3>
-                <p>
-                    Below is a list of your current pages
-                </p>
-                
-                <table>
-                    <tr>
-                        <th>
-                            Name
-                        </th>
-                        <th>
-                            Template
-                        </th>
-                        <th>
-                            Date Created
-                        </th>
-                    </tr>
-                    
-                    {% for page in app.pages %}
-                        <tr>
-                            <td>{{ page.pageName }}</td>
-                            <td>{{ page.pageTemplate }}</td>
-                            <td>{{ page.created }}</td>
-                        </tr>
-                    {% endfor %}
-                    
-                </table>
+            <h2>CURRENT INFO</h2>
+            <p>You have <span class="cust-name">{{ app.pages|length }}</span> active web pages</p>
+            {% for page in app.pages %}
+                <p>{{ page.pageName }}</p>
+            {% endfor %}
+            <hr>
+            <p>There are <span class="cust-name">{{ app.images|length }}</span> images in the database</p>
+            {% for image in app.images %}
+                <img src="{{ app.request.basepath }}{{ image.imagePath|raw }}">
+            {% endfor %}
+            <hr>
+            
         </div>
         
     </div>
-    {# a space for a link to go backwards in the navigation tree #}
-    <div class="back-link">
-        {% block back_link %}
-        {% endblock %}
-    </div>
+    
     {# the footer #}
     {% block footer %}
         <footer class="footer">

@@ -1,8 +1,10 @@
 {% extends '_base.html.twig' %}
+{% set active_page = 'content' %}
 {% block title %}
     Admin Pages
 {% endblock %}
 {% block content %}
+    <h2>EDIT CONTENT</h2>
     <form class="editContentForm" action="/admin/process-edit-content" method="post">
             <p>
                 Pagename<br>

@@ -25,7 +25,7 @@ class SearchController
 		
 		for ($row = 0; $row < sizeof($value); $row++) {
 			$contentId = $value[$row][$row]['contentId'];
-			return "<a href='/admin/view-single-content/{$contentId}'>" . $value[$row][$row]['contentItemTitle'] . "</a>";
+			return "<a class='alt-link' href='/admin/view-single-content/{$contentId}'>" . $value[$row][$row]['contentItemTitle'] . "</a>";
 		} 
 		
 

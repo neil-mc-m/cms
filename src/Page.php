@@ -85,6 +85,13 @@ class Page
         return $this;
     }
 
+    /**
+     * Set the value for the page route and replace spaces with dashes
+     * 
+     * @param string pageRoute
+     * 
+     * @return self
+     */ 
     public function setPageRoute($pageName)
     {
         $this->pageRoute = str_replace(' ', '-', $pageName);

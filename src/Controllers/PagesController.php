@@ -32,7 +32,6 @@ class PagesController
     
         $args_array = array(
             'user' => $app['session']->get('user'),
-            #'pages' => $pages,
             'content' => $content,
         );
         $templateName = '_viewPages';
@@ -50,7 +49,6 @@ class PagesController
     public function createPageAction(Request $request, Application $app)
     {
         $db = new DbRepository($app['dbh']);
-        $pages = $db->getAllPages();
         
         $args_array = array(
             'user' => $app['session']->get('user'),
@@ -73,7 +71,7 @@ class PagesController
         $pageName = $app['request']->get('pageName');
         $pageTemplate = $app['request']->get('pageTemplate');
         $page = new Page();
-        $pageRoute = $page->setPageRoute($pageName);
+        $pageRoute = $page->setPageRoute(strtolower($pageName));
         $db = new DbRepository($app['dbh']);
         $result = $db->createPage($pageName, $page->getPageRoute(), $pageTemplate);
 

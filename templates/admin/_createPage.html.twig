@@ -11,29 +11,27 @@ Admin dashboard | create-page
 
 
 {% block content %}
-<div class="main-section">
-  
-    <p>
-        Fill in the form to create your new page. The template name can be the same as your pagename.
-    </p>
-    <p>
-        <strong>Note :</strong> All fields are required.
-    </p>
-    <form name="create-page" action="/admin/new-page" method="post"/>
+<p>
+    Fill in the form to create your new page. The template name can be the same as your pagename.
+</p>
+<p>
+    <strong>Note :</strong> All fields are required.
+</p>
+<form name="create-page" action="/admin/new-page" method="post">
     <fieldset>
         <p>
             <label>Page Name<br>
-            <input type="text" class="input-box" name="pageName" placeholder="Page Name" autofocus required/>
+                <input type="text" class="input-box" name="pageName" placeholder="Page Name" autofocus required/>
             </label>
         </p>
         <p>
             <label>Page Template<br>
-            <input type="text" class="input-box" name="pageTemplate" placeholder="Twig Template" required/>
+                <input type="text" class="input-box" name="pageTemplate" placeholder="Twig Template" required/>
             </label>
         </p>
         <p>
             <input style="width: 10rem; height: 3.2rem;" type="submit" value="Create a new Page"/>
         </p>
     </fieldset>
-    </div>
+</form>
 {% endblock %}

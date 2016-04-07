@@ -44,6 +44,7 @@ $db = new DbRepository($app['dbh']);
 # this will save having to query the database every time you want to access 
 # the page objects. 
 $app['pages'] = $db->getAllPages();
+$app['images'] = $db->viewImages();
 # twig loaders for templates: a database loader for dynamically created templates,
 # and a filesystem loader for templates stored on the filesystem. 
 $app['loader1']  = new DatabaseTwigLoader($app['dbh']);
@@ -111,7 +112,7 @@ $app->get('/admin/delete-page', 'CMS\\Controllers\\PagesController::deletePageAc
 $app->post('/admin/process-delete-page', 'CMS\\Controllers\\PagesController::processDeletePageAction');
 
 $app->get('/admin/view-content', 'CMS\\Controllers\\ContentController::contentAction');
-$app->get('/admin/view-single-content/{contentid}', 'CMS\\Controllers\\ContentController::singleContentAction');
+$app->get('/admin/view-single-content/{contentId}', 'CMS\\Controllers\\ContentController::singleContentAction');
 
 $app->get('/admin/create-content', 'CMS\\Controllers\\ContentController::createContentFormAction');
 $app->post('/admin/process-content', 'CMS\\Controllers\\ContentController::processContentAction');

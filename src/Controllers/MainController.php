@@ -36,38 +36,12 @@ class MainController
         $content = $db->getContent('home');
 
         $args_array = array(
-            
             'content' => $content,
         );
         $templateName = 'home';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
-
-    /**
-     * display all articles.
-     *
-     * renders a template with all articles listed.
-     *
-     * @param Request
-     * @param Application
-     *
-     * @return the articles template.
-     */
-    // public function articlesAction(Request $request, Application $app)
-    // {
-    //     # class name and tablename need to be passed as parameters
-    //     $db = new DbRepository('Articles', 'articles');
-    //     $result = $db->showAll();
-    //     var_dump($result);
-    //     $args_array = array(
-    //      'articles' => $result,
-    //    );
-    //     $templateName = 'articles';
-    //
-    //     return $app['twig']->render($templateName.'.html.twig', $args_array);
-    // }
-
 
 
     /**
@@ -83,8 +57,8 @@ class MainController
     {
         $db = new DbRepository($app['dbh']);
         $pageName = $db->getPageName($pageRoute);
+        var_dump($pageName);
         $singlePage = $db->getSinglePage($pageName);
-        
         $content = $db->getContent($pageName);
         
         $args_array = array(

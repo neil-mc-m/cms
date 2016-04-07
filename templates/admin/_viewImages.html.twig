@@ -7,42 +7,38 @@
     
     <p>You can add an image to an article here. Select your image and article and press the add button.</p>
     
-<form name="addImageForm" action="/admin/add-image" method="post">  
-<p>Image to add</p> 
-{% for image in images %}
-    
-        
-                <img src="{{ app.request.basepath }}{{ image.imagePath|raw }}">
-                <input type="radio" name="imagePath" value="{{ image.imagePath }}">
-                {% endfor %}
-                <p>Article to add too</p>
-        {% for content in content %}
-
+    <form name="addImageForm" action="/admin/add-image" method="post">
+        <p>Image to add</p>
+        {% for image in images %}
             
-
+            
+            <img src="{{ app.request.basepath }}{{ image.imagePath|raw }}">
+            <input type="radio" name="imagePath" value="{{ image.imagePath }}">
+        {% endfor %}
+        <p>Article to add too</p>
+        {% for content in content %}
+            
             <p><input type="radio" name="contentId" value="{{ content.contentId }}">{{ content.contentItemTitle }}</p>
             
             
             
             
-            {% endfor %}
-            <input style="width: 10rem; height: 3.2rem;" type="submit"  value="Add">
-            
-            
-            
-            
-            </form>
-            
+        {% endfor %}
+        <input style="width: 10rem; height: 3.2rem;" type="submit"  value="Add">
         
-
-
+        
+        
+        
+    </form>
     
     
-        
-        
-        
-      
-        
+    
+    
+    
+    
+    
+    
+    
     
     
 {% endblock %}

@@ -1,10 +1,11 @@
 {% extends '_base.html.twig' %}
+{% set active_page = "content" %}
 {% block title %}
     Admin Pages
 {% endblock %}
 {% block content %}
-    {{ parent() }}
-    <div class="main-section">
+    
+    
         <form class="contentForm" action="/admin/process-content" method="post">
             <p>
                 Pagename<br>
@@ -32,5 +33,5 @@
             {{ result }}
         {% endif %}
     </p>
-</div>
+
 {% endblock %}
