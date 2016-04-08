@@ -100,7 +100,7 @@ class Image
      */
     public function setImagePath($path)
     {
-        $this->path = $path;
+        $this->path = '/images/'. $path .'" class="img-resp" alt="'.str_replace('.jpg', '_pic', $path).'"';
 
         return $this;
     }

@@ -1,0 +1,26 @@
+{% extends '_base.html.twig' %}
+
+{% set active_page = "content" %}
+
+{% block title %}
+    Admin Upload image
+{% endblock %}
+
+{% block content %}
+    
+    
+        <form class="uploadImageForm" action="/admin/process-imageUpload" method="post" enctype="multipart/form-data">
+            <p>Select the image to upload :</p>
+            {# make sure the name equates to the $_FILES['name'] in the controller #}
+            <p><input class="input-box" type="file" name="image"></p>
+           
+           
+          
+            <p>
+                <input class="input-box" type="submit"  value="Upload">
+            </p>
+        </form>
+        
+    
+
+{% endblock %}

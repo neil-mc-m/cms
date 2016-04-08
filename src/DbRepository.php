@@ -299,6 +299,23 @@ class DbRepository
         }
     }
 
+    public function uploadImage($image)
+    {
+        try {
+            $result = '';
+            $stmt = $this->conn->prepare('INSERT IGNORE INTO image(id, contentId, imagePath) VALUES(DEFAULT, DEFAULT, :imagePath)');
+            $stmt->bindParam(':imagePath', $image);
+            if (!$stmt->execute()) {
+                $result .= 'Heuston, we have a problem!';
+            } else {
+                $result .= 'Great! Successfully uploaded '.$stmt->rowCount().' Image';
+            }
+            return $result;
+        } catch (PDOException $e) {
+            print $e->getMessage();
+        }
+    }
+
     public function search($q)
     {
         try {

@@ -127,6 +127,8 @@ $app->post('/admin/process-edit-content', 'CMS\\Controllers\\ContentController::
 
 $app->get('/admin/images', 'CMS\\Controllers\\ImageController::viewImagesAction');
 $app->post('/admin/add-image', 'CMS\\Controllers\\ImageController::addImageAction');
+$app->get('/admin/upload-image', 'CMS\\Controllers\\ImageController::uploadImageFormAction');
+$app->post('admin/process-imageUpload', 'CMS\\Controllers\\ImageController::processImageUploadAction');
 
 
 $app->get('/{pageRoute}/{contentId}', 'CMS\\Controllers\\MainController::oneArticleAction');
