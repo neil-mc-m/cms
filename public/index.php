@@ -54,6 +54,7 @@ $app['debug'] = true;
 #              ADD PROVIDERS HERE
 # ______________________________________________________________
 #
+$app->register(new Silex\Provider\ValidatorServiceProvider());
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 $app->register(new Silex\Provider\SessionServiceProvider());
 $app->register(new Silex\Provider\TwigServiceProvider(), array(

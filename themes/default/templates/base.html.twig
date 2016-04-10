@@ -28,20 +28,33 @@
             {% endblock %}
         </ul>
     </nav>
-    {# a subheading div #}
-    <div class="page-subheading">
-        {% block subheading %}{% endblock %}
-    </div>
+    
     {# main content area #}
     <div class="content-container">
+        <div class="side-section-sm">
+            <h3>Search site</h3>
+            
+                <form id="searchForm">
+                    <input type="text" placeholder="Search" class="input-box" onkeyup="showResult(this.value)">
+                    <div id="livesearch"></div>
+                </form>
+            
+            <h2>Older Posts</h2>
+            {% block sidebar %}
+            {% if content is defined %}
+            {% for con in content %}
+                <a class="readmore-link" href="/{{ con.pageName }}/{{ con.contentId }}">{{ con.contentItemTitle }}</a><br>
+            {% endfor %}
+            {% endif %}
+        {% endblock %}
+        
+        </div>
         {% block content %}
             {% include 'content.html.twig' %}
         {% endblock %}
     </div>
     {# a space for a link to go backwards in the navigation tree #}
-    <div class="back-link">
-        {% block back_link %}{% endblock %}
-    </div>
+   <hr>
     {# the footer #}
     <footer class="footer">
         {% include 'footer.html.twig' %}
@@ -50,6 +63,7 @@
     {# the javscript functions will not be available on every page #}
     {# so when they're needed, include them in a block in a template #}
     {% block javascript %}
+        <script src="{{ app.request.basepath }}/js/ajax.js"></script>
     {% endblock %}
 </body>
 </html>

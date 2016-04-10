@@ -2,6 +2,7 @@
 namespace CMS\Controllers;
 
 use Silex\Application;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\Request;
 use CMS\DbRepository;
 use CMS\Image;
@@ -93,6 +94,7 @@ class ImageController
 
 	/**
 	 * A controller for processing the upload images form.
+	 * Validations: a jpg or png, under 1M and file must not already exist.
 	 * The image path will be stored in the db.
 	 * 
 	 * @param request object
@@ -104,62 +106,67 @@ class ImageController
 	{
 		
 		# image upload code..[ adapted from www.w3schools.com and www.davidwalsh.com image upload code ]
-        
+		# Also uses the symfony validator service to check the file type. 
         # $_FILES['photo']['$var'] -- this holds 4 varaiables::'name','size','tmp_name','error' (image is the name on the html form)
-        $valid_file = false;
-        if ($_FILES['image']['name']) {
-            //if no errors...
-            if (!$_FILES['image']['error']) {
-                // validate the file
-                $valid_file = true;
-                if ($_FILES['image']['size'] > (1024000)) { //can't be larger than 1 MB
-    				$valid_file = false;
-                }
-
-                if (!$size = getimagesize($_FILES['image']['name'])) {
-                	$valid_types = array(IMAGETYPE_JPEG, IMAGETYPE_PNG);
-                	if(in_array($size[2],  $valid_types)) {
-        				$valid_file = true;
-    				} else {
-       				 $valid_file = false;
-   					 }
-                	$valid_file = false;
-                }
-                if ($valid_file == true) {
-                    //move it to the images folder
-                    move_uploaded_file($_FILES['image']['tmp_name'], $request->getBasePath().'images/' . $_FILES['image']['name']);
-                }
-            } //if there is an error
-            else {
-                //set that to be the returned message
-                $answer = 'Ooops!  Your upload triggered the following error:  ' . $_FILES['image']['error'];
-                print $answer;
-            }
+        # Sets a validation variable - $uploadOk -. 
+        # This needs to be true at the end of validation for the upload to proceed.
+        $uploadOk = false;
+        $message = '';
+        if (!$_FILES['image']['error']) {
+        	$uploadOk = true;
+        } elseif ($_FILES['image']['error']) {
+        	$message .= 'There was a problem with the upload. Check the following : 1. The image should be a .jpg or a .png.'.'<br>'.'2. The image is under 1 Megabyte.';
+        	$uploadOk = false;
         }
-        // assign the name of the uploaded image to a variable
-        $path = $_FILES['image']['name'];
-        // create a new product object and set the image as the uploaded image name
-        // e.g carrot_salad.jpg . The set method will create a string that will correspond
-        // to an image path . Then the getImage() method will return the path for the insert
-        // statement that is used by the createProduct method in the model.
-        // Finally, the selectAll() method will select all products from the database
-        // in which the new image can be seen for the new product.
-        $newImage = new Image();
-        $newImage->setImagePath($path);
-        $image = $newImage->getImagePath();
-        $db = new DbRepository($app['dbh']);
-        $result = $db->uploadImage($image);
-        $images = $db->viewImages();
-		$content = $db->getAllPagesContent();
-        $args_array = array(
-			'user' => $app['session']->get('user'),
-			'result' => $result,
-			'images' => $images,
-			'content' => $content	
+        $constraint = new Assert\Image(array(
+        	'mimeTypes' => array('image/jpeg','image/png')
+        	));
+        
+        $errors = $app['validator']->validate($_FILES['image']['tmp_name'], $constraint);
+        if (count($errors) > 0) {
+        	foreach ($errors as $error) {
+            	$message .= $error->getPropertyPath().' '.$error->getMessage()."\n";	
+        	} 
+        	$uploadOk = false;
+        } 
+        if (file_exists($request->getBasePath().'images/' . $_FILES['image']['name'])) {
+    		$message .= "Sorry, file already exists.";
+    		$uploadOk = false;
+		}
+       
+        # var_dump($uploadOk);
+        # if the validation variable is false, re-render the upload form with an error message
+        if ($uploadOk == false) {
+           		$args_array = array(
+				'user' => $app['session']->get('user'),
+				'result' => $message
 			);
-		$templateName = '_viewImages';
+			$templateName = '_uploadImageForm';
 
-		return $app['twig']->render($templateName.'.html.twig', $args_array);
+			return $app['twig']->render($templateName.'.html.twig', $args_array);
+
+        } 
+        else {
+
+         move_uploaded_file($_FILES['image']['tmp_name'], $request->getBasePath().'images/' . $_FILES['image']['name']);
+            $path = $_FILES['image']['name'];
+        	$newImage = new Image();
+        	$newImage->setImagePath($path);
+       		$image = $newImage->getImagePath();
+        	$db = new DbRepository($app['dbh']);
+        	$result = $db->uploadImage($image);
+        	$images = $db->viewImages();
+			$content = $db->getAllPagesContent();
+        	$args_array = array(
+				'user' => $app['session']->get('user'),
+				'result' => $result,
+				'images' => $images,
+				'content' => $content	
+				);
+			$templateName = '_viewImages';
+
+			return $app['twig']->render($templateName.'.html.twig', $args_array);
+        }
 
 	}
 }

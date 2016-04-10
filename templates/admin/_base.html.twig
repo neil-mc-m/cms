@@ -54,7 +54,7 @@
                     <a class="alt-link" href="{{ path('admin_logout') }}">Logout</a>
                     <p class="cust-h">
                         {% if result is defined %}
-                            {{ result }}
+                            {{ result|raw }}
                         {% endif %}
                     </p>
                 </div>

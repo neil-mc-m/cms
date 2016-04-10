@@ -21,7 +21,7 @@ Admin delete form
             <input type="radio" name="pageName" value="{{ page.pageName }}" checked>{{ page.pageName }}<br>
             <input type="hidden" name="pageTemplate" value="{{ page.pageTemplate }}"/><br>
             {% endfor %}
-            <input style="width: 10rem; height: 3.2rem;" type="submit" value="delete" onclick="return confirm('Sure you want to delete this page?');">
+            <input class="input-box" type="submit" value="Delete Page" onclick="return confirm('Sure you want to delete this page?');">
         </form>
 
 

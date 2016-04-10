@@ -57,7 +57,7 @@ class MainController
     {
         $db = new DbRepository($app['dbh']);
         $pageName = $db->getPageName($pageRoute);
-        var_dump($pageName);
+        
         $singlePage = $db->getSinglePage($pageName);
         $content = $db->getContent($pageName);
         

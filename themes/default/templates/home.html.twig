@@ -14,7 +14,7 @@
 
 
 
-{% block subheading %}<h2>Your sub heading div</h2>{% endblock %}
+
 
 
 {% block content %}
@@ -22,6 +22,7 @@
         {% for con in content %}
             <article class="main-section">
                 <h2>{{ con.contentItemTitle }}</h2>
+                <img src="{{ app.request.basepath }}{{ con.imagePath|raw }}">
                 <p>
                     {{ con.contentItem|slice(0,100) }}...<a class="readmore-link" href="/{{ con.pageName }}/{{ con.contentId }}">read more</a>
                 </p>
@@ -36,11 +37,9 @@
                 </div>
             </article>
         {% endfor %}
-        {% for con in content %}
+        
     <article class="side-section">
-                <h2>Older Posts</h2>
-                <a class="readmore-link" href="/{{ con.pageName }}/{{ con.contentId }}">{{ con.contentItemTitle }}</a>
-            {% endfor %}
+                
         </article>
     {% endif %}
 {% endblock %}

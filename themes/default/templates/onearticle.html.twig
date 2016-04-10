@@ -6,24 +6,24 @@
 {{ active_page }}
 {% endblock %}
 
-{% block subheading %}
-    <h2>{{ title }}</h2>
-{% endblock %}
 
+{% block sidebar %}
+    
+                <a class="readmore-link" href="/{% for page in app.pages %}{% if page.pageName == pageName %}{{ page.pageRoute }}{% endif %}{% endfor %}/{{ contentId }}">{{ title }}</a>
+{% endblock %}
 {% block content %}
     <article class="main-section">
         	{# the paragraph filter is an extension registered in index.php line 55 #}
         	{# taken from https://github.com/jasny/twig-extensions #}
             <img src="{{ app.request.basepath }}{{ image|raw }}">
-            {{ article|paragraph }}
+            {{ article }}
         
         <p class="created">
             This article was created on: {{ created }}
         </p>
     </article>
     <article class="side-section">
-                <h2>Older Posts</h2>
-                <a class="readmore-link" href="/{% for page in app.pages %}{% if page.pageName == pageName %}{{ page.pageRoute }}{% endif %}{% endfor %}/{{ contentId }}">{{ title }}</a>
+                
             
         </article>
 {% endblock %}

@@ -2,56 +2,34 @@
 {% set pagesSubNav = [['create-page', 'Create a new web-page'], ['view-pages', 'View current pages'], ['delete-page', 'Remove a page']] %}
 {# set the active page to be styled. Do this on every different page #}
 {% set active_page = "pages" %}
-
 {% block title %}
-Admin Pages
+    Admin Pages
 {% endblock %}
-
-
-
-
-
-
-
-
-
 {% block content %}
-
-    <h2 class="cust-h">Current Pages</h2>
-            {% for page in app.pages %}
-        <div class="page-preview-box">
-            <h4>Page : {{ page.pageName }}</h4>
-                {% for content in content %}
+    <h2>Current Pages</h2>
+    
+    
+    {% for page in app.pages %}
+        <h4>Page : <span class="cust-name">{{ page.pageName }}</span></h4>
+        <div class="sm-container">
+        {% for content in content %}
+            {% if page.pageName == content.pageName %}
+                
                     
-
-                    {% if page.pageName == content.pageName %}
-                        
-                        <p>Article Title : {{ content.contentItemTitle }}</p>
-
-                    {% endif %}
-
-                {% endfor %}
-
-
-                <ul>
-                    <li><a class="admin-button" href="/{{ page.pageRoute }}" target="_blank"><span class="button">Preview</span></a></li>
-                </ul>
-
-
-                </div>
-        {% endfor %}
-        <p>
-            {% if result is defined %}
-            {{ result }}
-            {% endif %}
-        </p>
-
-{% endblock %}
-{% block iframe %}
-
-
-{% endblock %}
-{% block javascript %}
-
+                    
+                    
+                    <p>Article Title : {{ content.contentItemTitle }}</p>
+                    <p>Date created : {{ content.created }}</p>
+                {% endif %}
+            {% endfor %}
+            
+            <a class="alt-link" href="/{{ page.pageRoute }}" target="_blank"><span class="button">Preview</span></a>
+            </div>
+            
+            
+            
+        
+    {% endfor %}
+    
 
 {% endblock %}
