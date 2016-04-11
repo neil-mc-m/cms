@@ -9,7 +9,7 @@
     <style>
     {% block style %}
         @import url(https://fonts.googleapis.com/css?family=Raleway);
-        @import url(https://fonts.googleapis.com/css?family=Josefin+Sans:600italic);
+        @import url(https://fonts.googleapis.com/css?family=Poiret+One);
         @import '{{ app.request.basepath }}/css/default_theme.css';
     {% endblock %}
     </style>
@@ -19,7 +19,9 @@
         {% block header %}
             <h1 class="title">{{ app.title }}</h1>
         {% endblock %}
+
     </header>
+    
     {# the navbar #}
     <nav class="navbar">
         <ul>
@@ -28,32 +30,33 @@
             {% endblock %}
         </ul>
     </nav>
-    
+    <hr>
     {# main content area #}
     <div class="content-container">
         <div class="side-section-sm">
+            {% block search %}
             <h3>Search site</h3>
             
                 <form id="searchForm">
                     <input type="text" placeholder="Search" class="input-box" onkeyup="showResult(this.value)">
                     <div id="livesearch"></div>
                 </form>
+            {% endblock %}
             
-            <h2>Older Posts</h2>
             {% block sidebar %}
-            {% if content is defined %}
-            {% for con in content %}
-                <a class="readmore-link" href="/{{ con.pageName }}/{{ con.contentId }}">{{ con.contentItemTitle }}</a><br>
-            {% endfor %}
+                <h3>All Posts</h3>
+            {% if allContent is defined %}
+                {% for con in allContent %}
+                    <a class="readmore-link" href="/{{ con.pageName }}/{{ con.contentId }}">{{ con.contentItemTitle }}...</a><small>{{ con.created }}</small><br>
+                 {% endfor %}
             {% endif %}
         {% endblock %}
-        
         </div>
+
         {% block content %}
             {% include 'content.html.twig' %}
         {% endblock %}
     </div>
-    {# a space for a link to go backwards in the navigation tree #}
    <hr>
     {# the footer #}
     <footer class="footer">

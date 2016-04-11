@@ -60,10 +60,12 @@ class MainController
         
         $singlePage = $db->getSinglePage($pageName);
         $content = $db->getContent($pageName);
+        $allContent = $db->getAllPagesContent();
         
         $args_array = array(
             'pageName' => $singlePage->getPageName(),
             'content' => $content,
+            'allContent' => $allContent
         );
 
         return $app['twig']->render($singlePage->getPageTemplate().'.html.twig', $args_array);
@@ -82,8 +84,10 @@ class MainController
     {
         $db = new DbRepository($app['dbh']);
         $result = $db->showOne($contentId);
+        $allContent = $db->getAllPagesContent();
 
         $args_array = array(
+         'allContent' => $allContent,
          'contentId' => $result->getContentId(),   
          'pageName' => $result->getPageName(),
          'title' => $result->getContentitemtitle(),

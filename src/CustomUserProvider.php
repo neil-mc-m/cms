@@ -25,8 +25,8 @@ class CustomUserProvider implements UserProviderInterface
     public function loadUserByUsername($username)
     {
         $stmt = $this->conn->prepare('SELECT * FROM user WHERE username =:username');
-        $stmt->bindParam(':username', $username, PDO::PARAM_STR, 4);
-        $stmt->setFetchMode(PDO::FETCH_OBJ);
+        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
         $stmt->execute();
         // $stmt = $this->conn->executeQuery('SELECT * FROM user WHERE userName = ?', array(strtolower($username)));
         $user = $stmt->fetch();

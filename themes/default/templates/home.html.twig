@@ -17,29 +17,4 @@
 
 
 
-{% block content %}
-    {% if content is defined %}
-        {% for con in content %}
-            <article class="main-section">
-                <h2>{{ con.contentItemTitle }}</h2>
-                <img src="{{ app.request.basepath }}{{ con.imagePath|raw }}">
-                <p>
-                    {{ con.contentItem|slice(0,100) }}...<a class="readmore-link" href="/{{ con.pageName }}/{{ con.contentId }}">read more</a>
-                </p>
-                <p>
-                    {{ con.created }}
-                    <img class="cal-icon" src="{{ app.request.basepath }}images/calendar.svg" alt="calender pic"/>
-                </p>
-                <div class="comment-box">
-                    <p>
-                        Comments:
-                    </p>
-                </div>
-            </article>
-        {% endfor %}
-        
-    <article class="side-section">
-                
-        </article>
-    {% endif %}
-{% endblock %}
+
