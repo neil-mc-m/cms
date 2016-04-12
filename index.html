@@ -1,0 +1,76 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Cms by studentneil</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/github-light.css">
+    <meta name="viewport" content="width=device-width">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Cms</h1>
+        <p>a content management system</p>
+
+        <p class="view"><a href="https://github.com/studentneil/cms">View the Project on GitHub <small>studentneil/cms</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/studentneil/cms/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/studentneil/cms/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/studentneil/cms">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>
+<a id="cms-usage" class="anchor" href="#cms-usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>CMS-usage</h1>
+
+<h2>
+<a id="1-database-setup" class="anchor" href="#1-database-setup" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Database setup.</h2>
+
+<p>Create a MySQL database called cms. The easiest way of doing this is with PhpMyAdmin. When the database is created, create a new user with a username and password of your choice. This user/password will be used by the application to connect to the database and run the queries. 
+In the config.ini file, located in the config folder, fill in your username and password on the correct lines 
+e.g. <code>dbname = cms, username = (your username), password = (yourpassword)</code><br>
+When the application runs first, it performs a check to see if the database is created. If it is created, the app will create  the correct tables for it to run.</p>
+
+<h2>
+<a id="2-themes" class="anchor" href="#2-themes" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. Themes.</h2>
+
+<p>Themes are also handled within the config.ini file. There is a default theme installed already but this can be changed by commenting out the line <code>theme = default</code> and filling in whichever theme you want to load. e.g. <code>theme = blue</code>. Your theme will need all the templates from the default theme and whichever new templates specific to the new theme. You can add a CSS file to the main CSS folder and link to it from the base.html.twig file of your new theme.  </p>
+
+<h2>
+<a id="3-title-and-background-images" class="anchor" href="#3-title-and-background-images" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. Title and background images.</h2>
+
+<p>Set the site title and a background image if required from the config.ini file also, using the same method as above.</p>
+
+<h2>
+<a id="4-backend-section" class="anchor" href="#4-backend-section" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4. Backend section.</h2>
+
+<p>The administrators backend is accessed by <code>http://&lt;ip address&gt;/admin</code><br>
+So , for example, if using the app on a localhost it would be <code>http://localhost/admin</code>  </p>
+
+<h2>
+<a id="5-creating-pages" class="anchor" href="#5-creating-pages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5. Creating pages.</h2>
+
+<p>From the admin dashboard, choosing the create page option from the menu will display a form with two input fields, page name and template name. Filling these out will automatically create a new web page and a new template for that page. This is a generic template that looks the same as the home page template. To modify this template or use a different template see the section below on modifying templates. Links are generated for the new page on the frontend automatically.   </p>
+
+<h2>
+<a id="6-creating-templates" class="anchor" href="#6-creating-templates" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>6. Creating templates.</h2>
+
+<p>Templates are created with <a href="http://twig.sensiolabs.org/">twig</a> and are loaded from the templates folder within the active themes folder. Templates created at the same time as creating a new page are loaded from the database and have the same layout as the home-page. To modify the layout of a template, create a new page and template, and then create a new file within your templates folder with the same name as your template created through the form. The templates will be loaded from the filesystem first and will override the template stored in the database. You can then edit the template accordingly and change the layout to whatever you want.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/studentneil">studentneil</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
