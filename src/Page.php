@@ -31,7 +31,6 @@ class Page
      * 
      * @var string
      */
-     
     public $pageRoute;
 
     /**
@@ -55,7 +54,7 @@ class Page
      * Get the pageRoute from the pageName variable.
      * 
      * @return string
-     */ 
+     */
     public function getPageRoute()
     {
         return $this->pageRoute;
@@ -86,12 +85,12 @@ class Page
     }
 
     /**
-     * Set the value for the page route and replace spaces with dashes
+     * Set the value for the page route and replace spaces with dashes.
      * 
      * @param string pageRoute
      * 
      * @return self
-     */ 
+     */
     public function setPageRoute($pageName)
     {
         $this->pageRoute = str_replace(' ', '-', $pageName);
@@ -111,5 +110,4 @@ class Page
 
         return $this;
     }
-
 }

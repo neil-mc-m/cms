@@ -1,4 +1,5 @@
 <?php
+
 namespace CMS;
 
 class Content
@@ -12,10 +13,8 @@ class Content
     public $created;
     public $modified;
 
-
-
     /**
-     * Get the value of Contentid
+     * Get the value of Contentid.
      *
      * @return mixed
      */
@@ -25,7 +24,7 @@ class Content
     }
 
     /**
-     * Get the value of Pagename
+     * Get the value of Pagename.
      *
      * @return mixed
      */
@@ -35,7 +34,7 @@ class Content
     }
 
     /**
-     * Get the value of Contenttype
+     * Get the value of Contenttype.
      *
      * @return mixed
      */
@@ -45,7 +44,7 @@ class Content
     }
 
     /**
-     * Get the value of Contentitemtitle
+     * Get the value of Contentitemtitle.
      *
      * @return mixed
      */
@@ -55,7 +54,7 @@ class Content
     }
 
     /**
-     * Get the value of Contentitem
+     * Get the value of Contentitem.
      *
      * @return mixed
      */
@@ -65,17 +64,17 @@ class Content
     }
 
     /**
-     * Get the value of imagePath
+     * Get the value of imagePath.
      * 
      * @return mixed
-     */ 
+     */
     public function getImagePath()
     {
         return $this->imagePath;
     }
 
     /**
-     * Get the value of Created
+     * Get the value of Created.
      *
      * @return mixed
      */
@@ -94,9 +93,8 @@ class Content
         return $this->modified;
     }
 
-
     /**
-     * Set the value of Contentid
+     * Set the value of Contentid.
      *
      * @param mixed contentid
      *
@@ -110,7 +108,7 @@ class Content
     }
 
     /**
-     * Set the value of Pagename
+     * Set the value of Pagename.
      *
      * @param mixed pagename
      *
@@ -124,7 +122,7 @@ class Content
     }
 
     /**
-     * Set the value of Contenttype
+     * Set the value of Contenttype.
      *
      * @param mixed contenttype
      *
@@ -138,7 +136,7 @@ class Content
     }
 
     /**
-     * Set the value of Contentitemtitle
+     * Set the value of Contentitemtitle.
      *
      * @param mixed contentitemtitle
      *
@@ -152,7 +150,7 @@ class Content
     }
 
     /**
-     * Set the value of Contentitem
+     * Set the value of Contentitem.
      *
      * @param mixed contentitem
      *
@@ -171,7 +169,7 @@ class Content
      * @param mixed imagePath
      * 
      * @return self
-     */ 
+     */
     public function setImagePath($imagePath)
     {
         $this->imagePath = $imagePath;
@@ -179,7 +177,7 @@ class Content
         return $this;
     }
     /**
-     * Set the value of Created
+     * Set the value of Created.
      *
      * @param mixed created
      *
@@ -198,13 +196,11 @@ class Content
      * @param mixed modified
      * 
      * @return self
-     */ 
+     */
     public function setModified($modified)
     {
         $this->modified = $modified;
 
         return $this;
     }
-
- 
 }

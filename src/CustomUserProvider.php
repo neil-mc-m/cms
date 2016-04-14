@@ -12,25 +12,21 @@ use PDO;
 class CustomUserProvider implements UserProviderInterface
 {
     private $conn;
-    private $app;
 
-    public function __construct($app)
+    public function __construct(\PDO $conn)
     {
-        $this->app = $app;
-        $pdo = new DbManager();
-        $conn = $pdo->getPdoInstance();
         $this->conn = $conn;
     }
 
     public function loadUserByUsername($username)
     {
         $stmt = $this->conn->prepare('SELECT * FROM user WHERE username =:username');
-        $stmt->bindParam(':username', $username, PDO::PARAM_STR);
+        $stmt->bindParam(':username', $username);
         $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
         $stmt->execute();
+
         // $stmt = $this->conn->executeQuery('SELECT * FROM user WHERE userName = ?', array(strtolower($username)));
-        $user = $stmt->fetch();
-        var_dump($user);
+
         if (!$user = $stmt->fetch()) {
             #$app['monolog']->addInfo('you just connected to the database');
             throw new UsernameNotFoundException(sprintf('Username "%s" does not exist.', $username));

@@ -64,8 +64,9 @@ li.dropdown {
   position: absolute;
   display: none;
   min-width: 160px;
-  background-color: #719BAF;
-  /*background-color: #f9f9f9;*/
+
+  /*background-color: #719BAF;*/
+  background-color: #f9f9f9;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2);
 }
 
@@ -75,10 +76,6 @@ li.dropdown {
   text-align: left;
   text-decoration: none;
   color: black;
-}
-
-.dropdown-content a:hover {
-  background-color: #ff5733;
 }
 
 .dropdown:hover .dropdown-content {
@@ -101,7 +98,6 @@ a:hover {
 }
 
 .alt-link {
-  /*padding: 1.5%;*/
   font-size: 1.2rem;
   color: #003;
   text-decoration: none;
@@ -125,7 +121,7 @@ a:hover {
 .sm-container {
   padding-bottom: 2rem;
   margin-bottom: 2rem;
-  border-bottom: thin solid #003; 
+  border-bottom: thin solid #003;
 }
 
 .section {
@@ -141,8 +137,7 @@ a:hover {
 }
 
 #livesearch a {
-  background-color: #E9F2F7;
-  
+  background-color: #f9f9f9;
   position: absolute;
   border: thin solid grey;
   padding: 2rem;
@@ -158,6 +153,7 @@ a:hover {
   font-weight: normal;
   font-size: 1.8rem;
 }
+
 /* custom name styles */
 .cust-name {
   color: #ff5733;

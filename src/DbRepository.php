@@ -13,20 +13,19 @@ class DbRepository
 {
     /**
      * PDO database connection object.
+     *
      * @var PDO instance
      */
     private $conn;
-   
+
     public function __construct(PDO $conn)
     {
         $this->conn = $conn;
     }
 
-   
     public function getAllPages()
     {
         try {
-
             $stmt = $this->conn->prepare('SELECT * FROM page');
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_CLASS, __NAMESPACE__.'\\Page');
@@ -40,7 +39,6 @@ class DbRepository
     public function getSinglePage($pageName)
     {
         try {
-
             $stmt = $this->conn->prepare('SELECT * FROM page WHERE pageName=:pageName');
             $stmt->bindParam(':pageName', $pageName);
             $stmt->setFetchMode(PDO::FETCH_CLASS, __NAMESPACE__.'\\Page');
@@ -50,7 +48,6 @@ class DbRepository
             } else {
                 return;
             }
-
         } catch (PDOException $e) {
             echo $e->getMessage();
         }
@@ -66,7 +63,7 @@ class DbRepository
 
             return $result;
         } catch (PDOException $e) {
-            print $e->getMessage();
+            echo $e->getMessage();
         }
     }
 
@@ -78,7 +75,6 @@ class DbRepository
     public function showOne($contentId)
     {
         try {
-
             $stmt = $this->conn->prepare('SELECT * FROM content WHERE contentId =:contentId');
             $stmt->bindParam(':contentId', $contentId, PDO::PARAM_INT);
             $stmt->setFetchMode(PDO::FETCH_CLASS, __NAMESPACE__.'\\Content');
@@ -103,7 +99,6 @@ class DbRepository
     public function getContent($pageName)
     {
         try {
-            
             $stmt = $this->conn->prepare('SELECT * FROM content WHERE pageName =:pageName');
             $stmt->bindParam(':pageName', $pageName, PDO::PARAM_STR, 5);
             $stmt->execute();
@@ -117,7 +112,6 @@ class DbRepository
     public function getAllPagesContent()
     {
         try {
-
             $stmt = $this->conn->prepare('SELECT * FROM content');
             $stmt->execute();
             $result = $stmt->fetchAll(PDO::FETCH_CLASS, __NAMESPACE__.'\\Content');
@@ -194,13 +188,13 @@ class DbRepository
             $stmtpage->bindParam(':pageName', $pageName);
             $stmtpage->execute();
 
-            $pageTemplate = $pageTemplate.'.html.twig';
-            $stmttemplate->bindParam(':pageTemplate', $pageTemplate);
+            $template = $pageTemplate.'.html.twig';
+            $stmttemplate->bindParam(':pageTemplate', $template);
             $stmttemplate->execute();
 
             $stmtcontent->bindParam(':pageName', $pageName);
             $stmtcontent->execute();
-            
+
             $result = '';
             if (!$this->conn->commit()) {
                 $result .= 'Heuston we have a problem!';
@@ -226,9 +220,10 @@ class DbRepository
             if (!$stmt->execute()) {
                 $result .= 'Heuston we have a problem!';
             }
+
             return $result .= 'Nice. Some new content created';
         } catch (PDOException $e) {
-            print $e->getMessage();
+            echo $e->getMessage();
         }
     }
 
@@ -238,12 +233,13 @@ class DbRepository
             $result = '';
             $stmt = $this->conn->prepare('DELETE FROM content WHERE contentId=:contentId');
             $stmt->bindParam(':contentId', $contentId);
-            if(!$stmt->execute()) {
+            if (!$stmt->execute()) {
                 $result .= 'Heuston, we have a problem!';
             }
+
             return $result .= 'Well done, another post deleted!';
         } catch (PDOException $e) {
-            print $e->getMessage();
+            echo $e->getMessage();
         }
     }
 
@@ -260,12 +256,13 @@ class DbRepository
             if (!$stmt->execute()) {
                 return $result .= 'Heuston, We have a problem!';
             }
+
             return $result .= 'Successfully updated '.$stmt->rowCount().' Items';
         } catch (PDOException $e) {
-            print $e->getMessage();
+            echo $e->getMessage();
         }
     }
-    
+
     public function viewImages()
     {
         try {
@@ -275,7 +272,7 @@ class DbRepository
 
             return $result;
         } catch (PDOException $e) {
-            print $e->getMessage();
+            echo $e->getMessage();
         }
     }
 
@@ -295,7 +292,7 @@ class DbRepository
 
             return $result;
         } catch (PDOException $e) {
-            print $e->getMessage();
+            echo $e->getMessage();
         }
     }
 
@@ -310,9 +307,10 @@ class DbRepository
             } else {
                 $result .= 'Great! Successfully uploaded '.$stmt->rowCount().' Image';
             }
+
             return $result;
         } catch (PDOException $e) {
-            print $e->getMessage();
+            echo $e->getMessage();
         }
     }
 
@@ -324,14 +322,15 @@ class DbRepository
             $q = '%'.$q.'%';
             $stmt->bindParam(':q', $q);
             $stmt->execute();
-            
+
             while ($result = $stmt->fetchAll(PDO::FETCH_OBJ)) {
                 $array[] = $result;
             }
             $array = json_encode($array);
+
             return $array;
         } catch (PDOException $e) {
-            print $e->getMessage();
+            echo $e->getMessage();
         }
     }
 }

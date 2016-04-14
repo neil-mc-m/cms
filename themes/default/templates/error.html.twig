@@ -1,0 +1,11 @@
+{# the home page template #}
+{% extends 'base.html.twig' %}
+
+{% set active_page = 'home' %}
+
+{% block title %}
+{{ active_page }}
+{% endblock %}
+{% block content %}
+	<p>Sorry, theres been an error somewhere. Consult your logfiles for more details.</p>
+{% endblock %}

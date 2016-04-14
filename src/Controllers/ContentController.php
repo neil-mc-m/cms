@@ -5,32 +5,29 @@ namespace CMS\Controllers;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use CMS\DbRepository;
+
 /**
  * The Content Controller class.
  * 
  * Used for processing requests for content. CRUD actions on content
- * 
- * 
  */
 class ContentController
 {
     /**
      * 
-     * 
-     */ 
-     
+     */
     public function contentAction(Request $request, Application $app)
     {
         $db = new DbRepository($app['dbh']);
         $app['monolog']->addInfo('You just connected to the database');
         # get all pages currently stored in the db.
         # Used for building the navbar and setting page titles.
-        
+
         $content = $db->getAllPagesContent();
 
         $args_array = array(
             'content' => $content,
-            'user' => $app['session']->get('user')
+            'user' => $app['session']->get('user'),
         );
 
         $templateName = '_content';
@@ -41,7 +38,7 @@ class ContentController
     public function singleContentAction(Request $request, Application $app, $contentId)
     {
         $db = new DbRepository($app['dbh']);
-        
+
         $content = $db->showOne($contentId);
 
         $args_array = array(
@@ -50,7 +47,7 @@ class ContentController
             'contentitemtitle' => $content->getContentItemTitle(),
             'contentitem' => $content->getContentItem(),
             'created' => $content->getCreated(),
-            'contentid' => $content->getContentId()
+            'contentid' => $content->getContentId(),
             );
 
         $templateName = '_singleContent';
@@ -58,13 +55,12 @@ class ContentController
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
 
-
     public function createContentFormAction(Request $request, Application $app)
     {
         $db = new DbRepository($app['dbh']);
 
         $args_array = array(
-            'user' => $app['session']->get('user')
+            'user' => $app['session']->get('user'),
         );
 
         $templateName = '_contentForm';
@@ -83,7 +79,7 @@ class ContentController
 
         $args_array = array(
             'user' => $app['session']->get('user'),
-            'result' => $result
+            'result' => $result,
             );
 
         $templateName = '_dashboard';
@@ -98,7 +94,7 @@ class ContentController
 
         $args_array = array(
             'user' => $app['session']->get('user'),
-            'allcontent' => $allContent
+            'allcontent' => $allContent,
         );
 
         $templateName = '_deleteContentForm';
@@ -115,23 +111,22 @@ class ContentController
         $args_array = array(
             'user' => $app['session']->get('user'),
             'content' => $content,
-            'result' => $result
+            'result' => $result,
             );
 
         $templateName = '_content';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
-
     }
 
     public function editContentAction(Request $request, Application $app, $contentId)
     {
         $db = new DbRepository($app['dbh']);
-        $content  = $db->showOne($contentId);
+        $content = $db->showOne($contentId);
 
         $args_array = array(
             'user' => $app['session']->get('user'),
-            'content' => $content
+            'content' => $content,
             );
 
         $templateName = '_editContentForm';
@@ -151,7 +146,7 @@ class ContentController
 
         $args_array = array(
             'user' => $app['session']->get('user'),
-            'result' => $result    
+            'result' => $result,
             );
 
         $templateName = '_dashboard';

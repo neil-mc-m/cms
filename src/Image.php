@@ -1,4 +1,5 @@
 <?php
+
 namespace CMS;
 
 /**
@@ -8,30 +9,29 @@ namespace CMS;
  * piece of content.
  * 
  * @Class Image
- */ 
+ */
 class Image
 {
-	/**
-	 * The image id.
-	 * 
-	 * @var int.
-	 */ 
-	public $id;
+    /**
+     * The image id.
+     * 
+     * @var int.
+     */
+    public $id;
 
-	/**
-	 * The contentId the image is connected to.
-	 * 
-	 * @var int
-	 */ 
-	public $contentId;
+    /**
+     * The contentId the image is connected to.
+     * 
+     * @var int
+     */
+    public $contentId;
 
-	/**
-	 * The path to the image.
-	 * 
-	 * @var String
-	 */ 
-	public $imagePath;
-
+    /**
+     * The path to the image.
+     * 
+     * @var string
+     */
+    public $imagePath;
 
     /**
      * Gets the value of id.
@@ -100,7 +100,7 @@ class Image
      */
     public function setImagePath($path)
     {
-        $this->path = '/images/'. $path .'" class="img-resp" alt="'.str_replace('.jpg', '_pic', $path).'"';
+        $this->path = '/images/'.$path.'" class="img-resp" alt="'.str_replace('.jpg', '_pic', $path).'"';
 
         return $this;
     }

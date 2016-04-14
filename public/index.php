@@ -5,7 +5,11 @@
 use CMS\DbManager;
 use CMS\DbRepository;
 use CMS\DatabaseTwigLoader;
+use CMS\CustomUserProvider;
 use Symfony\Component\Security\Core\Encoder\MessageDigestPasswordEncoder;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Debug\ErrorHandler;
+use Symfony\Component\Debug\ExceptionHandler;
 
 require_once __DIR__.'/../vendor/autoload.php';
 # parse the config file 
@@ -15,8 +19,8 @@ $myTemplatesPath1 = __DIR__.'/../themes/'.$config['themes']['theme'].'/templates
 $myTemplatesPath2 = __DIR__.'/../templates/admin';
 $loggerPath = dirname(__DIR__).'/logs';
 $app = new Silex\Application();
-
-
+ErrorHandler::register();
+ExceptionHandler::register();
 
 $app['title'] = '';
 if (isset($config['title']['title'])) {
@@ -25,11 +29,8 @@ if (isset($config['title']['title'])) {
 
 $app['image'] = '';
 if (isset($config['bg-image']['image'])) {
-    $app['image'] = '/images/'.$config['bg-image']['image']; 
+    $app['image'] = '/images/'.$config['bg-image']['image'];
 }
-
-
-
 
 # store regularly used variables(services?) in the app container
 $dbmanager = new DbManager();
@@ -47,9 +48,9 @@ $app['pages'] = $db->getAllPages();
 $app['images'] = $db->viewImages();
 # twig loaders for templates: a database loader for dynamically created templates,
 # and a filesystem loader for templates stored on the filesystem. 
-$app['loader1']  = new DatabaseTwigLoader($app['dbh']);
-$app['loader2'] = new Twig_Loader_Filesystem(array($myTemplatesPath1, $myTemplatesPath2));
-$app['debug'] = true;
+$app['loader1'] = new Twig_Loader_Filesystem(array($myTemplatesPath1, $myTemplatesPath2));
+$app['loader2'] = new DatabaseTwigLoader($app['dbh']);
+# $app['debug'] = true;
 # ______________________________________________________________
 #              ADD PROVIDERS HERE
 # ______________________________________________________________
@@ -58,10 +59,9 @@ $app->register(new Silex\Provider\ValidatorServiceProvider());
 $app->register(new Silex\Provider\UrlGeneratorServiceProvider());
 $app->register(new Silex\Provider\SessionServiceProvider());
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
-    #'twig.path' => array($myTemplatesPath1, $myTemplatesPath2),
-    'twig.loader' => $app->share(function()use($app){
+    'twig.loader' => $app->share(function () use ($app) {
         return new Twig_Loader_Chain(array($app['loader1'], $app['loader2']));
-        })));
+        }), ));
 $app->register(new Silex\Provider\SecurityServiceProvider(), array(
         'security.firewalls' => array(
 
@@ -69,21 +69,31 @@ $app->register(new Silex\Provider\SecurityServiceProvider(), array(
                 'pattern' => '^/admin',
                 'form' => array('login_path' => '/login', 'check_path' => '/admin/login_check', 'username_parameter' => '_username', 'password_parameter' => '_password'),
                 'logout' => array('logout_path' => '/admin/logout', 'invalidate_session' => true),
-                'users' => array(
-                    'admin' => array('ROLE_ADMIN', '5FZ2Z8QIkA7UTZ4BYkoC+GsReLf569mSKDsfods6LYQ8t+a8EW9oaircfMpmaLbPBh4FOBiiFyLfuZmTSUwzZg==')
+                'users' => $app->share(function () use ($app) {
+                    return new CustomUserProvider($app['dbh']);
+                }),
         ),
     ),
-),));
+));
+$app['security.encoder.digest'] = $app->share(function ($app) {
+        // use the sha1 algorithm
+        // don't base64 encode the password
+        // use only 1 iteration
+        return new MessageDigestPasswordEncoder('sha512', false, 1);
+    });
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
-    'monolog.logfile' => $loggerPath .'/development.log'
-));;
+    'monolog.logfile' => $loggerPath.'/development.log',
+));
 # an extension to add a paragraphing filter to twig templates.
 # see https://github.com/jasny/twig-extensions. 
-$app['twig'] = $app->share($app->extend('twig', function($twig, $app) {
+$app['twig'] = $app->share($app->extend('twig', function ($twig, $app) {
     $twig->addExtension(new Jasny\Twig\TextExtension());
 
     return $twig;
 }));
+$app->error(function (\Exception $e, $code) use ($app) {
+    return new Response($app['twig']->render('error.html.twig'));
+});
 # ________________________________________________________________
 #                      ROUTES
 # ________________________________________________________________
@@ -94,10 +104,8 @@ $app->get('/login', 'CMS\\Controllers\\SecurityController::logInAction');
 $app->get('/search/{q}', 'CMS\\Controllers\\SearchController::searchAction');
 $app->get('/{pageRoute}', 'CMS\\Controllers\\MainController::routeAction');
 
-
 $app->get('/articles', 'CMS\\Controllers\\MainController::articlesAction');
 $app->get('/articles/{id}', 'CMS\\Controllers\\MainController::oneArticleAction');
-
 
 $app->get('/admin/logout', 'CMS\\Controllers\\SecurityController::logoutAction');
 
@@ -124,13 +132,10 @@ $app->get('/admin/process-delete-content/{contentid}', 'CMS\\Controllers\\Conten
 $app->get('/admin/edit-content/{contentId}', 'CMS\\Controllers\\ContentController::editContentAction');
 $app->post('/admin/process-edit-content', 'CMS\\Controllers\\ContentController::processEditContentAction');
 
-
-
 $app->get('/admin/images', 'CMS\\Controllers\\ImageController::viewImagesAction');
 $app->post('/admin/add-image', 'CMS\\Controllers\\ImageController::addImageAction');
 $app->get('/admin/upload-image', 'CMS\\Controllers\\ImageController::uploadImageFormAction');
 $app->post('admin/process-imageUpload', 'CMS\\Controllers\\ImageController::processImageUploadAction');
-
 
 $app->get('/{pageRoute}/{contentId}', 'CMS\\Controllers\\MainController::oneArticleAction');
 $app->run();

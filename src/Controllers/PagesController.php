@@ -13,11 +13,11 @@ class PagesController
     // {
     //     $db = new DbRepository($app['dbh']);
     //     #$pages = $db->getAllPages();
-        
+
     //     #var_dump($pages);
     //     $args_array = array(
     //         'user' => $app['session']->get('user'),
-            
+
     //         #'pages' => $pages,
     //     );
     //     $templateName = '_pages';
@@ -29,7 +29,7 @@ class PagesController
     {
         $db = new DbRepository($app['dbh']);
         $content = $db->getAllPagesContent();
-    
+
         $args_array = array(
             'user' => $app['session']->get('user'),
             'content' => $content,
@@ -49,7 +49,7 @@ class PagesController
     public function createPageAction(Request $request, Application $app)
     {
         $db = new DbRepository($app['dbh']);
-        
+
         $args_array = array(
             'user' => $app['session']->get('user'),
         );
@@ -85,14 +85,13 @@ class PagesController
     }
 
     /**
-     * A controller to render the delete page form
+     * A controller to render the delete page form.
      * 
      * @param request, the request object.
      * @param app, the application object ($app)
      * 
      * @return renders the delete page form.
-     * 
-     */ 
+     */
     public function deletePageAction(Request $request, Application $app)
     {
         $args_array = array(
@@ -111,8 +110,7 @@ class PagesController
      * @param app, the application object ($app)
      * 
      * @return processes and re-renders the delete page form.
-     * 
-     */ 
+     */
     public function processDeletePageAction(Request $request, Application $app)
     {
         $db = new DbRepository($app['dbh']);
@@ -121,7 +119,7 @@ class PagesController
         $result = $db->deletePage($pageName, $pageTemplate);
 
         $args_array = array(
-            'user' => $app['session']->get('user'), 
+            'user' => $app['session']->get('user'),
             'result' => $result,
         );
         $templateName = '_dashboard';

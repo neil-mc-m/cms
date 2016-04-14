@@ -1,4 +1,5 @@
 {% extends '_base.html.twig' %}
+{# Set the links for the pages dropdown menu #}
 {% set pagesSubNav = [['create-page', 'Create a new web-page'], ['view-pages', 'View current pages'], ['delete-page', 'Remove a page']] %}
 {# set the active page to be styled. Do this on every different page #}
 {% set active_page = "pages" %}
@@ -7,29 +8,16 @@
 {% endblock %}
 {% block content %}
     <h2>Current Pages</h2>
-    
-    
     {% for page in app.pages %}
         <h4>Page : <span class="cust-name">{{ page.pageName }}</span></h4>
         <div class="sm-container">
-        {% for content in content %}
-            {% if page.pageName == content.pageName %}
-                
-                    
-                    
-                    
+            {% for content in content %}
+                {% if page.pageName == content.pageName %}
                     <p>Article Title : {{ content.contentItemTitle }}</p>
                     <p>Date created : {{ content.created }}</p>
                 {% endif %}
             {% endfor %}
-            
             <a class="alt-link" href="/{{ page.pageRoute }}" target="_blank"><span class="button">Preview</span></a>
-            </div>
-            
-            
-            
-        
+        </div>
     {% endfor %}
-    
-
 {% endblock %}

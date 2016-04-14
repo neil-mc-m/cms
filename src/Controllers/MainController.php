@@ -5,8 +5,6 @@
 
 namespace CMS\Controllers;
 
-use CMS\DbManager;
-use CMS\DatabaseTwigLoader;
 use Silex\Application;
 use Symfony\Component\HttpFoundation\Request;
 use CMS\DbRepository;
@@ -34,15 +32,15 @@ class MainController
         $app['monolog']->addInfo('You just connected to the database');
         # as this is the home page controller, get the home pages content
         $content = $db->getContent('home');
-
+        $allContent = $db->getAllPagesContent();
         $args_array = array(
+            'allContent' => $allContent,
             'content' => $content,
         );
         $templateName = 'home';
 
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
-
 
     /**
      * Main routing out of the home page.
@@ -57,15 +55,15 @@ class MainController
     {
         $db = new DbRepository($app['dbh']);
         $pageName = $db->getPageName($pageRoute);
-        
+
         $singlePage = $db->getSinglePage($pageName);
         $content = $db->getContent($pageName);
         $allContent = $db->getAllPagesContent();
-        
+
         $args_array = array(
             'pageName' => $singlePage->getPageName(),
             'content' => $content,
-            'allContent' => $allContent
+            'allContent' => $allContent,
         );
 
         return $app['twig']->render($singlePage->getPageTemplate().'.html.twig', $args_array);
@@ -88,12 +86,12 @@ class MainController
 
         $args_array = array(
          'allContent' => $allContent,
-         'contentId' => $result->getContentId(),   
+         'contentId' => $result->getContentId(),
          'pageName' => $result->getPageName(),
          'title' => $result->getContentitemtitle(),
          'article' => $result->getContentitem(),
          'image' => $result->getImagePath(),
-         'created' => $result->getCreated()
+         'created' => $result->getCreated(),
        );
         $templateName = 'onearticle';
 

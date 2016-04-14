@@ -2,35 +2,19 @@
 {% set pagesSubNav = [['create-page', 'Create a new web-page'], ['view-pages', 'View current pages'], ['delete-page', 'Remove a page']] %}
 {# set the active page to be styled. Do this on every different page #}
 {% set active_page = 'pages' %}
-
 {% block title %}
-Admin delete form
+    Admin delete form
 {% endblock %}
-
-
-
-
-
-
 {% block content %}
-
     
-        <h2 class="cust-h">Current Pages</h2>
-        <form class="deletePageForm" action="/admin/process-delete-page" method="post">
-            {% for page in app.pages %}
+    <h2 class="cust-h">Current Pages</h2>
+    <form class="deletePageForm" action="/admin/process-delete-page" method="post">
+        {% for page in app.pages %}
             <input type="radio" name="pageName" value="{{ page.pageName }}" checked>{{ page.pageName }}<br>
             <input type="hidden" name="pageTemplate" value="{{ page.pageTemplate }}"/><br>
-            {% endfor %}
-            <input class="input-box" type="submit" value="Delete Page" onclick="return confirm('Sure you want to delete this page?');">
-        </form>
-
-
-        <p>
-            {% if result is defined %}
-            {{ result }}
-            {% endif %}
-        </p>
+        {% endfor %}
+        <input class="input-box" type="submit" value="Delete Page" onclick="return confirm('Sure you want to delete this page?');">
+    </form>
     
-
-
+    
 {% endblock %}
