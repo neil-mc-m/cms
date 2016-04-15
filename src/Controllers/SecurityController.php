@@ -23,7 +23,7 @@ class SecurityController
     public function logInAction(Request $request, Application $app)
     {
         $token = $app['security.token_storage']->getToken();
-        var_dump($token);
+        
         $args_array = array(
             'error' => $app['security.last_error']($request),
             'last_username' => $app['session']->get('_security.last_username'),

@@ -12,8 +12,9 @@
     <article class="main-section">
         	{# the paragraph filter is an extension registered in index.php line 55 #}
         	{# taken from https://github.com/jasny/twig-extensions #}
+            <h2>{{ title }}</h2>
             <img src="{{ app.request.basepath }}{{ image|raw }}">
-            <p>{{ article }}</p>
+            <p>{{ article|paragraph }}</p>
         
         <p>
             <small>This article was created on: {{ created }}</small>

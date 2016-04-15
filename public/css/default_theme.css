@@ -7,14 +7,17 @@ body,
 html {
   background-color: #ffffff;
   font-family: 'Raleway', sans-serif;
-  font-size: 1rem;
+  font-size: 1.2rem;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
 }
-h1,h2,h3,h4 {
-  font-family: 'Poiret One', cursive;
 
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Poiret One', cursive;
 }
 
 /* image display */
@@ -33,13 +36,11 @@ h1,h2,h3,h4 {
 }
 
 .title {
-  
   padding-top: 10%;
   margin: 0;
 }
 
 /*********** style the navbar *************/
-
 ul {
   display: flex;
   padding: 0.5rem;
@@ -55,21 +56,23 @@ li {
 }
 
 a {
-  color: #100F12;
+  color: #100f12;
   text-decoration: none;
-  font-size: 1.5em; 
+  font-size: 1.5em;
 }
 
 a:hover {
-  
   border-bottom: thick solid #922b21;
 }
+
 li.active {
-  background-color: #EA4343;
+  background-color: #ea4343;
 }
+
 a:active {
   color: white;
 }
+
 /* style the read-more link */
 a.readmore-link {
   padding: 0;
@@ -83,13 +86,16 @@ a.readmore-link {
 }
 
 #livesearch a {
-  background-color: #e9f2f7;
+  background-color: #f9f9f9;
   position: absolute;
   border: thin solid grey;
   padding: 1rem;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2);
 }
-
+#livesearch a:hover {
+  background-color: #ea4343;
+  color: white; 
+}
 /********* main content container *********/
 .content-container {
   background-color: #ffffff;
@@ -104,7 +110,6 @@ a.readmore-link {
   flex: 1 0 0;
   padding: 1%;
 }
-
 
 .main-section {
   text-align: left;
@@ -148,21 +153,24 @@ a.readmore-link {
 .input-box {
   padding-right: 1rem;
 }
-/********** login form ***************/
 
+/********** login form ***************/
 #loginForm {
   text-align: left;
 }
+
 /********** footer styles ************/
 .footer {
   background-color: #eaecee;
   padding: 1%;
   display: flex;
 }
+
 .footer-section-nav {
   flex: 1;
   align-self: flex-start;
 }
+
 .footer-section-date {
   text-align: right;
   flex: 1;
@@ -173,24 +181,27 @@ ul.footer-links {
   background-color: #eaecee;
   justify-content: flex-start;
 }
+
 .footer-section-nav h4 {
   margin-bottom: 0;
   text-align: left;
   padding-left: 0.5rem;
 }
+
 .footer-section-date h4 {
   margin-bottom: 0;
   text-align: right;
 }
+
 .footer-section-date p {
   margin-top: 0;
 }
+
 .footer-links a {
-  color: #100F12;
+  color: #100f12;
   text-align: justify;
   font-size: 1.1rem;
 }
-
 
 li.footer-nav {
   margin-right: 1%;
@@ -198,6 +209,7 @@ li.footer-nav {
 }
 
 .foot-link {
+  font-size: .80rem;
   padding: 0;
 }
 
@@ -248,9 +260,10 @@ li.footer-nav {
     font-size: 0.5rem;
     display: flex;
   }
+
   .footer-links a {
-  color: #5499c7;
-  text-align: justify;
-  font-size: 0.75rem;
-}
+    color: black;
+    text-align: justify;
+    font-size: 0.75rem;
+  }
 }

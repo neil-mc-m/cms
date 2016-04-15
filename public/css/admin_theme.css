@@ -29,6 +29,11 @@ footer {
   background-color: #003;
 }
 
+a {
+  color: #100f12;
+  text-decoration: none;
+}
+
 a.active {
   color: #ff5733;
 }
@@ -142,9 +147,13 @@ a:hover {
   border: thin solid grey;
   padding: 2rem;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .2);
-  width: 11.7rem;
+  /*width: 11.7rem;*/
 }
 
+#livesearch a:hover {
+  background-color: #ea4343;
+  color: white; 
+}
 /*********************/
 
 /* custom headings */

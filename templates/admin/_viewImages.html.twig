@@ -10,35 +10,17 @@
     <form name="addImageForm" action="/admin/add-image" method="post">
         <p>Image to add</p>
         {% for image in images %}
-            
-            
+               
             <img src="{{ app.request.basepath }}{{ image.imagePath|raw }}">
             <input type="radio" name="imagePath" value="{{ image.imagePath }}">
+
         {% endfor %}
-        <p>Article to add too</p>
+            <p>Article to add too</p>
         {% for content in content %}
             
             <p><input type="radio" name="contentId" value="{{ content.contentId }}">{{ content.contentItemTitle }}</p>
-            
-            
-            
-            
+             
         {% endfor %}
-        <input style="width: 10rem; height: 3.2rem;" type="submit"  value="Add">
-        
-        
-        
-        
-    </form>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+        <input style="width: 10rem; height: 3.2rem;" type="submit"  value="Add">    
+    </form>       
 {% endblock %}

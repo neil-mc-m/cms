@@ -47,7 +47,7 @@
                 <h3>All Posts</h3>
             {% if allContent is defined %}
                 {% for con in allContent %}
-                    <a class="readmore-link" href="/{{ con.pageName }}/{{ con.contentId }}">{{ con.contentItemTitle }}...</a><small>{{ con.created }}</small><br>
+                    <a class="readmore-link" href="/{% for page in app.pages %}{% if page.pageName == con.pageName %}{{ page.pageRoute }}{% endif %}{% endfor %}/{{ con.contentId }}">{{ con.contentItemTitle }}...</a><small>{{ con.created }}</small><br>
                  {% endfor %}
             {% endif %}
         {% endblock %}

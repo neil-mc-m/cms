@@ -101,7 +101,9 @@ $app->error(function (\Exception $e, $code) use ($app) {
 $app->get('/', 'CMS\\Controllers\\MainController::indexAction');
 
 $app->get('/login', 'CMS\\Controllers\\SecurityController::logInAction');
+
 $app->get('/search/{q}', 'CMS\\Controllers\\SearchController::searchAction');
+$app->get('/search-results/{contentId}', 'CMS\\Controllers\\SearchController::userAction');
 $app->get('/{pageRoute}', 'CMS\\Controllers\\MainController::routeAction');
 
 $app->get('/articles', 'CMS\\Controllers\\MainController::articlesAction');
@@ -135,7 +137,7 @@ $app->post('/admin/process-edit-content', 'CMS\\Controllers\\ContentController::
 $app->get('/admin/images', 'CMS\\Controllers\\ImageController::viewImagesAction');
 $app->post('/admin/add-image', 'CMS\\Controllers\\ImageController::addImageAction');
 $app->get('/admin/upload-image', 'CMS\\Controllers\\ImageController::uploadImageFormAction');
-$app->post('admin/process-imageUpload', 'CMS\\Controllers\\ImageController::processImageUploadAction');
+$app->post('/admin/process-imageUpload', 'CMS\\Controllers\\ImageController::processImageUploadAction');
 
 $app->get('/{pageRoute}/{contentId}', 'CMS\\Controllers\\MainController::oneArticleAction');
 $app->run();
