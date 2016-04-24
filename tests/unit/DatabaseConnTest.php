@@ -1,17 +1,15 @@
 <?php
-use \CMS\DbRepository;
 
-class ExampleTest extends \Codeception\TestCase\Test
+
+class DatabaseConnTest extends \Codeception\TestCase\Test
 {
     /**
      * @var \UnitTester
      */
-
     protected $tester;
 
     protected function _before()
     {
-
     }
 
     protected function _after()
@@ -21,8 +19,9 @@ class ExampleTest extends \Codeception\TestCase\Test
     // tests
     public function testMe()
     {
-       
-
-
+        $conn = new CMS\DbManager();
+        $conn->getPdoInstance();
+        $this->assertInstanceOf('PDO', $conn);
+        
     }
 }

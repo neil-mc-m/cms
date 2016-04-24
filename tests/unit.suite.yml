@@ -6,12 +6,4 @@ class_name: UnitTester
 modules:
     enabled:
         - Asserts
-        - Db:
-            dsn: 'mysql:host=localhost;dbname=testcms;port=3306'
-            user: 'root'
-            password: ''
-            dump: 'tests/_data/dump.sql'
-            populate: true
-            cleanup: true
-            reconnect: true
         - \Helper\Unit

@@ -14,7 +14,7 @@
         	{# taken from https://github.com/jasny/twig-extensions #}
             <h2>{{ title }}</h2>
             <img src="{{ app.request.basepath }}{{ image|raw }}">
-            <p>{{ article|paragraph }}</p>
+            <p>{{ article|linkify }}</p>
         
         <p>
             <small>This article was created on: {{ created }}</small>

@@ -93,7 +93,7 @@ class Page
      */
     public function setPageRoute($pageName)
     {
-        $this->pageRoute = str_replace(' ', '-', $pageName);
+        $this->pageRoute = strtolower(str_replace(' ', '-', $pageName));
 
         return $this;
     }

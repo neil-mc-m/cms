@@ -15,7 +15,7 @@ extensions:
 modules:
     config:
         Db:
-            dsn: 'mysql:host=localhost;dbname=testcms;port=3306'
-            user: 'neil'
-            password: 'neil'
+            dsn: ''
+            user: ''
+            password: ''
             dump: tests/_data/dump.sql

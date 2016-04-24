@@ -13,7 +13,7 @@ use Symfony\Component\Debug\ExceptionHandler;
 
 require_once __DIR__.'/../vendor/autoload.php';
 # parse the config file 
-$config = parse_ini_file('../config/config.ini', true);
+$config = parse_ini_file(realpath('../config/config.ini'), true);
 # get the theme and add it to the twig loaders path.
 $myTemplatesPath1 = __DIR__.'/../themes/'.$config['themes']['theme'].'/templates';
 $myTemplatesPath2 = __DIR__.'/../templates/admin';
