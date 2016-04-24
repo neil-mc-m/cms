@@ -57,8 +57,6 @@ class ContentController
 
     public function createContentFormAction(Request $request, Application $app)
     {
-        $db = new DbRepository($app['dbh']);
-
         $args_array = array(
             'user' => $app['session']->get('user'),
         );
@@ -102,10 +100,10 @@ class ContentController
         return $app['twig']->render($templateName.'.html.twig', $args_array);
     }
 
-    public function processDeleteContentAction(Request $request, Application $app, $contentid)
+    public function processDeleteContentAction(Request $request, Application $app, $contentId)
     {
         $db = new DbRepository($app['dbh']);
-        $result = $db->deleteContent($contentid);
+        $result = $db->deleteContent($contentId);
         $content = $db->getAllPagesContent();
 
         $args_array = array(

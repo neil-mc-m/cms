@@ -79,7 +79,7 @@ $app['security.encoder.digest'] = $app->share(function ($app) {
         // use the sha1 algorithm
         // don't base64 encode the password
         // use only 1 iteration
-        return new MessageDigestPasswordEncoder('sha512', false, 1);
+        return new MessageDigestPasswordEncoder('sha1', false, 1);
     });
 $app->register(new Silex\Provider\MonologServiceProvider(), array(
     'monolog.logfile' => $loggerPath.'/development.log',
@@ -91,6 +91,7 @@ $app['twig'] = $app->share($app->extend('twig', function ($twig, $app) {
 
     return $twig;
 }));
+# set up a custom error page to handle exceptions and errors.
 $app->error(function (\Exception $e, $code) use ($app) {
     return new Response($app['twig']->render('error.html.twig'));
 });
@@ -105,9 +106,6 @@ $app->get('/login', 'CMS\\Controllers\\SecurityController::logInAction');
 $app->get('/search/{q}', 'CMS\\Controllers\\SearchController::searchAction');
 $app->get('/search-results/{contentId}', 'CMS\\Controllers\\SearchController::userAction');
 $app->get('/{pageRoute}', 'CMS\\Controllers\\MainController::routeAction');
-
-$app->get('/articles', 'CMS\\Controllers\\MainController::articlesAction');
-$app->get('/articles/{id}', 'CMS\\Controllers\\MainController::oneArticleAction');
 
 $app->get('/admin/logout', 'CMS\\Controllers\\SecurityController::logoutAction');
 
@@ -129,7 +127,7 @@ $app->get('/admin/create-content', 'CMS\\Controllers\\ContentController::createC
 $app->post('/admin/process-content', 'CMS\\Controllers\\ContentController::processContentAction');
 
 $app->get('/admin/delete-content', 'CMS\\Controllers\\ContentController::deleteContentFormAction');
-$app->get('/admin/process-delete-content/{contentid}', 'CMS\\Controllers\\ContentController::processDeleteContentAction');
+$app->get('/admin/process-delete-content/{contentId}', 'CMS\\Controllers\\ContentController::processDeleteContentAction');
 
 $app->get('/admin/edit-content/{contentId}', 'CMS\\Controllers\\ContentController::editContentAction');
 $app->post('/admin/process-edit-content', 'CMS\\Controllers\\ContentController::processEditContentAction');

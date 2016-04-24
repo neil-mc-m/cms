@@ -133,7 +133,6 @@ class ImageController
             $uploadOk = false;
         }
 
-        # var_dump($uploadOk);
         # if the validation variable is false, re-render the upload form with an error message
         if ($uploadOk == false) {
             $args_array = array(
