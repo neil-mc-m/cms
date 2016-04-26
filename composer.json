@@ -1,13 +1,12 @@
 {
-  "name": "studentneil/semester 2 project-CMS",
-  "description": "A CMS for my final project/thesis, may 2016.",
+  "name": "studentneil/semester 2 project-cms",
+  "description": "A cms for my final project/thesis, may 2016.",
   "require": {
     "silex/silex":"~1.3",
     "symfony/twig-bridge":"~3.0",
     "twig/twig":"~1.22",
     "symfony/security": "^3.0",
     "monolog/monolog": "^1.18",
-    "doctrine/dbal": "~2.2",
     "jasny/twig-extensions": "^1.0",
     "symfony/validator": "^3.0",
     "symfony/debug": "^3.0"

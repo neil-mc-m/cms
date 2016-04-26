@@ -17,7 +17,7 @@ $config = parse_ini_file(realpath('../config/config.ini'), true);
 # get the theme and add it to the twig loaders path.
 $myTemplatesPath1 = __DIR__.'/../themes/'.$config['themes']['theme'].'/templates';
 $myTemplatesPath2 = __DIR__.'/../templates/admin';
-$loggerPath = dirname(__DIR__).'/logs';
+# $loggerPath = dirname(__DIR__).'/logs';
 $app = new Silex\Application();
 ErrorHandler::register();
 ExceptionHandler::register();
@@ -81,9 +81,10 @@ $app['security.encoder.digest'] = $app->share(function ($app) {
         // use only 1 iteration
         return new MessageDigestPasswordEncoder('sha1', false, 1);
     });
-$app->register(new Silex\Provider\MonologServiceProvider(), array(
-    'monolog.logfile' => $loggerPath.'/development.log',
-));
+# uncomment the logger while developing
+#$app->register(new Silex\Provider\MonologServiceProvider(), array(
+#    'monolog.logfile' => $loggerPath.'/development.log',
+#));
 # an extension to add a paragraphing filter to twig templates.
 # see https://github.com/jasny/twig-extensions. 
 $app['twig'] = $app->share($app->extend('twig', function ($twig, $app) {
@@ -102,6 +103,7 @@ $app->error(function (\Exception $e, $code) use ($app) {
 $app->get('/', 'CMS\\Controllers\\MainController::indexAction');
 
 $app->get('/login', 'CMS\\Controllers\\SecurityController::logInAction');
+$app->get('/admin', 'CMS\\Controllers\\SecurityController::logInAction');
 
 $app->get('/search/{q}', 'CMS\\Controllers\\SearchController::searchAction');
 $app->get('/search-results/{contentId}', 'CMS\\Controllers\\SearchController::userAction');

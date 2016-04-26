@@ -52,10 +52,14 @@
             {% endif %}
         {% endblock %}
         </div>
+        <div class="main-section">
+            {% block content %}
+                {% include 'content.html.twig' %}
+            {% endblock %}
+        </div>
+        <div class="side-section">
 
-        {% block content %}
-            {% include 'content.html.twig' %}
-        {% endblock %}
+        </div>
     </div>
    
     {# the footer #}

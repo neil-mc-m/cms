@@ -3,7 +3,7 @@
 
     {% for con in content %}
        
-        <article class="main-section">
+        <article class="section">
             <img src="{{ app.request.basepath }}{{ con.imagePath|raw }}">
             <h2>{{ con.contentItemTitle }}</h2>
             
@@ -22,10 +22,5 @@
         </article>
     
     {% endfor %}
-    
-    <article class="side-section">
-            
-               
-            
-        </article>
+
 {% endif %}

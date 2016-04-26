@@ -29,7 +29,7 @@ class MainController
     public function indexAction(Request $request, Application $app)
     {
         $db = new DbRepository($app['dbh']);
-        $app['monolog']->addInfo('You just connected to the database');
+        #$app['monolog']->addInfo('You just connected to the database');
         # as this is the home page controller, get the home pages content
         $content = $db->getContent('home');
         $allContent = $db->getAllPagesContent();

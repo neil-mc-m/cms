@@ -68,6 +68,8 @@ class PagesController
      */
     public function newPageAction(Request $request, Application $app)
     {
+        // these variables need to be filtered and sanitised
+        // before insert into db.
         $pageName = $app['request']->get('pageName');
         $pageTemplate = $app['request']->get('pageTemplate');
         $page = new Page();
