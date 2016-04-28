@@ -3,8 +3,3 @@ https://useiconic.com/open/
 
 All images taken from www.unsplash.com
 
-backdrop.jpg
-https://unsplash.com
-
-sky.jpg
-https://unsplash.com
