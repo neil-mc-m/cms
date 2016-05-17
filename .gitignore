@@ -3,4 +3,4 @@
 /config/
 tests/_output/*
 /logs/
-composer.lock
+
