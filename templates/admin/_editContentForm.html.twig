@@ -8,7 +8,7 @@
     <form class="editContentForm" action="/admin/process-edit-content" method="post">
             <p>
                 Pagename<br>
-                <input class="input-box" type="text" name="pageName" value="{{ content.pageName }}">
+                <input type="radio" name="pageName" value="{{ content.pageName }}" checked><span class="cust-name">{{ content.pageName }}</span><br>
             </p>
             <p>
                 Content type<br>
