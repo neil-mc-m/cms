@@ -93,9 +93,9 @@ $app['twig'] = $app->share($app->extend('twig', function ($twig, $app) {
     return $twig;
 }));
 $app['twig'] = $app->share($app->extend('twig', function($twig, $app) {
-    $twig->addFilter('code', new \Twig_SimpleFilter('code', function($string){
-        return '<pre><code class="language-php">'.$string.'</code></pre>';
-    },array('pre_escape' => 'html', 'is_safe' => array('html'))));
+    $twig->addFilter(new \Twig_SimpleFilter('code', function($string){
+        return str_replace(array('<code>', '</code>'), array('<pre><code class="language-php">', '</code></pre>'), $string );
+    },array('is_safe' => array('html'))));
 
     return $twig;
 }));
