@@ -8,7 +8,7 @@
             <h2>{{ con.contentItemTitle }}</h2>
             
             <p>
-                {{ con.contentItem|slice(0,100) }}...<a class="readmore-link" href="/{% for page in app.pages %}{% if page.pageName == con.pageName %}{{ page.pageRoute }}{% endif %}{% endfor %}/{{ con.contentId }}">read more</a>
+                {{ con.contentItem|slice(0,100)|code }}...<a class="readmore-link" href="/{% for page in app.pages %}{% if page.pageName == con.pageName %}{{ page.pageRoute }}{% endif %}{% endfor %}/{{ con.contentId }}">read more</a>
             </p>
             <p>
                 {{ con.created }}
@@ -19,6 +19,7 @@
                     comments:
                 </p>
             </div>
+
         </article>
     
     {% endfor %}

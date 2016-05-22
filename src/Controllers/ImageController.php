@@ -2,7 +2,7 @@
 
 namespace CMS\Controllers;
 
-use CMS\Upload;
+
 use Silex\Application;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\Request;
@@ -94,72 +94,6 @@ class ImageController
         return $app['twig']->render($templateName . '.html.twig', $args_array);
     }
 
-    /**
-     * A controller for processing the upload images form.
-     * Validations: a jpg or png, under 1M and file must not already exist.
-     * The image path will be stored in the db.
-     *
-     * @param request object
-     * @param app object
-     *
-     * @return twig template
-     */
-    public function processImageUploadAction(Request $request, Application $app)
-    {
-        $file = $request->files->get('image');
-        $pic = $file->getClientOriginalName();
-        var_dump($pic);
-        $constraint = new Assert\Image(array(
-            'mimeTypes' => array('image/jpeg', 'image/png'),
-            'maxSize' => '2M'
-        ));
-
-        $errors = $app['validator']->validate($file, $constraint);
-        if (count($errors) > 0) {
-            foreach ($errors as $error) {
-                $message = $error->getPropertyPath() . ' ' . $error->getMessage() . "\n";
-            }
-            $validfile = false;
-        }
-        if (file_exists($request->getBasePath() . 'images/' . $file->getClientOriginalName())) {
-            $message = 'Sorry, file already exists';
-            $validfile = false;
-        }
-
-//        $upload = new Upload($app);
-//        $res = $upload->checks($file, $app);
-//        var_dump($res);
-
-
-
-        # if the validation variable is false, re-render the upload form with an error message
-        if ($validfile == false) {
-            $args_array = array(
-                'user' => $app['session']->get('user'),
-                'result' => $message,
-            );
-            $templateName = '_uploadImageForm';
-
-            return $app['twig']->render($templateName . '.html.twig', $args_array);
-        } else {
-            move_uploaded_file($_FILES['image']['tmp_name'], $request->getBasePath() . 'images/' . $_FILES['image']['name']);
-            $path = $_FILES['image']['name'];
-            $newImage = new Image();
-            $newImage->setImagePath($path);
-            $image = $newImage->getImagePath();
-            $db = new DbRepository($app['dbh']);
-            $result = $db->uploadImage($image);
-            $images = $db->viewImages();
-            $content = $db->getAllPagesContent();
-            $args_array = array(
-                'user' => $app['session']->get('user'),
-                'result' => $result,
-                'images' => $images,
-                'content' => $content,
-            );
-            $templateName = '_viewImages';
-
-            return $app['twig']->render($templateName . '.html.twig', $args_array);
-        }
-    }
+    
+   
 }

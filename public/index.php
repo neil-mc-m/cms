@@ -92,6 +92,13 @@ $app['twig'] = $app->share($app->extend('twig', function ($twig, $app) {
 
     return $twig;
 }));
+$app['twig'] = $app->share($app->extend('twig', function($twig, $app) {
+    $twig->addFilter('code', new \Twig_SimpleFilter('code', function($string){
+        return '<pre><code class="language-php">'.$string.'</code></pre>';
+    },array('pre_escape' => 'html', 'is_safe' => array('html'))));
+
+    return $twig;
+}));
 # set up a custom error page to handle exceptions and errors.
 $app->error(function (\Exception $e, $code) use ($app) {
     return new Response($app['twig']->render('error.html.twig'));
@@ -137,7 +144,8 @@ $app->post('/admin/process-edit-content', 'CMS\\Controllers\\ContentController::
 $app->get('/admin/images', 'CMS\\Controllers\\ImageController::viewImagesAction');
 $app->post('/admin/add-image', 'CMS\\Controllers\\ImageController::addImageAction');
 $app->get('/admin/upload-image', 'CMS\\Controllers\\ImageController::uploadImageFormAction');
-$app->post('/admin/process-imageUpload', 'CMS\\Controllers\\ImageController::processImageUploadAction');
+
+$app->post('/admin/process-imageUpload', 'CMS\\Controllers\\UploadController::processImageUploadAction');
 
 $app->get('/{pageRoute}/{contentId}', 'CMS\\Controllers\\MainController::oneArticleAction');
 $app->run();
