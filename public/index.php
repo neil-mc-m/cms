@@ -93,8 +93,8 @@ $app['twig'] = $app->share($app->extend('twig', function ($twig, $app) {
     return $twig;
 }));
 $app['twig'] = $app->share($app->extend('twig', function($twig, $app) {
-    $twig->addFilter(new \Twig_SimpleFilter('code', function($string){
-        return str_replace(array('<code>', '</code>'), array('<pre><code class="language-php">', '</code></pre>'), $string );
+    $twig->addFilter(new \Twig_SimpleFilter('code', function($string, $language){
+        return str_replace(array('<code>', '</code>'), array('<pre><code class="language-'.$language.'">', '</code></pre>'), $string );
     },array('is_safe' => array('html'))));
 
     return $twig;
