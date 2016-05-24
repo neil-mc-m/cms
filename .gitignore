@@ -1,6 +1,6 @@
 # ignore these files/folders and everything in them
 /vendor/
-/config/
+/config/config.ini
 tests/_output/*
 /logs/
 
