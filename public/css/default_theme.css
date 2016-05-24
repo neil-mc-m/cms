@@ -21,9 +21,10 @@ h4 {
 }
 
 /* image display */
+
 .img-resp {
   width: 100%;
-  height: auto;
+  max-height: 20em;
 }
 
 /************ header styles *************/
@@ -114,16 +115,16 @@ a.readmore-link {
 }
 .main-section {
   display: flex;
-  flex: 4 0 0;
-  flex-wrap: wrap;
+
+  flex-flow: row wrap;
   justify-content: flex-start;
-  padding: 1%;
+  min-width: 5em;
+
 }
 .section {
   text-align: left;
-  margin: 0.5%;
   padding: 1%;
-  flex: 1;
+  flex: 1 0 33%;
 }
 
 /* right-side section */
@@ -220,7 +221,9 @@ li.footer-nav {
   font-size: .80rem;
   padding: 0;
 }
-
+code {
+  font-size: small;
+}
 /* responsive media queries */
 @media only screen and (max-width: 600px) {
   body {

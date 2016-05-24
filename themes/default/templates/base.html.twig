@@ -11,6 +11,7 @@
         @import url(https://fonts.googleapis.com/css?family=Raleway);
         @import url(https://fonts.googleapis.com/css?family=Poiret+One);
         @import '{{ app.request.basepath }}/css/default_theme.css';
+        @import '{{ app.request.basepath }}/css/prism.css';
     {% endblock %}
     </style>
 </head>
@@ -71,6 +72,7 @@
     {# so when they're needed, include them in a block in a template #}
     {% block javascript %}
         <script src="{{ app.request.basepath }}/js/ajax.js"></script>
+        <script src="{{ app.request.basepath }}/js/prism.js"></script>
     {% endblock %}
 </body>
 </html>
