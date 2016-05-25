@@ -255,11 +255,14 @@ code {
   }
 
   .content-container {
+    display: flex;
+
+    /*flex-flow: row-wrap;*/
     flex-direction: column-reverse;
   }
   .main-section {
-    flex: 1;
-    flex-direction: column;
+
+
   }
   #livesearch a {
     background-color: white;
