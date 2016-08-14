@@ -4,5 +4,8 @@
 tests/_output/*
 /logs/
 /public/node_modules/
+.idea
+composer.lock
+
 
 
