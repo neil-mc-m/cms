@@ -6,14 +6,10 @@
     <title>
     CMS |{% block title %}{% if pageName is defined %}{{ pageName }}{% endif %}{% endblock %}
     </title>
-    <style>
-    {% block style %}
-        @import url(https://fonts.googleapis.com/css?family=Raleway);
-        @import url(https://fonts.googleapis.com/css?family=Poiret+One);
-        @import '{{ app.request.basepath }}/css/default_theme.css';
-        @import '{{ app.request.basepath }}/css/prism.css';
-    {% endblock %}
-    </style>
+    <link rel="stylesheet" href="{{ app.request.basepath }}/css/default_theme.css">
+    <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poiret+One" type="text/css">
+
 </head>
 <body>
     <header class="header-box" style="background-image: url('{{ app.request.basepath }}{{ app.image }}')">

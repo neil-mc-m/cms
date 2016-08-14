@@ -3,5 +3,6 @@
 /config/config.ini
 tests/_output/*
 /logs/
+/public/node_modules/
 
 
