@@ -5,6 +5,7 @@ require_once 'bootstrap.php';
 # ________________________________________________________________
 #
 $app->get('/', 'CMS\\Controllers\\MainController::indexAction');
+$app->get('/home', 'CMS\\Controllers\\MainController::indexAction');
 
 $app->get('/login', 'CMS\\Controllers\\SecurityController::logInAction');
 $app->get('/admin', 'CMS\\Controllers\\SecurityController::logInAction');

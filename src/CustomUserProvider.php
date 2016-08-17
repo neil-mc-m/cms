@@ -7,13 +7,14 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\User;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\Exception\UsernameNotFoundException;
+use Doctrine\Dbal\Connection;
 use PDO;
 
 class CustomUserProvider implements UserProviderInterface
 {
     private $conn;
 
-    public function __construct(\PDO $conn)
+    public function __construct(Connection $conn)
     {
         $this->conn = $conn;
     }

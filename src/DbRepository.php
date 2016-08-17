@@ -2,7 +2,8 @@
 
 namespace CMS;
 
-use PDO;
+use Doctrine\Dbal\Connection;
+use \PDO;
 
 /**
  * A data access class.
@@ -11,9 +12,9 @@ use PDO;
  */
 class DbRepository {
 	/**
-	 * PDO database connection object.
+	 * Doctrine Connection object
 	 *
-	 * @var PDO instance
+	 * @var Connection instance
 	 */
 	private $conn;
 

@@ -6,6 +6,7 @@ use Twig_LoaderInterface;
 use Twig_ExistsLoaderInterface;
 use Twig_Error_Loader;
 use PDO;
+use Doctrine\Dbal\Connection;
 
 /**
  * A twig loader class to load templates from the database.
@@ -17,16 +18,16 @@ class DatabaseTwigLoader implements Twig_LoaderInterface, Twig_ExistsLoaderInter
      *
      * @var PDO connection instance.
      */
-    protected $dbh;
+    protected $conn;
 
     /**
      * construct the class with the database connection.
      *
      * @param PDO $dbh .PDO connection.
      */
-    public function __construct(\PDO $dbh)
+    public function __construct(Connection $conn)
     {
-        $this->dbh = $dbh;
+        $this->conn = $conn;
     }
 
     public function getSource($name)
@@ -60,7 +61,7 @@ class DatabaseTwigLoader implements Twig_LoaderInterface, Twig_ExistsLoaderInter
 
     protected function getValue($column, $name)
     {
-        $sth = $this->dbh->prepare('SELECT '.$column.' FROM templates WHERE name = :name');
+        $sth = $this->conn->prepare('SELECT '.$column.' FROM templates WHERE name = :name');
         $sth->execute(array(':name' => $name));
 
         return $sth->fetchColumn();
